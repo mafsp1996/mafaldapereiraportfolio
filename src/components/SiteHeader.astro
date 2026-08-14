@@ -1,0 +1,99 @@
+---
+const navigation = [
+	{ label: 'Work', href: '/work' },
+	{ label: 'About', href: '#about' },
+];
+---
+
+<header class="site-header page-frame">
+	<a class="wordmark" href="/" aria-label="Mafalda Pereira — Home">
+		<span class="wordmark__mark" aria-hidden="true">MP</span>
+		<span>Mafalda Pereira</span>
+	</a>
+
+	<button
+		class="menu-toggle"
+		type="button"
+		aria-expanded="false"
+		aria-controls="primary-navigation"
+	>
+		<span>Menu</span>
+		<span class="menu-toggle__indicator" aria-hidden="true">[+]</span>
+	</button>
+
+	<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+		{
+			navigation.map((item) => (
+				<a href={item.href}>{item.label}</a>
+			))
+		}
+		<a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+			LinkedIn <span aria-hidden="true">↗</span>
+		</a>
+		<a href="mailto:">
+			Email <span aria-hidden="true">↗</span>
+		</a>
+	</nav>
+</header>
+
+<script>
+	const mobileHeaderQuery = window.matchMedia('(max-width: 47.999rem)');
+	const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+	const primaryNavigation = document.querySelector<HTMLElement>('#primary-navigation');
+
+	if (menuToggle && primaryNavigation) {
+		const menuIndicator = menuToggle.querySelector<HTMLElement>('.menu-toggle__indicator');
+		const navigationLinks = primaryNavigation.querySelectorAll<HTMLAnchorElement>('a');
+
+		const isMenuOpen = () => menuToggle.getAttribute('aria-expanded') === 'true';
+
+		const setMenuState = (open: boolean, returnFocus = false) => {
+			menuToggle.setAttribute('aria-expanded', String(open));
+			primaryNavigation.toggleAttribute('data-open', open);
+			primaryNavigation.setAttribute('aria-hidden', String(!open));
+
+			if (menuIndicator) {
+				menuIndicator.textContent = open ? '[−]' : '[+]';
+			}
+
+			if (returnFocus) {
+				menuToggle.focus();
+			}
+		};
+
+		const syncMenuToViewport = () => {
+			if (mobileHeaderQuery.matches) {
+				setMenuState(false);
+				return;
+			}
+
+			menuToggle.setAttribute('aria-expanded', 'false');
+			primaryNavigation.removeAttribute('data-open');
+			primaryNavigation.removeAttribute('aria-hidden');
+
+			if (menuIndicator) {
+				menuIndicator.textContent = '[+]';
+			}
+		};
+
+		document.documentElement.classList.add('menu-ready');
+		menuToggle.addEventListener('click', () => setMenuState(!isMenuOpen()));
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && mobileHeaderQuery.matches && isMenuOpen()) {
+				setMenuState(false, true);
+			}
+		});
+
+		navigationLinks.forEach((link) => {
+			link.addEventListener('click', () => {
+				if (mobileHeaderQuery.matches) {
+					setMenuState(false);
+				}
+			});
+		});
+
+		mobileHeaderQuery.addEventListener('change', syncMenuToViewport);
+		syncMenuToViewport();
+	}
+</script>

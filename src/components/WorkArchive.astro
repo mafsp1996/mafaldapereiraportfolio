@@ -1,0 +1,455 @@
+---
+const projects = [
+	{
+		number: '01',
+		title: 'AI-assisted research workflow',
+		contribution: 'AI Evaluation · Product Research',
+		layout: 'lead',
+	},
+	{
+		number: '02',
+		title: 'Mobile parking app for professionals',
+		contribution: 'Mobile App · UX Testing',
+		layout: 'right',
+	},
+	{
+		number: '03',
+		title: 'Remote parking experience',
+		contribution: 'Usability · Mixed Methods',
+		layout: 'left',
+	},
+	{
+		number: '04',
+		title: 'Virtual assistant experience',
+		contribution: 'Conversational UX · Research',
+		layout: 'narrow',
+	},
+	{
+		number: '05',
+		title: 'Autonomous mobility experience',
+		contribution: 'Discovery Research · Workshops',
+		layout: 'closing',
+	},
+];
+---
+
+<section class="work-archive page-frame" aria-labelledby="archive-heading">
+	<header class="archive-header">
+		<div class="archive-register">
+			<span>Portfolio index</span>
+			<span aria-hidden="true">01—05 / Research dossier</span>
+		</div>
+		<h1 id="archive-heading">Work archive</h1>
+		<div class="archive-rule" aria-hidden="true">
+			<span>Selected engagements</span>
+			<span>[05]</span>
+		</div>
+	</header>
+
+	<div class="archive-list">
+		{
+			projects.map((project) => (
+				<article class:list={['archive-card', `archive-card--${project.layout}`]}>
+					<div class="archive-card__info">
+						<span class="archive-card__number">{project.number}</span>
+						<div>
+							<h2>{project.title}</h2>
+							<p>{project.contribution}</p>
+						</div>
+					</div>
+
+					<div
+						class="archive-card__media"
+						role="img"
+						aria-label={`Image placeholder for ${project.title}`}
+					>
+						<span class="media-label" aria-hidden="true">Image placeholder</span>
+						<span class="media-code" aria-hidden="true">FIG / {project.number}</span>
+					</div>
+				</article>
+			))
+		}
+	</div>
+
+	<footer class="archive-footer" aria-hidden="true">
+		<span>05 / 05</span>
+		<span>End of archive</span>
+	</footer>
+</section>
+
+<style>
+	.work-archive {
+		padding-block: clamp(4rem, 7vw, 7rem) clamp(5rem, 8vw, 8rem);
+	}
+
+	.archive-header {
+		padding-bottom: clamp(4rem, 7vw, 7rem);
+	}
+
+	.archive-register,
+	.archive-rule,
+	.archive-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.63rem;
+		letter-spacing: 0.11em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.archive-register span:first-child {
+		color: var(--accent);
+	}
+
+	h1,
+	h2 {
+		margin: 0;
+		font-family: var(--display);
+		font-weight: 400;
+		letter-spacing: -0.05em;
+	}
+
+	h1 {
+		max-width: 10ch;
+		margin-block: clamp(3.5rem, 8vw, 8rem);
+		font-size: clamp(5rem, 10.5vw, 12rem);
+		line-height: 0.86;
+	}
+
+	.archive-rule {
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+		color: rgba(242, 239, 232, 0.38);
+	}
+
+	.archive-list {
+		border-bottom: 1px solid var(--line);
+	}
+
+	.archive-card {
+		display: grid;
+		padding-block: clamp(4rem, 7vw, 7.5rem);
+		border-top: 1px solid var(--line);
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: clamp(1.5rem, 3vw, 3.5rem);
+	}
+
+	.archive-card__info {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 4rem;
+	}
+
+	.archive-card__number {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.11em;
+	}
+
+	.archive-card h2 {
+		max-width: 11ch;
+		font-size: clamp(3rem, 4.6vw, 5.5rem);
+		line-height: 0.96;
+		text-wrap: balance;
+	}
+
+	.archive-card__info p {
+		margin: 1.35rem 0 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.65rem;
+		letter-spacing: 0.075em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.archive-card__media {
+		position: relative;
+		min-height: 25rem;
+		overflow: hidden;
+		border: 1px solid var(--line);
+		background-color: rgba(242, 239, 232, 0.018);
+		background-image:
+			linear-gradient(var(--line-soft) 1px, transparent 1px),
+			linear-gradient(90deg, var(--line-soft) 1px, transparent 1px),
+			linear-gradient(135deg, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
+		background-size: 4rem 4rem, 4rem 4rem, 100% 100%;
+	}
+
+	.archive-card__media::before,
+	.archive-card__media::after {
+		position: absolute;
+		content: '';
+		pointer-events: none;
+	}
+
+	.archive-card__media::before {
+		top: 50%;
+		left: 50%;
+		width: 5rem;
+		height: 5rem;
+		border: 1px solid rgba(131, 128, 255, 0.42);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.archive-card__media::after {
+		inset: 1rem;
+		border: 1px solid rgba(242, 239, 232, 0.055);
+	}
+
+	.media-label,
+	.media-code {
+		position: absolute;
+		z-index: 1;
+		color: rgba(242, 239, 232, 0.42);
+		font-family: var(--mono);
+		font-size: 0.58rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.media-label {
+		top: 1.65rem;
+		left: 1.65rem;
+	}
+
+	.media-code {
+		right: 1.65rem;
+		bottom: 1.65rem;
+		color: var(--accent);
+	}
+
+	.archive-card--lead .archive-card__media {
+		min-height: clamp(31rem, 40vw, 44rem);
+		grid-column: 1 / 8;
+		grid-row: 1;
+	}
+
+	.archive-card--lead .archive-card__info {
+		grid-column: 9 / -1;
+		grid-row: 1;
+	}
+
+	.archive-card--lead h2 {
+		font-size: clamp(3.7rem, 5.7vw, 6.8rem);
+	}
+
+	.archive-card--right .archive-card__info {
+		grid-column: 1 / 6;
+	}
+
+	.archive-card--right .archive-card__media {
+		min-height: clamp(27rem, 35vw, 38rem);
+		grid-column: 7 / -1;
+	}
+
+	.archive-card--right .archive-card__media::before {
+		width: 8rem;
+		border-radius: 0;
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+
+	.archive-card--left .archive-card__media {
+		min-height: clamp(25rem, 32vw, 34rem);
+		grid-column: 1 / 6;
+		grid-row: 1;
+	}
+
+	.archive-card--left .archive-card__info {
+		grid-column: 7 / -1;
+		grid-row: 1;
+	}
+
+	.archive-card--left .archive-card__media::before {
+		width: 10rem;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid rgba(131, 128, 255, 0.55);
+		border-radius: 0;
+	}
+
+	.archive-card--narrow .archive-card__info {
+		grid-column: 2 / 6;
+	}
+
+	.archive-card--narrow .archive-card__media {
+		min-height: clamp(29rem, 37vw, 40rem);
+		grid-column: 7 / 12;
+	}
+
+	.archive-card--narrow .archive-card__media::before {
+		width: 3.5rem;
+		height: 11rem;
+		border-radius: 0;
+	}
+
+	.archive-card--closing .archive-card__media {
+		min-height: clamp(23rem, 29vw, 31rem);
+		margin-top: clamp(2rem, 5vw, 5rem);
+		grid-column: 3 / 9;
+		grid-row: 1;
+	}
+
+	.archive-card--closing .archive-card__info {
+		grid-column: 9 / -1;
+		grid-row: 1;
+	}
+
+	.archive-card--closing .archive-card__media::before {
+		width: 7rem;
+		height: 7rem;
+		box-shadow: 0 0 0 1.75rem rgba(131, 128, 255, 0.035);
+	}
+
+	.archive-footer {
+		padding-top: 1.5rem;
+		color: rgba(242, 239, 232, 0.32);
+	}
+
+	@media (min-width: 48rem) and (max-width: 68.625rem) {
+		.work-archive {
+			padding-block: 4.5rem 5rem;
+		}
+
+		h1 {
+			font-size: clamp(6rem, 13vw, 9rem);
+		}
+
+		.archive-card {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			gap: 1.75rem;
+		}
+
+		.archive-card h2,
+		.archive-card--lead h2 {
+			font-size: clamp(2.7rem, 5.4vw, 3.7rem);
+		}
+
+		.archive-card--lead .archive-card__media,
+		.archive-card--left .archive-card__media {
+			min-height: 27rem;
+			grid-column: 1 / 5;
+		}
+
+		.archive-card--lead .archive-card__info,
+		.archive-card--left .archive-card__info {
+			grid-column: 5 / -1;
+		}
+
+		.archive-card--right .archive-card__info,
+		.archive-card--narrow .archive-card__info {
+			grid-column: 1 / 5;
+		}
+
+		.archive-card--right .archive-card__media,
+		.archive-card--narrow .archive-card__media {
+			min-height: 25rem;
+			grid-column: 5 / -1;
+		}
+
+		.archive-card--closing .archive-card__media {
+			min-height: 22rem;
+			margin-top: 2.5rem;
+			grid-column: 1 / 6;
+		}
+
+		.archive-card--closing .archive-card__info {
+			grid-column: 6 / -1;
+		}
+	}
+
+	@media (max-width: 47.999rem) {
+		.work-archive {
+			padding-block: 3rem 4rem;
+		}
+
+		.archive-header {
+			padding-bottom: 4rem;
+		}
+
+		.archive-register span:last-child {
+			display: none;
+		}
+
+		h1 {
+			margin-block: 3.5rem;
+			font-size: clamp(4.6rem, 23vw, 7.5rem);
+		}
+
+		.archive-card {
+			display: flex;
+			padding-block: 3.5rem;
+			flex-direction: column;
+			gap: 2.5rem;
+		}
+
+		.archive-card__info {
+			gap: 2.5rem;
+		}
+
+		.archive-card h2,
+		.archive-card--lead h2 {
+			max-width: 12ch;
+			font-size: clamp(2.75rem, 13vw, 4rem);
+		}
+
+		.archive-card__media,
+		.archive-card--lead .archive-card__media,
+		.archive-card--right .archive-card__media,
+		.archive-card--left .archive-card__media,
+		.archive-card--narrow .archive-card__media,
+		.archive-card--closing .archive-card__media {
+			width: 100%;
+			min-height: 19rem;
+			margin-top: 0;
+		}
+
+		.archive-card--lead .archive-card__media {
+			min-height: 24rem;
+			order: -1;
+		}
+
+		.archive-card--right .archive-card__media,
+		.archive-card--narrow .archive-card__media {
+			width: 86%;
+			align-self: flex-end;
+		}
+
+		.archive-card--left .archive-card__media {
+			width: 88%;
+			align-self: flex-start;
+			order: -1;
+		}
+
+		.archive-card--closing .archive-card__media {
+			width: 90%;
+			min-height: 16rem;
+			align-self: center;
+		}
+	}
+
+	@media (min-width: 68.6875rem) {
+		.work-archive {
+			padding-top: clamp(3.25rem, 5.25vw, 5.25rem);
+		}
+
+		.archive-header {
+			padding-bottom: clamp(2.75rem, 4.25vw, 4.25rem);
+		}
+
+		h1 {
+			margin-block: clamp(2.75rem, 6vw, 6rem);
+		}
+
+		.archive-card {
+			padding-block: clamp(3rem, 5.25vw, 5.625rem);
+		}
+	}
+</style>

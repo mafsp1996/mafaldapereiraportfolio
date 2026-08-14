@@ -21,7 +21,7 @@ const projects = [
 		layout: 'offset',
 	},
 	{
-		number: '03',
+		number: '05',
 		title: 'Autonomous mobility experience',
 		contribution: 'Discovery Research · Workshops',
 		description:
@@ -36,7 +36,7 @@ const projects = [
 <section id="selected-work" class="selected-work page-frame" aria-labelledby="work-heading">
 	<header class="section-heading">
 		<div>
-			<p class="section-kicker">Portfolio / 01—03</p>
+			<p class="section-kicker">Portfolio / 03 selected</p>
 			<h2 id="work-heading">Selected work</h2>
 		</div>
 		<p class="section-register" aria-hidden="true">Research case files · Selected engagements</p>
@@ -74,7 +74,7 @@ const projects = [
 
 	<div class="section-footer">
 		<span aria-hidden="true">END / SELECTED WORK</span>
-		<a href="/work">View all work <span aria-hidden="true">↗</span></a>
+		<a href="/work">View all work <span aria-hidden="true">→</span></a>
 	</div>
 </section>
 
@@ -83,6 +83,7 @@ const projects = [
 		position: relative;
 		padding-block: clamp(6rem, 10vw, 10rem) clamp(5rem, 8vw, 8rem);
 		border-top: 1px solid var(--line);
+		scroll-margin-top: var(--header-height);
 	}
 
 	.section-heading {
@@ -338,10 +339,11 @@ const projects = [
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
 		.selected-work {
 			padding-block: 6rem 5rem;
+			scroll-margin-top: 8.25rem;
 		}
 
 		h2 {
-			font-size: clamp(4rem, 8vw, 5.5rem);
+			font-size: clamp(4.5rem, 7vw, 5.25rem);
 		}
 
 		.work-card {
@@ -355,7 +357,7 @@ const projects = [
 
 		.work-card h3,
 		.work-card--featured h3 {
-			font-size: clamp(2.6rem, 5vw, 3.45rem);
+			font-size: clamp(3rem, 4.4vw, 3.25rem);
 		}
 
 		.work-card--featured .work-card__info {
@@ -390,6 +392,7 @@ const projects = [
 	@media (max-width: 47.999rem) {
 		.selected-work {
 			padding-block: 4.5rem 4rem;
+			scroll-margin-top: 8.25rem;
 		}
 
 		.section-heading {
@@ -402,7 +405,7 @@ const projects = [
 		}
 
 		h2 {
-			font-size: clamp(3.35rem, 16vw, 5rem);
+			font-size: clamp(3.35rem, 12vw, 4.5rem);
 		}
 
 		.work-card {
@@ -419,7 +422,7 @@ const projects = [
 		.work-card h3,
 		.work-card--featured h3 {
 			max-width: 12ch;
-			font-size: clamp(2.65rem, 12.5vw, 4rem);
+			font-size: clamp(2.65rem, 9.5vw, 3rem);
 		}
 
 		.work-card__contribution {

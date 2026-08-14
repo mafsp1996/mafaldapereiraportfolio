@@ -34,6 +34,12 @@ const methods = [
 	'Benchmarking',
 	'Concept evaluation',
 ];
+
+const principles = [
+	'Understand context before making assumptions',
+	'Use evidence to challenge opinion',
+	'Turn findings into clear decisions',
+];
 ---
 
 <section
@@ -76,18 +82,26 @@ const methods = [
 		}
 	</ol>
 
-	<div class="method-repertoire">
-		<p>Method repertoire</p>
+	<div class="approach-reference method-repertoire">
+		<p>Methods I use</p>
 		<ul aria-label="Research methods">
 			{methods.map((method) => <li>{method}</li>)}
 		</ul>
 	</div>
 
-	<footer class="approach-footer" aria-hidden="true">
-		<span>Context over assumptions</span>
-		<span>Evidence over opinion</span>
-		<span>Decisions over deliverables</span>
-	</footer>
+	<div class="approach-reference working-principles" aria-labelledby="principles-heading">
+		<p id="principles-heading">Working principles</p>
+		<ul>
+			{
+				principles.map((principle, index) => (
+					<li>
+						<span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+						<strong>{principle}</strong>
+					</li>
+				))
+			}
+		</ul>
+	</div>
 </section>
 
 <style>
@@ -109,8 +123,7 @@ const methods = [
 	.approach-kicker,
 	.approach-register,
 	.stage-register,
-	.method-repertoire > p,
-	.approach-footer {
+	.approach-reference > p {
 		margin: 0;
 		color: var(--muted);
 		font-family: var(--mono);
@@ -231,7 +244,7 @@ const methods = [
 		line-height: 1.65;
 	}
 
-	.method-repertoire {
+	.approach-reference {
 		display: grid;
 		align-items: start;
 		padding-block: clamp(2.5rem, 4vw, 4rem);
@@ -239,46 +252,71 @@ const methods = [
 		gap: 2rem;
 	}
 
-	.method-repertoire > p {
+	.approach-reference > p {
 		padding-top: 0.7rem;
 		color: var(--accent);
 	}
 
-	.method-repertoire ul {
-		display: flex;
+	.approach-reference ul {
+		display: grid;
 		margin: 0;
 		padding: 0;
-		flex-wrap: wrap;
-		gap: 0.5rem;
 		list-style: none;
 	}
 
+	.method-repertoire ul {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		column-gap: clamp(1.25rem, 2.5vw, 2.5rem);
+	}
+
 	.method-repertoire li {
-		padding: 0.65rem 0.8rem;
-		border: 1px solid var(--line);
-		background: rgba(242, 239, 232, 0.018);
+		position: relative;
+		padding: 0.8rem 0 0.8rem 1rem;
+		border-top: 1px solid var(--line);
 		color: var(--muted);
 		font-family: var(--mono);
-		font-size: 0.65rem;
+		font-size: 0.72rem;
 		letter-spacing: 0.045em;
-		line-height: 1;
+		line-height: 1.35;
 	}
 
-	.approach-footer {
-		display: grid;
-		padding-top: 1.5rem;
+	.method-repertoire li::before {
+		position: absolute;
+		top: 0.8rem;
+		left: 0;
+		color: var(--accent);
+		content: '•';
+	}
+
+	.working-principles {
 		border-top: 1px solid var(--line);
+	}
+
+	.working-principles ul {
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
-		color: rgba(242, 239, 232, 0.34);
+		gap: clamp(1.5rem, 3vw, 3rem);
 	}
 
-	.approach-footer span:nth-child(2) {
-		text-align: center;
+	.working-principles li {
+		display: grid;
+		padding-top: 0.8rem;
+		border-top: 1px solid var(--line);
+		grid-template-columns: 2rem 1fr;
+		gap: 0.75rem;
 	}
 
-	.approach-footer span:last-child {
-		text-align: right;
+	.working-principles li > span {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+	}
+
+	.working-principles strong {
+		color: #d5d1ca;
+		font-size: 0.92rem;
+		font-weight: 400;
+		line-height: 1.5;
 	}
 
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
@@ -292,8 +330,12 @@ const methods = [
 		}
 
 		.approach-statement {
-			font-size: clamp(2.6rem, 5vw, 3.6rem);
+			font-size: clamp(3.5rem, 5vw, 3.75rem);
 			grid-column: 1 / 5;
+		}
+
+		h2 {
+			font-size: clamp(4.5rem, 7vw, 5.25rem);
 		}
 
 		.approach-summary {
@@ -315,7 +357,16 @@ const methods = [
 
 		.approach-stages h3 {
 			margin-top: 4rem;
-			font-size: clamp(2.2rem, 4.2vw, 3rem);
+			font-size: clamp(2.75rem, 4vw, 3rem);
+		}
+
+		.approach-reference {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.approach-reference > p {
+			padding-top: 0;
 		}
 	}
 
@@ -336,7 +387,7 @@ const methods = [
 
 		h2 {
 			max-width: 8ch;
-			font-size: clamp(3.35rem, 16vw, 5rem);
+			font-size: clamp(3.35rem, 12vw, 4.5rem);
 		}
 
 		.approach-intro {
@@ -350,7 +401,7 @@ const methods = [
 		}
 
 		.approach-statement {
-			font-size: clamp(2.7rem, 12vw, 3.8rem);
+			font-size: clamp(2.7rem, 10vw, 3.5rem);
 		}
 
 		.approach-stages {
@@ -373,27 +424,25 @@ const methods = [
 		.approach-stages h3 {
 			min-height: 0;
 			margin-top: 3rem;
-			font-size: clamp(2.65rem, 12vw, 3.8rem);
+			font-size: clamp(2.65rem, 9vw, 2.75rem);
 		}
 
-		.method-repertoire {
+		.approach-reference {
 			grid-template-columns: 1fr;
 			gap: 1.5rem;
 		}
 
-		.method-repertoire > p {
+		.approach-reference > p {
 			padding-top: 0;
 		}
 
-		.approach-footer {
-			display: flex;
-			flex-direction: column;
-			gap: 0.65rem;
+		.method-repertoire ul,
+		.working-principles ul {
+			grid-template-columns: 1fr;
 		}
 
-		.approach-footer span:nth-child(2),
-		.approach-footer span:last-child {
-			text-align: left;
+		.working-principles {
+			padding-top: 2.5rem;
 		}
 	}
 </style>

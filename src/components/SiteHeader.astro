@@ -3,6 +3,8 @@ const navigation = [
 	{ label: 'Work', href: '/work' },
 	{ label: 'About', href: '/#about' },
 ];
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 ---
 
 <header class="site-header page-frame">
@@ -24,7 +26,9 @@ const navigation = [
 	<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 		{
 			navigation.map((item) => (
-				<a href={item.href}>{item.label}</a>
+				<a href={item.href} aria-current={item.href === currentPath ? 'page' : undefined}>
+					{item.label}
+				</a>
 			))
 		}
 		<a

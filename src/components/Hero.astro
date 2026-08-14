@@ -7,9 +7,9 @@ const expertise = [
 ];
 
 const indexItems = [
-	{ number: '01', label: 'Selected work', id: 'selected-work-index' },
-	{ number: '02', label: 'Research approach', id: 'research-approach-index' },
-	{ number: '03', label: 'About', id: 'about-index' },
+	{ number: '01', label: 'Selected work', href: '#selected-work' },
+	{ number: '02', label: 'Research approach', href: '#research-approach' },
+	{ number: '03', label: 'About', href: '#about' },
 ];
 ---
 
@@ -45,9 +45,11 @@ const indexItems = [
 		<ol>
 			{
 				indexItems.map((item) => (
-					<li id={item.id}>
-						<span class="index-number">{item.number}</span>
-						<span>{item.label}</span>
+					<li>
+						<a href={item.href}>
+							<span class="index-number">{item.number}</span>
+							<span>{item.label}</span>
+						</a>
 					</li>
 				))
 			}

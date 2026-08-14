@@ -285,24 +285,27 @@ h1 {
 	margin: 0;
 	padding: 0;
 	flex-wrap: wrap;
-	gap: 0.45rem;
+	column-gap: 1.15rem;
+	row-gap: 0.7rem;
 	list-style: none;
 }
 
 .expertise-list li {
-	padding: 0.55rem 0.72rem;
-	border: 1px solid var(--line);
-	background: rgba(242, 239, 232, 0.02);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0;
 	color: var(--muted);
 	font-family: var(--mono);
 	font-size: 0.65rem;
 	letter-spacing: 0.045em;
-	line-height: 1;
+	line-height: 1.4;
 }
 
-.expertise-list li:first-child {
-	border-color: rgba(131, 128, 255, 0.38);
-	color: #c5c2ff;
+.expertise-list li::before {
+	color: var(--accent);
+	content: '•';
+	font-size: 0.7rem;
 }
 
 .dossier-index {
@@ -336,12 +339,26 @@ h1 {
 }
 
 .dossier-index li {
+	min-width: 0;
+}
+
+.dossier-index a {
 	display: grid;
 	align-items: baseline;
+	min-height: 2.75rem;
+	padding-block: 0.35rem;
 	color: #d7d4ce;
 	font-size: 0.83rem;
 	grid-template-columns: 2.2rem 1fr;
 	line-height: 1.3;
+	text-decoration: none;
+	transition: color 160ms ease, transform 160ms ease;
+}
+
+.dossier-index a:hover,
+.dossier-index a:focus-visible {
+	color: var(--paper);
+	transform: translateX(0.2rem);
 }
 
 .index-number {
@@ -504,7 +521,7 @@ h1 {
 		gap: 1rem;
 	}
 
-	.dossier-index li {
+	.dossier-index a {
 		display: flex;
 		flex-direction: column;
 		gap: 0.55rem;
@@ -575,7 +592,8 @@ h1 {
 	}
 
 	.primary-nav a,
-	.primary-nav a::after {
+	.primary-nav a::after,
+	.dossier-index a {
 		transition: none;
 	}
 }
@@ -668,7 +686,7 @@ h1 {
 		gap: 1rem;
 	}
 
-	.dossier-index li {
+	.dossier-index a {
 		display: flex;
 		flex-direction: column;
 		gap: 0.45rem;

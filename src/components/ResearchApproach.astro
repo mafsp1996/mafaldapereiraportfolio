@@ -216,7 +216,8 @@ const methods = [
 
 	.approach-stages h3 {
 		max-width: 8ch;
-		margin-top: auto;
+		min-height: 2.94em;
+		margin-top: clamp(4rem, 6vw, 6rem);
 		font-size: clamp(2.5rem, 3.6vw, 4.25rem);
 		line-height: 0.98;
 		text-wrap: balance;
@@ -313,6 +314,7 @@ const methods = [
 		}
 
 		.approach-stages h3 {
+			margin-top: 4rem;
 			font-size: clamp(2.2rem, 4.2vw, 3rem);
 		}
 	}
@@ -369,6 +371,8 @@ const methods = [
 		}
 
 		.approach-stages h3 {
+			min-height: 0;
+			margin-top: 3rem;
 			font-size: clamp(2.65rem, 12vw, 3.8rem);
 		}
 

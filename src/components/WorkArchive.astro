@@ -177,8 +177,8 @@ const projects = [
 		display: flex;
 		min-width: 0;
 		flex-direction: column;
-		justify-content: space-between;
-		gap: 3rem;
+		justify-content: flex-start;
+		gap: clamp(1.5rem, 2vw, 2.25rem);
 	}
 
 	.archive-card__number {
@@ -473,7 +473,7 @@ const projects = [
 		}
 
 		.archive-card__info {
-			gap: 2.5rem;
+			gap: 1.5rem;
 		}
 
 		.archive-card h2,

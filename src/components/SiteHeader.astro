@@ -5,7 +5,14 @@ const navigation = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const isCurrent = (href: string) => {
+	if (href === '/work') return currentPath === '/work' || currentPath.startsWith('/work/');
+	return href === currentPath;
+};
 ---
+
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header class="site-header page-frame">
 	<a class="wordmark" href="/" aria-label="Mafalda Pereira — Home">
@@ -26,7 +33,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 	<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 		{
 			navigation.map((item) => (
-				<a href={item.href} aria-current={item.href === currentPath ? 'page' : undefined}>
+				<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
 					{item.label}
 				</a>
 			))

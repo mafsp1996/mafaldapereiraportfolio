@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Mafalda Pereira — UX Researcher</title>
+  <desc id="description">Portfolio cover with Mafalda Pereira's name and research positioning.</desc>
+  <defs>
+    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#f2efe8" stroke-opacity="0.065" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#09090b"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M64 86H1136" stroke="#f2efe8" stroke-opacity="0.14"/>
+  <path d="M64 86H210" stroke="#8380ff" stroke-width="2"/>
+
+  <g transform="translate(64 30)">
+    <rect width="38" height="38" fill="none" stroke="#f2efe8" stroke-opacity="0.2"/>
+    <text x="19" y="24" fill="#8380ff" font-family="Consolas, monospace" font-size="11" text-anchor="middle">MP</text>
+    <text x="54" y="24" fill="#f2efe8" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="1.7">MAFALDA PEREIRA</text>
+  </g>
+
+  <text x="64" y="146" fill="#aaa8a2" font-family="Consolas, monospace" font-size="14" letter-spacing="2.2">UX RESEARCHER · PORTUGAL</text>
+  <circle cx="44" cy="141" r="5" fill="#8380ff"/>
+
+  <text x="64" y="265" fill="#f2efe8" font-family="Georgia, 'Times New Roman', serif" font-size="70" letter-spacing="-2.5">
+	<tspan x="64" dy="0">Turning complex human behaviour</tspan>
+	<tspan x="64" dy="76">into clear product decisions.</tspan>
+  </text>
+
+  <text x="64" y="500" fill="#d5d1ca" font-family="Inter, Arial, sans-serif" font-size="23">
+    Research for digital products, mobility and emerging technologies.
+  </text>
+
+  <g transform="translate(64 560)" fill="#aaa8a2" font-family="Consolas, monospace" font-size="13" letter-spacing="1">
+    <circle cx="4" cy="-4" r="4" fill="#8380ff"/>
+    <text x="20">MIXED METHODS</text>
+    <circle cx="210" cy="-4" r="4" fill="#8380ff"/>
+    <text x="226">HUMAN FACTORS</text>
+    <circle cx="408" cy="-4" r="4" fill="#8380ff"/>
+    <text x="424">EVIDENCE SYNTHESIS</text>
+    <text x="1072" text-anchor="end" fill="#8380ff">MP—001</text>
+  </g>
+</svg>

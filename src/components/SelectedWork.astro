@@ -1,36 +1,5 @@
 ---
-const projects = [
-	{
-		number: '01',
-		title: 'AI-assisted research workflow',
-		contribution: 'AI Evaluation · Product Research',
-		description:
-			'Exploring where AI support can strengthen an end-to-end research workflow, from study framing to analysis and documentation.',
-		image: '/images/work/ai-research-workflow.svg',
-		imageAlt: 'Abstract workflow connecting research evidence, evaluation and documentation.',
-		layout: 'featured',
-	},
-	{
-		number: '02',
-		title: 'Mobile parking app for professionals',
-		contribution: 'Mobile App · UX Testing',
-		description:
-			'Usability research translating behavioural evidence into prioritised product recommendations for a professional mobile experience.',
-		image: '/images/work/mobile-parking.svg',
-		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
-		layout: 'offset',
-	},
-	{
-		number: '05',
-		title: 'Autonomous mobility experience',
-		contribution: 'Discovery Research · Workshops',
-		description:
-			'Discovery research and collaborative workshops clarifying expectations, interaction needs and design opportunities.',
-		image: '/images/work/autonomous-mobility.svg',
-		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
-		layout: 'compact',
-	},
-];
+import { selectedProjects as projects } from '../data/projects';
 ---
 
 <section id="selected-work" class="selected-work page-frame" aria-labelledby="work-heading">
@@ -39,19 +8,26 @@ const projects = [
 			<p class="section-kicker">Portfolio / 03 selected</p>
 			<h2 id="work-heading">Selected work</h2>
 		</div>
-		<p class="section-register" aria-hidden="true">Research case files · Selected engagements</p>
+		<p class="section-register">Anonymised case studies · Selected engagements</p>
 	</header>
 
 	<div class="work-list">
 		{
 			projects.map((project) => (
-				<article class:list={['work-card', `work-card--${project.layout}`]}>
+				<article class:list={['work-card', `work-card--${project.selectedLayout}`]}>
 					<div class="work-card__info">
 						<span class="work-card__number">{project.number}</span>
 						<div class="work-card__title-group">
 							<h3>{project.title}</h3>
 							<p class="work-card__contribution">{project.contribution}</p>
 							<p class="work-card__description">{project.description}</p>
+							<a
+								class="work-card__link"
+								href={`/work/${project.caseStudySlug}`}
+								aria-label={`Read case study: ${project.title}`}
+							>
+								Read case study <span aria-hidden="true">→</span>
+							</a>
 						</div>
 					</div>
 
@@ -64,7 +40,7 @@ const projects = [
 							loading={project.number === '01' ? 'eager' : 'lazy'}
 							decoding="async"
 						/>
-						<span class="placeholder-label" aria-hidden="true">Research visual</span>
+						<span class="placeholder-label" aria-hidden="true">{project.mediaLabel}</span>
 						<span class="placeholder-index" aria-hidden="true">FIG / {project.number}</span>
 					</figure>
 				</article>
@@ -112,7 +88,7 @@ const projects = [
 
 	.section-register {
 		padding-bottom: 0.9rem;
-		color: rgba(242, 239, 232, 0.36);
+		color: rgba(242, 239, 232, 0.6);
 		text-align: right;
 	}
 
@@ -181,6 +157,30 @@ const projects = [
 		font-size: clamp(0.92rem, 1.05vw, 1.05rem);
 		line-height: 1.65;
 		text-wrap: pretty;
+	}
+
+	.work-card__link {
+		display: inline-flex;
+		min-height: 2.75rem;
+		margin-top: 1.25rem;
+		align-items: center;
+		gap: 0.65rem;
+		color: var(--paper);
+		font-size: 0.73rem;
+		font-weight: 650;
+		letter-spacing: 0.075em;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	.work-card__link span {
+		color: var(--accent);
+		transition: transform 180ms ease;
+	}
+
+	.work-card__link:hover span,
+	.work-card__link:focus-visible span {
+		transform: translateX(0.25rem);
 	}
 
 	.work-card__media {

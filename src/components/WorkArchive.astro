@@ -1,67 +1,5 @@
 ---
-const projects = [
-	{
-		number: '01',
-		title: 'AI-assisted research workflow',
-		contribution: 'AI Evaluation · Product Research',
-		description:
-			'Exploring where AI support can strengthen an end-to-end research workflow, from study framing and evaluation criteria to analysis and documentation.',
-		image: '/images/work/ai-research-workflow.svg',
-		imageAlt: 'Abstract workflow connecting research evidence, evaluation and documentation.',
-		layout: 'lead',
-	},
-	{
-		number: '02',
-		title: 'Mobile parking app for professionals',
-		contribution: 'Mobile App · UX Testing',
-		description:
-			'Usability research for a mobile parking experience used in professional contexts, translating behavioural evidence into prioritised product recommendations.',
-		image: '/images/work/mobile-parking.svg',
-		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
-		layout: 'right',
-	},
-	{
-		number: '03',
-		title: 'Remote parking experience',
-		contribution: 'Usability · Mixed Methods',
-		description:
-			'Mixed-method evaluation of a remote parking experience, surfacing friction points and turning evidence into clear design criteria.',
-		image: '/images/work/remote-parking.svg',
-		imageAlt: 'Abstract top-down vehicle and remote interaction study.',
-		layout: 'left',
-	},
-	{
-		number: '04',
-		title: 'Virtual assistant experience',
-		contribution: 'Conversational UX · Research',
-		description:
-			'Conversational UX research examining how people understand, navigate and recover within a virtual assistant experience.',
-		image: '/images/work/virtual-assistant.svg',
-		imageAlt: 'Abstract conversation bubbles and voice interaction waveform.',
-		layout: 'narrow',
-	},
-	{
-		number: '05',
-		title: 'Autonomous mobility experience',
-		contribution: 'Discovery Research · Workshops',
-		description:
-			'Discovery research and collaborative workshops used to clarify expectations, interaction needs and design opportunities within an autonomous mobility experience.',
-		image: '/images/work/autonomous-mobility.svg',
-		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
-		layout: 'closing',
-	},
-	{
-		number: '06',
-		title: 'Confidential applied research',
-		contribution: 'Applied Research · Confidential Project',
-		description:
-			'A confidential research engagement spanning study planning, delivery and evidence synthesis. Project details and visual materials are intentionally limited.',
-		image: '/images/work/confidential-applied-research.svg',
-		imageAlt: 'Abstract redacted research document representing a confidential project.',
-		mediaLabel: 'Details withheld',
-		layout: 'confidential',
-	},
-];
+import { projects } from '../data/projects';
 ---
 
 <section class="work-archive page-frame" aria-labelledby="archive-heading">
@@ -71,22 +9,42 @@ const projects = [
 			<span aria-hidden="true">01—06 / Research dossier</span>
 		</div>
 		<h1 id="archive-heading">Work archive</h1>
-		<div class="archive-rule" aria-hidden="true">
-			<span>Selected engagements</span>
-			<span>[06]</span>
+		<div class="archive-rule">
+			<span>03 case studies / 06 selected engagements</span>
+			<span>[Research / Decisions]</span>
 		</div>
 	</header>
 
 	<div class="archive-list">
 		{
 			projects.map((project) => (
-				<article class:list={['archive-card', `archive-card--${project.layout}`]}>
+				<article class:list={['archive-card', `archive-card--${project.archiveLayout}`]}>
 					<div class="archive-card__info">
 						<span class="archive-card__number">{project.number}</span>
 						<div class="archive-card__copy">
 							<h2>{project.title}</h2>
 							<p class="archive-card__contribution">{project.contribution}</p>
 							<p class="archive-card__description">{project.description}</p>
+							{
+								project.caseStudySlug ? (
+									<a
+										class="archive-card__link"
+										href={`/work/${project.caseStudySlug}`}
+										aria-label={`Read case study: ${project.title}`}
+									>
+										Read case study <span aria-hidden="true">→</span>
+									</a>
+								) : project.number === '06' ? (
+									<a
+										class="archive-card__link"
+										href="mailto:mafaldapereirafmh@gmail.com?subject=Private%20case%20walkthrough"
+									>
+										Request private walkthrough <span aria-hidden="true">↗</span>
+									</a>
+								) : (
+									<span class="archive-card__summary-label">Project summary</span>
+								)
+							}
 						</div>
 					</div>
 
@@ -107,9 +65,14 @@ const projects = [
 		}
 	</div>
 
-	<footer class="archive-footer" aria-hidden="true">
-		<span>06 / 06</span>
-		<span>End of archive</span>
+	<footer class="archive-footer">
+		<div>
+			<span>Confidentiality</span>
+			<p>Client names and identifying details are removed or generalised throughout.</p>
+		</div>
+		<a href="mailto:mafaldapereirafmh@gmail.com?subject=Portfolio%20conversation">
+			Start a conversation <span aria-hidden="true">↗</span>
+		</a>
 	</footer>
 </section>
 
@@ -158,7 +121,7 @@ const projects = [
 	.archive-rule {
 		padding-top: 1rem;
 		border-top: 1px solid var(--line);
-		color: rgba(242, 239, 232, 0.38);
+		color: rgba(242, 239, 232, 0.6);
 	}
 
 	.archive-list {
@@ -213,6 +176,40 @@ const projects = [
 		font-size: clamp(0.92rem, 1.05vw, 1.05rem);
 		line-height: 1.65;
 		text-wrap: pretty;
+	}
+
+	.archive-card__link {
+		display: inline-flex;
+		min-height: 2.75rem;
+		margin-top: 1.25rem;
+		align-items: center;
+		gap: 0.65rem;
+		color: var(--paper);
+		font-size: 0.73rem;
+		font-weight: 650;
+		letter-spacing: 0.075em;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	.archive-card__link span {
+		color: var(--accent);
+		transition: transform 180ms ease;
+	}
+
+	.archive-card__link:hover span,
+	.archive-card__link:focus-visible span {
+		transform: translateX(0.25rem);
+	}
+
+	.archive-card__summary-label {
+		display: block;
+		margin-top: 1.8rem;
+		color: rgba(242, 239, 232, 0.58);
+		font-family: var(--mono);
+		font-size: 0.66rem;
+		letter-spacing: 0.09em;
+		text-transform: uppercase;
 	}
 
 	.archive-card__media {
@@ -389,8 +386,38 @@ const projects = [
 	}
 
 	.archive-footer {
-		padding-top: 1.5rem;
-		color: rgba(242, 239, 232, 0.32);
+		padding-top: 2rem;
+		color: rgba(242, 239, 232, 0.5);
+	}
+
+	.archive-footer > div {
+		display: flex;
+		max-width: 38rem;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.archive-footer p {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--sans);
+		font-size: 0.86rem;
+		letter-spacing: 0;
+		line-height: 1.55;
+		text-transform: none;
+	}
+
+	.archive-footer a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		gap: 0.6rem;
+		color: var(--paper);
+		text-decoration: none;
+	}
+
+	.archive-footer a span {
+		color: var(--accent);
 	}
 
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
@@ -525,6 +552,12 @@ const projects = [
 
 		.archive-card__description {
 			font-size: 0.95rem;
+		}
+
+		.archive-footer {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 1.75rem;
 		}
 	}
 

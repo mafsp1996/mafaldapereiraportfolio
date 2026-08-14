@@ -4,18 +4,30 @@ const projects = [
 		number: '01',
 		title: 'AI-assisted research workflow',
 		contribution: 'AI Evaluation · Product Research',
+		description:
+			'Exploring where AI support can strengthen an end-to-end research workflow, from study framing to analysis and documentation.',
+		image: '/images/work/ai-research-workflow.svg',
+		imageAlt: 'Abstract workflow connecting research evidence, evaluation and documentation.',
 		layout: 'featured',
 	},
 	{
 		number: '02',
 		title: 'Mobile parking app for professionals',
 		contribution: 'Mobile App · UX Testing',
+		description:
+			'Usability research translating behavioural evidence into prioritised product recommendations for a professional mobile experience.',
+		image: '/images/work/mobile-parking.svg',
+		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
 		layout: 'offset',
 	},
 	{
 		number: '03',
 		title: 'Autonomous mobility experience',
 		contribution: 'Discovery Research · Workshops',
+		description:
+			'Discovery research and collaborative workshops clarifying expectations, interaction needs and design opportunities.',
+		image: '/images/work/autonomous-mobility.svg',
+		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
 		layout: 'compact',
 	},
 ];
@@ -38,18 +50,23 @@ const projects = [
 						<span class="work-card__number">{project.number}</span>
 						<div class="work-card__title-group">
 							<h3>{project.title}</h3>
-							<p>{project.contribution}</p>
+							<p class="work-card__contribution">{project.contribution}</p>
+							<p class="work-card__description">{project.description}</p>
 						</div>
 					</div>
 
-					<div
-						class="work-card__media"
-						role="img"
-						aria-label={`Image placeholder for ${project.title}`}
-					>
-						<span class="placeholder-label" aria-hidden="true">Image placeholder</span>
+					<figure class="work-card__media">
+						<img
+							src={project.image}
+							alt={project.imageAlt}
+							width="1200"
+							height="800"
+							loading={project.number === '01' ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+						<span class="placeholder-label" aria-hidden="true">Research visual</span>
 						<span class="placeholder-index" aria-hidden="true">FIG / {project.number}</span>
-					</div>
+					</figure>
 				</article>
 			))
 		}
@@ -145,7 +162,7 @@ const projects = [
 		text-wrap: balance;
 	}
 
-	.work-card__title-group p {
+	.work-card__contribution {
 		margin: 1.4rem 0 0;
 		color: var(--muted);
 		font-family: var(--mono);
@@ -155,9 +172,20 @@ const projects = [
 		text-transform: uppercase;
 	}
 
+	.work-card__description {
+		max-width: 34rem;
+		margin: 1.5rem 0 0;
+		color: rgba(242, 239, 232, 0.68);
+		font-family: var(--sans);
+		font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+		line-height: 1.65;
+		text-wrap: pretty;
+	}
+
 	.work-card__media {
 		position: relative;
 		min-height: 24rem;
+		margin: 0;
 		overflow: hidden;
 		border: 1px solid var(--line);
 		background-color: rgba(242, 239, 232, 0.018);
@@ -166,6 +194,15 @@ const projects = [
 			linear-gradient(90deg, var(--line-soft) 1px, transparent 1px),
 			linear-gradient(135deg, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
 		background-size: 4rem 4rem, 4rem 4rem, 100% 100%;
+	}
+
+	.work-card__media img {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.work-card__media::before,
@@ -178,6 +215,7 @@ const projects = [
 	.work-card__media::before {
 		top: 50%;
 		left: 50%;
+		z-index: 1;
 		width: 4.5rem;
 		height: 4.5rem;
 		border: 1px solid rgba(131, 128, 255, 0.38);
@@ -187,13 +225,14 @@ const projects = [
 
 	.work-card__media::after {
 		inset: 1rem;
+		z-index: 1;
 		border: 1px solid rgba(242, 239, 232, 0.055);
 	}
 
 	.placeholder-label,
 	.placeholder-index {
 		position: absolute;
-		z-index: 1;
+		z-index: 2;
 		color: rgba(242, 239, 232, 0.42);
 		font-family: var(--mono);
 		font-size: 0.58rem;
@@ -204,6 +243,8 @@ const projects = [
 	.placeholder-label {
 		top: 1.65rem;
 		left: 1.65rem;
+		padding: 0.42rem 0.55rem;
+		background: rgba(23, 23, 25, 0.72);
 	}
 
 	.placeholder-index {
@@ -381,8 +422,12 @@ const projects = [
 			font-size: clamp(2.65rem, 12.5vw, 4rem);
 		}
 
-		.work-card__title-group p {
+		.work-card__contribution {
 			margin-top: 1.1rem;
+		}
+
+		.work-card__description {
+			font-size: 0.95rem;
 		}
 
 		.work-card__media,

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <pattern id="grid-mobile" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" stroke="#F2EFE8" stroke-opacity=".05"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="#18181A"/>
+  <rect width="1200" height="800" fill="url(#grid-mobile)"/>
+  <rect x="178" y="91" width="370" height="618" rx="42" stroke="#F2EFE8" stroke-opacity=".34" stroke-width="2"/>
+  <rect x="202" y="117" width="322" height="566" rx="24" fill="#8380FF" fill-opacity=".035" stroke="#F2EFE8" stroke-opacity=".1"/>
+  <path d="M257 552c46-33 20-111 83-132 51-18 65 47 105 16 34-27 3-66 48-91" stroke="#8380FF" stroke-width="4"/>
+  <circle cx="257" cy="552" r="12" fill="#8380FF"/>
+  <circle cx="493" cy="345" r="12" fill="#171719" stroke="#8380FF" stroke-width="4"/>
+  <path d="M270 188h188M270 218h116" stroke="#F2EFE8" stroke-opacity=".24" stroke-width="2"/>
+  <g stroke="#F2EFE8" stroke-opacity=".2">
+    <rect x="682" y="164" width="314" height="112"/>
+    <rect x="726" y="344" width="314" height="112"/>
+    <rect x="638" y="524" width="314" height="112"/>
+  </g>
+  <path d="M548 255h134M996 276l44 68M726 456l-88 68" stroke="#8380FF" stroke-opacity=".58" stroke-width="2"/>
+  <circle cx="1038" cy="343" r="7" fill="#8380FF"/>
+  <circle cx="638" cy="524" r="7" fill="#8380FF"/>
+</svg>

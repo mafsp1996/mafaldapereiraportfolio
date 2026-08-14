@@ -4,31 +4,62 @@ const projects = [
 		number: '01',
 		title: 'AI-assisted research workflow',
 		contribution: 'AI Evaluation · Product Research',
+		description:
+			'Exploring where AI support can strengthen an end-to-end research workflow, from study framing and evaluation criteria to analysis and documentation.',
+		image: '/images/work/ai-research-workflow.svg',
+		imageAlt: 'Abstract workflow connecting research evidence, evaluation and documentation.',
 		layout: 'lead',
 	},
 	{
 		number: '02',
 		title: 'Mobile parking app for professionals',
 		contribution: 'Mobile App · UX Testing',
+		description:
+			'Usability research for a mobile parking experience used in professional contexts, translating behavioural evidence into prioritised product recommendations.',
+		image: '/images/work/mobile-parking.svg',
+		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
 		layout: 'right',
 	},
 	{
 		number: '03',
 		title: 'Remote parking experience',
 		contribution: 'Usability · Mixed Methods',
+		description:
+			'Mixed-method evaluation of a remote parking experience, surfacing friction points and turning evidence into clear design criteria.',
+		image: '/images/work/remote-parking.svg',
+		imageAlt: 'Abstract top-down vehicle and remote interaction study.',
 		layout: 'left',
 	},
 	{
 		number: '04',
 		title: 'Virtual assistant experience',
 		contribution: 'Conversational UX · Research',
+		description:
+			'Conversational UX research examining how people understand, navigate and recover within a virtual assistant experience.',
+		image: '/images/work/virtual-assistant.svg',
+		imageAlt: 'Abstract conversation bubbles and voice interaction waveform.',
 		layout: 'narrow',
 	},
 	{
 		number: '05',
 		title: 'Autonomous mobility experience',
 		contribution: 'Discovery Research · Workshops',
+		description:
+			'Discovery research and collaborative workshops used to clarify expectations, interaction needs and design opportunities within an autonomous mobility experience.',
+		image: '/images/work/autonomous-mobility.svg',
+		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
 		layout: 'closing',
+	},
+	{
+		number: '06',
+		title: 'Confidential applied research',
+		contribution: 'Applied Research · Confidential Project',
+		description:
+			'A confidential research engagement spanning study planning, delivery and evidence synthesis. Project details and visual materials are intentionally limited.',
+		image: '/images/work/confidential-applied-research.svg',
+		imageAlt: 'Abstract redacted research document representing a confidential project.',
+		mediaLabel: 'Details withheld',
+		layout: 'confidential',
 	},
 ];
 ---
@@ -37,12 +68,12 @@ const projects = [
 	<header class="archive-header">
 		<div class="archive-register">
 			<span>Portfolio index</span>
-			<span aria-hidden="true">01—05 / Research dossier</span>
+			<span aria-hidden="true">01—06 / Research dossier</span>
 		</div>
 		<h1 id="archive-heading">Work archive</h1>
 		<div class="archive-rule" aria-hidden="true">
 			<span>Selected engagements</span>
-			<span>[05]</span>
+			<span>[06]</span>
 		</div>
 	</header>
 
@@ -52,27 +83,32 @@ const projects = [
 				<article class:list={['archive-card', `archive-card--${project.layout}`]}>
 					<div class="archive-card__info">
 						<span class="archive-card__number">{project.number}</span>
-						<div>
+						<div class="archive-card__copy">
 							<h2>{project.title}</h2>
-							<p>{project.contribution}</p>
+							<p class="archive-card__contribution">{project.contribution}</p>
+							<p class="archive-card__description">{project.description}</p>
 						</div>
 					</div>
 
-					<div
-						class="archive-card__media"
-						role="img"
-						aria-label={`Image placeholder for ${project.title}`}
-					>
-						<span class="media-label" aria-hidden="true">Image placeholder</span>
+					<figure class="archive-card__media">
+						<img
+							src={project.image}
+							alt={project.imageAlt}
+							width="1200"
+							height="800"
+							loading={project.number === '01' ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+						<span class="media-label" aria-hidden="true">{project.mediaLabel ?? 'Research visual'}</span>
 						<span class="media-code" aria-hidden="true">FIG / {project.number}</span>
-					</div>
+					</figure>
 				</article>
 			))
 		}
 	</div>
 
 	<footer class="archive-footer" aria-hidden="true">
-		<span>05 / 05</span>
+		<span>06 / 06</span>
 		<span>End of archive</span>
 	</footer>
 </section>
@@ -142,7 +178,7 @@ const projects = [
 		min-width: 0;
 		flex-direction: column;
 		justify-content: space-between;
-		gap: 4rem;
+		gap: 3rem;
 	}
 
 	.archive-card__number {
@@ -159,7 +195,7 @@ const projects = [
 		text-wrap: balance;
 	}
 
-	.archive-card__info p {
+	.archive-card__contribution {
 		margin: 1.35rem 0 0;
 		color: var(--muted);
 		font-family: var(--mono);
@@ -169,9 +205,20 @@ const projects = [
 		text-transform: uppercase;
 	}
 
+	.archive-card__description {
+		max-width: 34rem;
+		margin: 1.5rem 0 0;
+		color: rgba(242, 239, 232, 0.68);
+		font-family: var(--sans);
+		font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+		line-height: 1.65;
+		text-wrap: pretty;
+	}
+
 	.archive-card__media {
 		position: relative;
 		min-height: 25rem;
+		margin: 0;
 		overflow: hidden;
 		border: 1px solid var(--line);
 		background-color: rgba(242, 239, 232, 0.018);
@@ -180,6 +227,15 @@ const projects = [
 			linear-gradient(90deg, var(--line-soft) 1px, transparent 1px),
 			linear-gradient(135deg, transparent calc(50% - 0.5px), var(--line) 50%, transparent calc(50% + 0.5px));
 		background-size: 4rem 4rem, 4rem 4rem, 100% 100%;
+	}
+
+	.archive-card__media img {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.archive-card__media::before,
@@ -192,6 +248,7 @@ const projects = [
 	.archive-card__media::before {
 		top: 50%;
 		left: 50%;
+		z-index: 1;
 		width: 5rem;
 		height: 5rem;
 		border: 1px solid rgba(131, 128, 255, 0.42);
@@ -201,13 +258,14 @@ const projects = [
 
 	.archive-card__media::after {
 		inset: 1rem;
+		z-index: 1;
 		border: 1px solid rgba(242, 239, 232, 0.055);
 	}
 
 	.media-label,
 	.media-code {
 		position: absolute;
-		z-index: 1;
+		z-index: 2;
 		color: rgba(242, 239, 232, 0.42);
 		font-family: var(--mono);
 		font-size: 0.58rem;
@@ -218,6 +276,8 @@ const projects = [
 	.media-label {
 		top: 1.65rem;
 		left: 1.65rem;
+		padding: 0.42rem 0.55rem;
+		background: rgba(23, 23, 25, 0.72);
 	}
 
 	.media-code {
@@ -308,6 +368,26 @@ const projects = [
 		box-shadow: 0 0 0 1.75rem rgba(131, 128, 255, 0.035);
 	}
 
+	.archive-card--confidential .archive-card__info {
+		grid-column: 1 / 6;
+	}
+
+	.archive-card--confidential .archive-card__media {
+		min-height: clamp(24rem, 31vw, 34rem);
+		grid-column: 7 / -1;
+	}
+
+	.archive-card--confidential .archive-card__media::before {
+		width: 11rem;
+		height: 6rem;
+		border-color: rgba(131, 128, 255, 0.32);
+		border-radius: 0;
+	}
+
+	.archive-card--confidential .media-label {
+		color: var(--accent);
+	}
+
 	.archive-footer {
 		padding-top: 1.5rem;
 		color: rgba(242, 239, 232, 0.32);
@@ -344,12 +424,14 @@ const projects = [
 		}
 
 		.archive-card--right .archive-card__info,
-		.archive-card--narrow .archive-card__info {
+		.archive-card--narrow .archive-card__info,
+		.archive-card--confidential .archive-card__info {
 			grid-column: 1 / 5;
 		}
 
 		.archive-card--right .archive-card__media,
-		.archive-card--narrow .archive-card__media {
+		.archive-card--narrow .archive-card__media,
+		.archive-card--confidential .archive-card__media {
 			min-height: 25rem;
 			grid-column: 5 / -1;
 		}
@@ -405,7 +487,8 @@ const projects = [
 		.archive-card--right .archive-card__media,
 		.archive-card--left .archive-card__media,
 		.archive-card--narrow .archive-card__media,
-		.archive-card--closing .archive-card__media {
+		.archive-card--closing .archive-card__media,
+		.archive-card--confidential .archive-card__media {
 			width: 100%;
 			min-height: 19rem;
 			margin-top: 0;
@@ -432,6 +515,16 @@ const projects = [
 			width: 90%;
 			min-height: 16rem;
 			align-self: center;
+		}
+
+		.archive-card--confidential .archive-card__media {
+			width: 92%;
+			min-height: 17rem;
+			align-self: flex-start;
+		}
+
+		.archive-card__description {
+			font-size: 0.95rem;
 		}
 	}
 

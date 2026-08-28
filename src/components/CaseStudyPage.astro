@@ -1,0 +1,650 @@
+---
+import type { CaseStudy } from '../data/case-studies';
+import { caseStudies, confidentialityNote } from '../data/case-studies';
+
+interface Props {
+	study: CaseStudy;
+}
+
+const { study } = Astro.props;
+const currentIndex = caseStudies.findIndex((item) => item.slug === study.slug);
+const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<main id="main-content" class="case-study" tabindex="-1">
+	<header class="case-hero page-frame">
+		<div class="case-hero__register">
+			<a href={`${baseUrl}work`}><span aria-hidden="true">←</span> Back to work</a>
+			<span>
+				Project {study.number} · Case study {String(currentIndex + 1).padStart(2, '0')} of{' '}
+				{String(caseStudies.length).padStart(2, '0')}
+			</span>
+		</div>
+
+		<p class="case-hero__eyebrow">{study.eyebrow}</p>
+		<h1>{study.title}</h1>
+		<p class="case-hero__lede">{study.lede}</p>
+
+		<dl class="case-meta">
+			<div>
+				<dt>My role</dt>
+				<dd>{study.role}</dd>
+			</div>
+			<div>
+				<dt>Study scope</dt>
+				<dd>{study.setting}</dd>
+			</div>
+			<div>
+				<dt>Methods</dt>
+				<dd>{study.methods}</dd>
+			</div>
+		</dl>
+	</header>
+
+	<div class="case-content page-frame">
+		<section class="case-decision" aria-labelledby="decision-heading">
+			<p class="section-label">The research question</p>
+			<div>
+				<h2 id="decision-heading">{study.decisionTitle}</h2>
+				<p>{study.decisionCopy}</p>
+			</div>
+		</section>
+
+		<aside class="confidentiality-note" aria-label="Confidentiality note">
+			<span aria-hidden="true">[ Private work ]</span>
+			<p>{confidentialityNote}</p>
+		</aside>
+
+		<section class="case-process" aria-labelledby="process-heading">
+			<header>
+				<p class="section-label">How I approached it</p>
+				<h2 id="process-heading">From question to evidence</h2>
+			</header>
+
+			<ol>
+				{
+					study.process.map((step) => (
+						<li>
+							<span>{step.label}</span>
+							<h3>{step.title}</h3>
+							<p>{step.copy}</p>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<section class="case-evidence" aria-labelledby="evidence-heading">
+			<header>
+				<p class="section-label">How I organised the evidence</p>
+				<h2 id="evidence-heading">{study.evidenceTitle}</h2>
+				<p>{study.evidenceIntro}</p>
+			</header>
+
+			<div class="evidence-board" role="group" aria-label="Recreated analysis structure">
+				<div class="evidence-board__register">
+					<span>Recreated analysis structure</span>
+					<span aria-hidden="true">Evidence / Synthesis</span>
+				</div>
+				<ol>
+					{
+						study.evidence.map((item, index) => (
+							<li>
+								<span class="evidence-board__number">
+									{String(index + 1).padStart(2, '0')}
+								</span>
+								<p class="evidence-board__label">{item.label}</p>
+								<h3>{item.title}</h3>
+								<p>{item.copy}</p>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="case-outcome" aria-labelledby="outcome-heading">
+			<div>
+				<p class="section-label">What I delivered</p>
+				<h2 id="outcome-heading">{study.outcomeTitle}</h2>
+				<p>{study.outcomeCopy}</p>
+			</div>
+			<aside aria-labelledby="takeaway-heading">
+				<h3 id="takeaway-heading" class="section-label">What I took forward</h3>
+				<p class="case-outcome__reflection">{study.reflection}</p>
+			</aside>
+		</section>
+
+		<footer class="case-footer">
+			<div>
+				<span>Next case</span>
+				<a href={`${baseUrl}work/${nextStudy.slug}`}>{nextStudy.title} <span aria-hidden="true">→</span></a>
+			</div>
+			<a class="case-footer__contact" href="mailto:mafaldapereirafmh@gmail.com?subject=Portfolio%20case%20study">
+				Request a private walkthrough <span aria-hidden="true">↗</span>
+			</a>
+		</footer>
+	</div>
+</main>
+
+<style>
+	.case-study {
+		padding-bottom: clamp(4rem, 7vw, 7rem);
+	}
+
+	.case-hero {
+		padding-block: clamp(3.25rem, 7vw, 7rem) clamp(4rem, 8vw, 8rem);
+	}
+
+	.case-hero__register,
+	.case-hero__eyebrow,
+	.section-label,
+	.case-meta dt,
+	.confidentiality-note span,
+	.case-process li > span,
+	.evidence-board__register,
+	.evidence-board__number,
+	.evidence-board__label,
+	.case-footer > div > span {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.66rem;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.case-hero__register {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: clamp(3rem, 6vw, 6rem);
+	}
+
+	.case-hero__register a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		gap: 0.65rem;
+		color: var(--paper);
+		text-decoration: none;
+	}
+
+	.case-hero__register a span,
+	.case-hero__eyebrow,
+	.section-label {
+		color: var(--accent);
+	}
+
+	.case-hero h1,
+	h2,
+	h3,
+	.case-outcome__reflection {
+		margin: 0;
+		font-family: var(--display);
+		font-weight: 400;
+		letter-spacing: -0.045em;
+	}
+
+	.case-hero h1 {
+		max-width: min(13ch, 100%);
+		margin-top: 1.4rem;
+		font-size: clamp(4.5rem, 9vw, 9.75rem);
+		letter-spacing: -0.035em;
+		line-height: 1;
+		text-wrap: balance;
+	}
+
+	.case-hero__lede {
+		max-width: 46rem;
+		margin: clamp(2.5rem, 5vw, 5rem) 0 0 auto;
+		color: #d5d1ca;
+		font-size: clamp(1.35rem, 2.15vw, 2.15rem);
+		letter-spacing: -0.025em;
+		line-height: 1.4;
+	}
+
+	.case-meta {
+		display: grid;
+		margin: clamp(3.5rem, 6vw, 6rem) 0 0;
+		padding: 0;
+		border-block: 1px solid var(--line);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.case-meta > div {
+		padding: 1.75rem clamp(1.25rem, 2.5vw, 2.5rem);
+		border-right: 1px solid var(--line);
+	}
+
+	.case-meta > div:first-child {
+		padding-left: 0;
+	}
+
+	.case-meta > div:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.case-meta dd {
+		max-width: 35rem;
+		margin: 1rem 0 0;
+		color: #d5d1ca;
+		font-size: 0.94rem;
+		line-height: 1.6;
+	}
+
+	.case-content > section,
+	.confidentiality-note,
+	.case-footer {
+		border-top: 1px solid var(--line);
+	}
+
+	.case-decision {
+		display: grid;
+		padding-block: clamp(4rem, 8vw, 8rem);
+		grid-template-columns: minmax(11rem, 0.7fr) 2fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.case-decision > div {
+		max-width: 58rem;
+	}
+
+	.case-decision h2,
+	.case-process header h2,
+	.case-evidence header h2,
+	.case-outcome h2 {
+		font-size: clamp(3.5rem, 5vw, 5.8rem);
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.case-decision > div > p,
+	.case-evidence header > p:last-child,
+	.case-outcome > div > p:last-child {
+		max-width: 44rem;
+		margin: 2rem 0 0;
+		color: var(--muted);
+		font-size: clamp(1rem, 1.2vw, 1.18rem);
+		line-height: 1.7;
+	}
+
+	.confidentiality-note {
+		display: grid;
+		padding-block: 1.6rem;
+		grid-template-columns: minmax(11rem, 0.7fr) 2fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.confidentiality-note span {
+		color: var(--accent);
+	}
+
+	.confidentiality-note p {
+		max-width: 50rem;
+		margin: 0;
+		color: rgba(242, 239, 232, 0.58);
+		font-size: 0.86rem;
+		line-height: 1.65;
+	}
+
+	.case-process {
+		padding-block: clamp(5rem, 9vw, 9rem);
+	}
+
+	.case-process header,
+	.case-evidence > header {
+		display: grid;
+		align-items: start;
+		grid-template-columns: minmax(11rem, 0.7fr) 2fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.case-process header h2,
+	.case-evidence header h2 {
+		max-width: 12ch;
+	}
+
+	.case-process ol {
+		display: grid;
+		margin: clamp(4rem, 7vw, 7rem) 0 0;
+		padding: 0;
+		border-block: 1px solid var(--line);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		list-style: none;
+	}
+
+	.case-process li {
+		min-height: 24rem;
+		padding: 2rem clamp(1.5rem, 3vw, 3rem);
+		border-right: 1px solid var(--line);
+	}
+
+	.case-process li:first-child {
+		padding-left: 0;
+	}
+
+	.case-process li:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.case-process li > span {
+		color: var(--accent);
+	}
+
+	.case-process h3 {
+		max-width: 11ch;
+		min-height: 3em;
+		margin-top: 3.5rem;
+		font-size: clamp(2.35rem, 3vw, 3.4rem);
+		line-height: 1;
+	}
+
+	.case-process li p {
+		margin: 1.5rem 0 0;
+		color: var(--muted);
+		font-size: 0.93rem;
+		line-height: 1.65;
+	}
+
+	.case-evidence {
+		padding-block: clamp(5rem, 9vw, 9rem);
+	}
+
+	.case-evidence > header {
+		grid-template-areas:
+			'label title'
+			'. intro';
+	}
+
+	.case-evidence > header .section-label {
+		grid-area: label;
+	}
+
+	.case-evidence > header h2 {
+		grid-area: title;
+	}
+
+	.case-evidence > header > p:last-child {
+		grid-area: intro;
+	}
+
+	.evidence-board {
+		margin-top: clamp(4rem, 7vw, 7rem);
+		padding: clamp(1.25rem, 2.5vw, 2.5rem);
+		border: 1px solid var(--line);
+		background: rgba(242, 239, 232, 0.018);
+	}
+
+	.evidence-board__register {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 1.25rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.evidence-board__register span:first-child {
+		color: var(--accent);
+	}
+
+	.evidence-board ol {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		list-style: none;
+	}
+
+	.evidence-board li {
+		position: relative;
+		min-height: 22rem;
+		padding: clamp(2rem, 3.5vw, 3.5rem);
+		border-right: 1px solid var(--line);
+	}
+
+	.evidence-board li:first-child {
+		padding-left: 0;
+	}
+
+	.evidence-board li:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.evidence-board__number,
+	.evidence-board__label {
+		color: var(--accent);
+	}
+
+	.evidence-board__label {
+		margin-top: 3.5rem;
+	}
+
+	.evidence-board h3 {
+		max-width: 12ch;
+		min-height: 4.05em;
+		margin-top: 0.8rem;
+		font-family: var(--sans);
+		font-size: 1.15rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		line-height: 1.35;
+	}
+
+	.evidence-board li > p:last-child {
+		margin: 1rem 0 0;
+		color: var(--muted);
+		font-size: 0.88rem;
+		line-height: 1.65;
+	}
+
+	.case-outcome {
+		display: grid;
+		padding-block: clamp(5rem, 9vw, 9rem);
+		grid-template-columns: 1.55fr 0.75fr;
+		gap: clamp(3rem, 8vw, 9rem);
+	}
+
+	.case-outcome > div h2 {
+		max-width: 12ch;
+		margin-top: 1.4rem;
+	}
+
+	.case-outcome aside {
+		align-self: end;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.case-outcome__reflection {
+		margin-top: 1.5rem;
+		color: #d5d1ca;
+		font-size: clamp(1.6rem, 2.5vw, 2.7rem);
+		line-height: 1.2;
+	}
+
+	.case-footer {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		padding-top: 2rem;
+		gap: 3rem;
+	}
+
+	.case-footer > div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	.case-footer a {
+		text-decoration: none;
+	}
+
+	.case-footer > div a {
+		max-width: 27rem;
+		font-family: var(--display);
+		font-size: clamp(1.8rem, 3vw, 3.2rem);
+		letter-spacing: -0.04em;
+		line-height: 1;
+	}
+
+	.case-footer a span {
+		color: var(--accent);
+	}
+
+	.case-footer__contact {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		gap: 0.6rem;
+		font-size: 0.77rem;
+		font-weight: 650;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+	}
+
+	@media (min-width: 48rem) and (max-width: 68.625rem) {
+		.case-hero h1 {
+			font-size: clamp(5rem, 9.25vw, 6.5rem);
+		}
+
+		.case-meta dd {
+			font-size: 0.88rem;
+		}
+
+		.case-process li,
+		.evidence-board li {
+			min-height: 22rem;
+			padding-inline: 1.5rem;
+		}
+
+		.case-process li:first-child,
+		.evidence-board li:first-child {
+			padding-left: 0;
+		}
+
+		.case-process li:last-child,
+		.evidence-board li:last-child {
+			padding-right: 0;
+		}
+	}
+
+	@media (max-width: 47.999rem) {
+		.case-hero {
+			padding-block: 2.5rem 4rem;
+		}
+
+		.case-hero__register span:last-child {
+			display: none;
+		}
+
+		.case-hero h1 {
+			max-width: 100%;
+			font-size: clamp(3.35rem, 14vw, 4.75rem);
+			line-height: 1.02;
+		}
+
+		.case-hero__lede {
+			margin-top: 2.5rem;
+			font-size: 1.2rem;
+		}
+
+		.case-meta {
+			grid-template-columns: 1fr;
+		}
+
+		.case-meta > div,
+		.case-meta > div:first-child,
+		.case-meta > div:last-child {
+			padding: 1.5rem 0;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.case-meta > div:last-child {
+			border-bottom: 0;
+		}
+
+		.case-decision,
+		.confidentiality-note,
+		.case-process header,
+		.case-evidence > header,
+		.case-outcome {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.case-evidence > header {
+			grid-template-areas:
+				'label'
+				'title'
+				'intro';
+		}
+
+		.case-decision h2,
+		.case-process header h2,
+		.case-evidence header h2,
+		.case-outcome h2 {
+			font-size: clamp(2.65rem, 11vw, 3.5rem);
+		}
+
+		.case-process ol,
+		.evidence-board ol {
+			grid-template-columns: 1fr;
+		}
+
+		.case-process li,
+		.case-process li:first-child,
+		.case-process li:last-child,
+		.evidence-board li,
+		.evidence-board li:first-child,
+		.evidence-board li:last-child {
+			min-height: 0;
+			padding: 2rem 0;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.case-process li:last-child,
+		.evidence-board li:last-child {
+			border-bottom: 0;
+		}
+
+		.case-process h3,
+		.evidence-board__label {
+			margin-top: 2.5rem;
+		}
+
+		.case-process h3 {
+			min-height: 0;
+			font-size: 2.35rem;
+		}
+
+		.evidence-board h3 {
+			min-height: 0;
+		}
+
+		.evidence-board {
+			padding: 1rem;
+		}
+
+		.evidence-board__register span:last-child {
+			display: none;
+		}
+
+		.case-outcome__reflection {
+			font-size: 1.8rem;
+		}
+
+		.case-footer {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 2.5rem;
+		}
+	}
+</style>

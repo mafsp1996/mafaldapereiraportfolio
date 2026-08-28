@@ -1,0 +1,311 @@
+<section id="about" class="about page-frame" aria-labelledby="about-heading">
+	<header class="about__heading">
+		<div>
+			<p class="about__kicker">Profile / 03</p>
+			<h2 id="about-heading">About</h2>
+		</div>
+		<p class="about__register" aria-hidden="true">
+			UX research / Human factors / Product research
+		</p>
+	</header>
+
+	<div class="about__body">
+		<p class="about__statement">Research grounded in how people actually behave.</p>
+
+		<div class="about__copy">
+			<p>
+				I am a UX and product researcher with five years of experience across digital
+				products, mobility services and emerging technologies. I am often the person turning
+				a broad product question into a study the team can run — and evidence the team can
+				actually use.
+			</p>
+			<p>
+				My work moves between mobile apps, virtual assistants, in-vehicle experiences,
+				applied human factors and AI-supported research workflows. A background in Ergonomics
+				keeps me interested in the gap between what people say and what they actually do.
+			</p>
+		</div>
+	</div>
+
+	<dl class="about__facts">
+		<div>
+			<dt>Experience</dt>
+			<dd><strong>05+</strong><span>Years in UX research</span></dd>
+		</div>
+		<div>
+			<dt>Education</dt>
+			<dd><strong>MSc</strong><span>Ergonomics / Usability and UX</span></dd>
+		</div>
+		<div>
+			<dt>Languages</dt>
+			<dd><strong>03</strong><span>Portuguese / English / Spanish</span></dd>
+		</div>
+	</dl>
+
+	<footer class="about__footer">
+		<span>Based in Braga, Portugal · Portuguese, English and Spanish</span>
+		<a href="mailto:mafaldapereirafmh@gmail.com">
+			Start a conversation <span aria-hidden="true">↗</span>
+		</a>
+	</footer>
+</section>
+
+<style>
+	.about {
+		position: relative;
+		padding-block: clamp(6rem, 10vw, 10rem) clamp(4rem, 7vw, 7rem);
+		border-top: 1px solid var(--line);
+		scroll-margin-top: calc(var(--header-height) + 1rem);
+	}
+
+	.about__heading {
+		display: grid;
+		align-items: end;
+		padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+		grid-template-columns: 1fr auto;
+		gap: 2rem;
+	}
+
+	.about__kicker,
+	.about__register,
+	.about__footer,
+	.about__facts dt {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.64rem;
+		letter-spacing: 0.11em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.about__kicker {
+		margin-bottom: 1.35rem;
+		color: var(--accent);
+	}
+
+	.about__register {
+		max-width: 32rem;
+		padding-bottom: 0.9rem;
+		color: rgba(242, 239, 232, 0.6);
+		text-align: right;
+	}
+
+	h2 {
+		margin: 0;
+		font-family: var(--display);
+		font-size: clamp(3.5rem, 6.8vw, 7.5rem);
+		font-weight: 400;
+		letter-spacing: -0.045em;
+		line-height: 0.96;
+	}
+
+	.about__body {
+		display: grid;
+		padding-block: clamp(3.5rem, 6vw, 6.5rem);
+		border-block: 1px solid var(--line);
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: clamp(2rem, 4vw, 4.5rem);
+	}
+
+	.about__statement {
+		max-width: 13ch;
+		margin: 0;
+		font-family: var(--display);
+		font-size: clamp(3rem, 4.6vw, 5.35rem);
+		font-weight: 400;
+		letter-spacing: -0.045em;
+		line-height: 0.98;
+		text-wrap: balance;
+		grid-column: 1 / 7;
+	}
+
+	.about__copy {
+		max-width: 41rem;
+		grid-column: 8 / -1;
+	}
+
+	.about__copy p {
+		margin: 0;
+		color: #d5d1ca;
+		font-size: clamp(1rem, 1.2vw, 1.2rem);
+		letter-spacing: -0.012em;
+		line-height: 1.65;
+	}
+
+	.about__copy p + p {
+		margin-top: 1.6rem;
+		color: var(--muted);
+	}
+
+	.about__facts {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		border-bottom: 1px solid var(--line);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.about__facts > div {
+		min-width: 0;
+		padding: clamp(2rem, 3.5vw, 3.5rem);
+		border-right: 1px solid var(--line);
+	}
+
+	.about__facts > div:first-child {
+		padding-left: 0;
+	}
+
+	.about__facts > div:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.about__facts dd {
+		display: flex;
+		margin: 1.5rem 0 0;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.about__facts strong {
+		color: var(--accent);
+		font-family: var(--display);
+		font-size: clamp(2.6rem, 4vw, 4.5rem);
+		font-weight: 400;
+		letter-spacing: -0.04em;
+		line-height: 0.9;
+	}
+
+	.about__facts dd span {
+		max-width: 24ch;
+		color: #d5d1ca;
+		font-size: 0.88rem;
+		line-height: 1.5;
+	}
+
+	.about__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 1.5rem;
+		gap: 2rem;
+	}
+
+	.about__footer a {
+		position: relative;
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		color: var(--paper);
+		text-decoration: none;
+	}
+
+	.about__footer a::after {
+		position: absolute;
+		right: 0;
+		bottom: 0.45rem;
+		left: 0;
+		height: 1px;
+		background: var(--accent);
+		content: '';
+		transform: scaleX(0.2);
+		transform-origin: left;
+		transition: transform 180ms ease;
+	}
+
+	.about__footer a:hover::after,
+	.about__footer a:focus-visible::after {
+		transform: scaleX(1);
+	}
+
+	@media (min-width: 48rem) and (max-width: 68.625rem) {
+		.about {
+			scroll-margin-top: calc(var(--header-height) + 1rem);
+		}
+
+		.about__body {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			gap: 2.5rem;
+		}
+
+		.about__statement {
+			font-size: clamp(3.5rem, 5vw, 3.7rem);
+			grid-column: 1 / 5;
+		}
+
+		h2 {
+			font-size: clamp(4.5rem, 7vw, 5.25rem);
+		}
+
+		.about__copy {
+			grid-column: 5 / -1;
+		}
+	}
+
+	@media (max-width: 47.999rem) {
+		.about {
+			padding-block: 4.5rem 3.5rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
+		}
+
+		.about__heading {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.about__register {
+			display: none;
+		}
+
+		h2 {
+			font-size: clamp(3.35rem, 12vw, 4.5rem);
+		}
+
+		.about__body {
+			grid-template-columns: 1fr;
+			gap: 2.75rem;
+		}
+
+		.about__statement,
+		.about__copy {
+			grid-column: 1;
+		}
+
+		.about__statement {
+			font-size: clamp(2.7rem, 10vw, 3.5rem);
+		}
+
+		.about__facts {
+			grid-template-columns: 1fr;
+		}
+
+		.about__facts > div,
+		.about__facts > div:first-child,
+		.about__facts > div:last-child {
+			padding: 2rem 0;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.about__facts > div:last-child {
+			border-bottom: 0;
+		}
+
+		.about__facts dd {
+			margin-top: 1rem;
+		}
+
+		.about__footer {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 1.25rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.about__footer a::after {
+			transition: none;
+		}
+	}
+</style>

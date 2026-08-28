@@ -1,0 +1,65 @@
+---
+import About from '../components/About.astro';
+import Hero from '../components/Hero.astro';
+import ResearchApproach from '../components/ResearchApproach.astro';
+import SelectedWork from '../components/SelectedWork.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+const baseUrl = import.meta.env.BASE_URL;
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta
+			name="description"
+			content="Mafalda Pereira is a UX Researcher turning complex human behaviour into clear product decisions."
+		/>
+		<meta name="author" content="Mafalda Pereira" />
+		<meta name="theme-color" content="#09090b" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Mafalda Pereira — UX Researcher" />
+		<meta
+			property="og:description"
+			content="UX research across digital products, mobility, human factors and AI-supported workflows."
+		/>
+		<meta property="og:image" content={`${baseUrl}images/social-preview.png`} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Mafalda Pereira — UX Researcher" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={`${baseUrl}images/social-preview.png`} />
+		<title>Mafalda Pereira — UX Researcher</title>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'Person',
+				name: 'Mafalda Pereira',
+				jobTitle: 'UX Researcher',
+				email: 'mailto:mafaldapereirafmh@gmail.com',
+				sameAs: ['https://www.linkedin.com/in/mafalda-pereira-872824187/'],
+				address: {
+					'@type': 'PostalAddress',
+					addressLocality: 'Braga',
+					addressCountry: 'PT',
+				},
+				knowsLanguage: ['Portuguese', 'English', 'Spanish'],
+			})}
+		></script>
+	</head>
+	<body>
+		<div class="site-shell">
+			<SiteHeader />
+			<main id="main-content" tabindex="-1">
+				<Hero />
+				<SelectedWork />
+				<ResearchApproach />
+				<About />
+			</main>
+		</div>
+	</body>
+</html>

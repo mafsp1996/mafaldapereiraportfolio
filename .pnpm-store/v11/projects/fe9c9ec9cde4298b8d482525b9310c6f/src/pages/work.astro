@@ -1,0 +1,41 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import WorkArchive from '../components/WorkArchive.astro';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta
+			name="description"
+			content="UX research work by Mafalda Pereira across product research, usability and discovery."
+		/>
+		<meta name="author" content="Mafalda Pereira" />
+		<meta name="theme-color" content="#09090b" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Work — Mafalda Pereira" />
+		<meta
+			property="og:description"
+			content="Anonymised UX research case studies and selected engagements across AI, mobility and digital services."
+		/>
+		<meta property="og:image" content="/images/social-preview.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Mafalda Pereira — UX Researcher" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="/images/social-preview.png" />
+		<title>Work — Mafalda Pereira</title>
+	</head>
+	<body>
+		<div class="site-shell">
+			<SiteHeader />
+			<main id="main-content" tabindex="-1">
+				<WorkArchive />
+			</main>
+		</div>
+	</body>
+</html>

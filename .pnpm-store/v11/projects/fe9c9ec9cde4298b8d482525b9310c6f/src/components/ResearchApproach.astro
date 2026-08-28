@@ -1,0 +1,452 @@
+---
+const stages = [
+	{
+		number: '01',
+		label: 'Frame',
+		title: 'Start with the decision',
+		description:
+			'Clarify the product question, align the people involved and define evaluation criteria, constraints and a practical research protocol.',
+	},
+	{
+		number: '02',
+		label: 'Study',
+		title: 'Observe the real context',
+		description:
+			'Choose and combine methods around the people, product and environment — from interviews and observation to usability testing, surveys and workshops.',
+	},
+	{
+		number: '03',
+		label: 'Translate',
+		title: 'Make evidence actionable',
+		description:
+			'Synthesise qualitative and quantitative evidence into usability findings, design criteria and prioritised recommendations for the team.',
+	},
+];
+
+const methods = [
+	'Interviews',
+	'Observation',
+	'Think-aloud testing',
+	'Usability testing',
+	'Surveys',
+	'Workshops',
+	'Heuristic review',
+	'Benchmarking',
+	'Concept evaluation',
+];
+
+const principles = [
+	'Understand context before making assumptions',
+	'Use evidence to challenge opinion',
+	'Turn findings into clear decisions',
+];
+---
+
+<section
+	id="research-approach"
+	class="research-approach page-frame"
+	aria-labelledby="approach-heading"
+>
+	<header class="approach-heading">
+		<div>
+			<p class="approach-kicker">Practice / 02</p>
+			<h2 id="approach-heading">Research approach</h2>
+		</div>
+		<p class="approach-register" aria-hidden="true">Question / Evidence / Decision</p>
+	</header>
+
+	<div class="approach-intro">
+		<p class="approach-statement">
+			Research becomes valuable when evidence changes what a team does next.
+		</p>
+		<p class="approach-summary">
+			I work across the full research cycle — from framing questions and preparing protocols
+			to running sessions, analysing evidence and presenting prioritised recommendations. The
+			process adapts to each project's context while keeping the path from question to decision
+			clear.
+		</p>
+	</div>
+
+	<ol class="approach-stages">
+		{
+			stages.map((stage) => (
+				<li>
+					<div class="stage-register">
+						<span>{stage.number}</span>
+						<span>{stage.label}</span>
+					</div>
+					<h3>{stage.title}</h3>
+					<p>{stage.description}</p>
+				</li>
+			))
+		}
+	</ol>
+
+	<div class="approach-reference method-repertoire">
+		<p>Methods I use</p>
+		<ul aria-label="Research methods">
+			{methods.map((method) => <li>{method}</li>)}
+		</ul>
+	</div>
+
+	<div
+		class="approach-reference working-principles"
+		role="group"
+		aria-labelledby="principles-heading"
+	>
+		<p id="principles-heading">Working principles</p>
+		<ul>
+			{
+				principles.map((principle, index) => (
+					<li>
+						<span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+						<strong>{principle}</strong>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.research-approach {
+		position: relative;
+		padding-block: clamp(6rem, 10vw, 10rem) clamp(5rem, 8vw, 8rem);
+		border-top: 1px solid var(--line);
+		scroll-margin-top: calc(var(--header-height) + 1rem);
+	}
+
+	.approach-heading {
+		display: grid;
+		align-items: end;
+		padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+		grid-template-columns: 1fr auto;
+		gap: 2rem;
+	}
+
+	.approach-kicker,
+	.approach-register,
+	.stage-register,
+	.approach-reference > p {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.64rem;
+		letter-spacing: 0.11em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.approach-kicker {
+		margin-bottom: 1.35rem;
+		color: var(--accent);
+	}
+
+	.approach-register {
+		padding-bottom: 0.9rem;
+		color: rgba(242, 239, 232, 0.6);
+		text-align: right;
+	}
+
+	h2,
+	h3 {
+		margin: 0;
+		font-family: var(--display);
+		font-weight: 400;
+		letter-spacing: -0.045em;
+	}
+
+	h2 {
+		max-width: 10ch;
+		font-size: clamp(3.5rem, 6.8vw, 7.5rem);
+		line-height: 0.96;
+	}
+
+	.approach-intro {
+		display: grid;
+		padding-block: clamp(3.5rem, 6vw, 6.5rem);
+		border-top: 1px solid var(--line);
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: clamp(2rem, 4vw, 4.5rem);
+	}
+
+	.approach-statement {
+		max-width: 14ch;
+		margin: 0;
+		font-family: var(--display);
+		font-size: clamp(2.7rem, 4.2vw, 4.9rem);
+		font-weight: 400;
+		letter-spacing: -0.04em;
+		line-height: 1;
+		text-wrap: balance;
+		grid-column: 1 / 7;
+	}
+
+	.approach-summary {
+		max-width: 39rem;
+		margin: 0;
+		align-self: end;
+		color: #d5d1ca;
+		font-size: clamp(1rem, 1.2vw, 1.2rem);
+		letter-spacing: -0.012em;
+		line-height: 1.65;
+		grid-column: 8 / -1;
+	}
+
+	.approach-stages {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		border-block: 1px solid var(--line);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		list-style: none;
+	}
+
+	.approach-stages > li {
+		display: flex;
+		min-width: 0;
+		min-height: clamp(26rem, 31vw, 34rem);
+		padding: clamp(2rem, 3.5vw, 3.5rem);
+		flex-direction: column;
+		border-right: 1px solid var(--line);
+	}
+
+	.approach-stages > li:first-child {
+		padding-left: 0;
+	}
+
+	.approach-stages > li:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.stage-register {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: rgba(242, 239, 232, 0.6);
+	}
+
+	.stage-register span:first-child {
+		color: var(--accent);
+	}
+
+	.approach-stages h3 {
+		max-width: 8ch;
+		min-height: 2.94em;
+		margin-top: clamp(4rem, 6vw, 6rem);
+		font-size: clamp(2.5rem, 3.6vw, 4.25rem);
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.approach-stages li > p {
+		max-width: 31rem;
+		margin: 1.5rem 0 0;
+		color: var(--muted);
+		font-size: 0.94rem;
+		line-height: 1.65;
+	}
+
+	.approach-reference {
+		display: grid;
+		align-items: start;
+		padding-block: clamp(2.5rem, 4vw, 4rem);
+		grid-template-columns: minmax(11rem, 0.75fr) 2fr;
+		gap: 2rem;
+	}
+
+	.approach-reference > p {
+		padding-top: 0.7rem;
+		color: var(--accent);
+	}
+
+	.approach-reference ul {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.method-repertoire ul {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		column-gap: clamp(1.25rem, 2.5vw, 2.5rem);
+	}
+
+	.method-repertoire li {
+		position: relative;
+		padding: 0.8rem 0 0.8rem 1rem;
+		border-top: 1px solid var(--line);
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.045em;
+		line-height: 1.35;
+	}
+
+	.method-repertoire li::before {
+		position: absolute;
+		top: 0.8rem;
+		left: 0;
+		color: var(--accent);
+		content: '•';
+	}
+
+	.working-principles {
+		border-top: 1px solid var(--line);
+	}
+
+	.working-principles ul {
+		grid-template-columns: repeat(3, 1fr);
+		gap: clamp(1.5rem, 3vw, 3rem);
+	}
+
+	.working-principles li {
+		display: grid;
+		padding-top: 0.8rem;
+		border-top: 1px solid var(--line);
+		grid-template-columns: 2rem 1fr;
+		gap: 0.75rem;
+	}
+
+	.working-principles li > span {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+	}
+
+	.working-principles strong {
+		color: #d5d1ca;
+		font-size: 0.92rem;
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	@media (min-width: 48rem) and (max-width: 68.625rem) {
+		.research-approach {
+			scroll-margin-top: calc(var(--header-height) + 1rem);
+		}
+
+		.approach-intro {
+			grid-template-columns: repeat(8, minmax(0, 1fr));
+			gap: 2.5rem;
+		}
+
+		.approach-statement {
+			font-size: clamp(3.5rem, 5vw, 3.75rem);
+			grid-column: 1 / 5;
+		}
+
+		h2 {
+			font-size: clamp(4.5rem, 7vw, 5.25rem);
+		}
+
+		.approach-summary {
+			grid-column: 5 / -1;
+		}
+
+		.approach-stages > li {
+			min-height: 25rem;
+			padding-inline: 1.5rem;
+		}
+
+		.approach-stages > li:first-child {
+			padding-left: 0;
+		}
+
+		.approach-stages > li:last-child {
+			padding-right: 0;
+		}
+
+		.approach-stages h3 {
+			margin-top: 4rem;
+			font-size: clamp(2.75rem, 4vw, 3rem);
+		}
+
+		.approach-reference {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.approach-reference > p {
+			padding-top: 0;
+		}
+	}
+
+	@media (max-width: 47.999rem) {
+		.research-approach {
+			padding-block: 4.5rem 4rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
+		}
+
+		.approach-heading {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.approach-register {
+			display: none;
+		}
+
+		h2 {
+			max-width: 8ch;
+			font-size: clamp(3.35rem, 12vw, 4.5rem);
+		}
+
+		.approach-intro {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.approach-statement,
+		.approach-summary {
+			grid-column: 1;
+		}
+
+		.approach-statement {
+			font-size: clamp(2.7rem, 10vw, 3.5rem);
+		}
+
+		.approach-stages {
+			grid-template-columns: 1fr;
+		}
+
+		.approach-stages > li,
+		.approach-stages > li:first-child,
+		.approach-stages > li:last-child {
+			min-height: 23rem;
+			padding: 2rem 0;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.approach-stages > li:last-child {
+			border-bottom: 0;
+		}
+
+		.approach-stages h3 {
+			min-height: 0;
+			margin-top: 3rem;
+			font-size: clamp(2.65rem, 9vw, 2.75rem);
+		}
+
+		.approach-reference {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.approach-reference > p {
+			padding-top: 0;
+		}
+
+		.method-repertoire ul,
+		.working-principles ul {
+			grid-template-columns: 1fr;
+		}
+
+		.working-principles {
+			padding-top: 2.5rem;
+		}
+	}
+</style>

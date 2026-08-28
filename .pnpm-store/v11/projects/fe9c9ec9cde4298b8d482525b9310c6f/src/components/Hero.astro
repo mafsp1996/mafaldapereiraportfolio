@@ -1,0 +1,59 @@
+---
+const expertise = [
+	'Mixed methods',
+	'Complex systems',
+	'Evidence synthesis',
+	'AI-assisted workflows',
+];
+
+const indexItems = [
+	{ number: '01', label: 'Selected work', href: '#selected-work' },
+	{ number: '02', label: 'Research approach', href: '#research-approach' },
+	{ number: '03', label: 'About', href: '#about' },
+];
+---
+
+<section class="hero page-frame" aria-labelledby="hero-title">
+	<div class="hero__eyebrow">
+		<p><span class="status-dot" aria-hidden="true"></span>UX RESEARCHER · 5+ YEARS · PORTUGAL</p>
+		<p class="document-code" aria-hidden="true">DOSSIER / MP—001</p>
+	</div>
+
+	<div class="hero__content">
+		<div class="hero__statement">
+			<p class="margin-note" aria-hidden="true">RESEARCH / SENSEMAKING / DECISION</p>
+			<h1 id="hero-title">Turning complex human behaviour into clear product decisions.</h1>
+		</div>
+
+		<div class="hero__details">
+			<p class="hero__intro">
+				I plan and run research for digital products, mobility and emerging technologies —
+				especially when the evidence is messy and the product decision needs to be clear.
+			</p>
+
+			<ul class="expertise-list" aria-label="Areas of expertise">
+				{expertise.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+	</div>
+
+	<aside class="dossier-index" aria-label="Portfolio index">
+		<div class="dossier-index__heading">
+			<span>Index</span>
+			<span aria-hidden="true">[03]</span>
+		</div>
+		<ol>
+			{
+				indexItems.map((item) => (
+					<li>
+						<a href={item.href}>
+							<span class="index-number">{item.number}</span>
+							<span>{item.label} <span class="index-arrow" aria-hidden="true">→</span></span>
+						</a>
+					</li>
+				))
+			}
+		</ol>
+		<p class="index-note">Product research / Human factors</p>
+	</aside>
+</section>

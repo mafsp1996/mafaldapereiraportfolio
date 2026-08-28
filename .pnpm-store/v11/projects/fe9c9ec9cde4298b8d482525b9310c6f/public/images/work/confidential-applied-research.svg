@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <pattern id="grid-confidential" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M52 0H0V52" stroke="#F2EFE8" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="#161618"/>
+  <rect width="1200" height="800" fill="url(#grid-confidential)"/>
+  <rect x="118" y="106" width="964" height="588" stroke="#F2EFE8" stroke-opacity=".14"/>
+  <path d="M118 198h964M278 106v588M922 106v588" stroke="#F2EFE8" stroke-opacity=".09"/>
+  <g fill="#8380FF" fill-opacity=".12" stroke="#8380FF" stroke-opacity=".28">
+    <rect x="342" y="258" width="516" height="86"/>
+    <rect x="342" y="378" width="392" height="86"/>
+    <rect x="342" y="498" width="458" height="86"/>
+  </g>
+  <g fill="#171719">
+    <rect x="378" y="290" width="374" height="22"/>
+    <rect x="378" y="410" width="268" height="22"/>
+    <rect x="378" y="530" width="330" height="22"/>
+  </g>
+  <circle cx="922" cy="198" r="128" stroke="#8380FF" stroke-opacity=".22"/>
+  <circle cx="922" cy="198" r="73" stroke="#F2EFE8" stroke-opacity=".11"/>
+  <path d="M922 46v304M770 198h304" stroke="#8380FF" stroke-opacity=".18"/>
+  <path d="m118 106 964 588M1082 106 118 694" stroke="#F2EFE8" stroke-opacity=".035"/>
+</svg>

@@ -1,0 +1,85 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const versions = [
+	{
+		number: '01',
+		title: 'AI / SaaS product research',
+		text: 'For roles focused on AI products, discovery, evaluation and evidence-led product decisions.',
+		subject: 'AI%20%2F%20SaaS%20Product%20Research%20CV',
+	},
+	{
+		number: '02',
+		title: 'Senior UX research / consulting',
+		text: 'For senior research, consulting and complex stakeholder environments.',
+		subject: 'Senior%20UX%20Research%20%2F%20Consulting%20CV',
+	},
+	{
+		number: '03',
+		title: 'Consumer mobility UX research',
+		text: 'For mobility, automotive and connected experiences across physical and digital contexts.',
+		subject: 'Consumer%20Mobility%20UX%20Research%20CV',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Choose the CV most relevant to your role and request it from Mafalda Pereira." />
+		<title>CV — Mafalda Pereira</title>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<SiteHeader />
+		<main id="main-content" class="cv-page page-frame">
+			<header class="cv-page__intro">
+				<p class="eyebrow">CV / SELECT A CONTEXT</p>
+				<h1>One research practice,<br />three relevant lenses.</h1>
+				<p>My CV is tailored to the role and the questions the team needs to answer. Choose the context closest to your opportunity and I will send the relevant version.</p>
+			</header>
+			<section class="cv-options" aria-labelledby="cv-options-heading">
+				<h2 id="cv-options-heading">Available versions</h2>
+				<div class="cv-options__grid">
+					{versions.map((version) => (
+						<article class="cv-option">
+							<span class="cv-option__number" aria-hidden="true">{version.number}</span>
+							<h3>{version.title}</h3>
+							<p>{version.text}</p>
+							<a href={`mailto:mafaldapereirafmh@gmail.com?subject=${version.subject}`}>Request this CV <span aria-hidden="true">↗</span></a>
+						</article>
+					))}
+				</div>
+			</section>
+			<footer class="cv-page__footer">
+				<a href={baseUrl}>← Back to home</a>
+				<span>Private documents · shared on request</span>
+			</footer>
+		</main>
+	</body>
+</html>
+
+<style>
+	.cv-page { padding-block: clamp(3rem, 8vw, 8rem) 4rem; }
+	.cv-page__intro { max-width: 58rem; padding-bottom: clamp(4rem, 10vw, 8rem); border-bottom: 1px solid var(--line); }
+	.eyebrow, .cv-page__footer span { color: var(--muted); font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+	.cv-page h1 { max-width: 48rem; margin: 1.5rem 0 2rem; font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: .94; }
+	.cv-page__intro > p:last-child { max-width: 38rem; color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.35rem); line-height: 1.55; }
+	.cv-options { padding-block: clamp(3rem, 7vw, 6rem); }
+	.cv-options h2 { margin: 0 0 2rem; color: var(--accent); font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+	.cv-options__grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+	.cv-option { min-height: 21rem; padding: 1.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; }
+	.cv-option__number { color: var(--accent); font-family: var(--mono); font-size: .72rem; }
+	.cv-option h3 { max-width: 16rem; margin: 3.5rem 0 1.25rem; font-size: clamp(1.7rem, 2.8vw, 2.5rem); line-height: 1; }
+	.cv-option p { max-width: 20rem; margin: 0; color: var(--muted); line-height: 1.55; }
+	.cv-option a, .cv-page__footer a { margin-top: auto; padding-top: 2rem; color: var(--paper); font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+	.cv-option a:hover, .cv-page__footer a:hover { color: var(--accent); }
+	.cv-page__footer { display: flex; justify-content: space-between; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+	.cv-page__footer a { margin: 0; padding: 0; }
+	@media (max-width: 48rem) { .cv-options__grid { grid-template-columns: 1fr; } .cv-option { min-height: 16rem; } .cv-option h3 { margin-top: 2rem; } .cv-page__footer { flex-direction: column; } }
+</style>

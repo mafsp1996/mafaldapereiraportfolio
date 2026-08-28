@@ -417,6 +417,12 @@ const baseUrl = import.meta.env.BASE_URL;
 			gap: 2.5rem;
 		}
 
+		.work-card__media,
+		.work-card--offset .work-card__media,
+		.work-card--compact .work-card__media {
+			order: -1;
+		}
+
 		.work-card__info {
 			gap: 1.5rem;
 		}
@@ -440,7 +446,7 @@ const baseUrl = import.meta.env.BASE_URL;
 		.work-card--offset .work-card__media,
 		.work-card--compact .work-card__media {
 			width: 100%;
-			min-height: 18rem;
+			min-height: 15rem;
 			margin-top: 0;
 		}
 

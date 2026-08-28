@@ -34,7 +34,7 @@ const isCurrent = (href: string) => {
 	<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 		{
 			navigation.map((item) => (
-				<a href={item.href === '/work' ? `${baseUrl}work` : `${baseUrl}#about`} aria-current={isCurrent(item.href === '/work' ? `${baseUrl}work` : `${baseUrl}#about`) ? 'page' : undefined}>
+				<a href={item.href === '/work' ? `${baseUrl}work/` : `${baseUrl}#about`} aria-current={isCurrent(item.href === '/work' ? `${baseUrl}work/` : `${baseUrl}#about`) ? 'page' : undefined}>
 					{item.label}
 				</a>
 			))

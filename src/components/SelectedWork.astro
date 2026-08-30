@@ -15,10 +15,10 @@ const baseUrl = import.meta.env.BASE_URL;
 
 	<div class="work-list">
 		{
-			projects.map((project) => (
+			projects.map((project, index) => (
 				<article class:list={['work-card', `work-card--${project.selectedLayout}`]}>
 					<div class="work-card__info">
-						<span class="work-card__number">{project.number}</span>
+						<span class="work-card__number">{String(index + 1).padStart(2, '0')}</span>
 						<div class="work-card__title-group">
 							<h3>{project.title}</h3>
 							<p class="work-card__contribution">{project.contribution}</p>
@@ -39,11 +39,13 @@ const baseUrl = import.meta.env.BASE_URL;
 							alt={project.imageAlt}
 							width="1200"
 							height="800"
-							loading={project.number === '01' ? 'eager' : 'lazy'}
+							loading={index === 0 ? 'eager' : 'lazy'}
 							decoding="async"
 						/>
 						<span class="placeholder-label" aria-hidden="true">{project.mediaLabel}</span>
-						<span class="placeholder-index" aria-hidden="true">FIG / {project.number}</span>
+						<span class="placeholder-index" aria-hidden="true">
+							FIG / {String(index + 1).padStart(2, '0')}
+						</span>
 					</figure>
 				</article>
 			))

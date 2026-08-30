@@ -17,7 +17,7 @@ export const projects: Project[] = [
 		title: 'AI-assisted research workflow',
 		contribution: 'Evidence strategy · AI evaluation',
 		description:
-			'I built the bibliography and technology benchmark that grounded an AI-assisted research workflow, then validated its outputs against the source evidence.',
+			'The workflow could write a convincing answer. My job was to check whether its sources actually supported it — and to document where researcher judgement was still needed.',
 		image: '/images/work/ai-research-workflow.svg',
 		imageAlt: 'Abstract workflow connecting research evidence, evaluation and documentation.',
 		archiveLayout: 'lead',
@@ -30,7 +30,7 @@ export const projects: Project[] = [
 		title: 'Mobile parking app for professionals',
 		contribution: 'Mobile product · Usability research',
 		description:
-			'I evaluated the end-to-end parking flow with professional drivers, exposing comprehension gaps that broad usability scores alone would have missed.',
+			'Five professional drivers tried the complete parking journey. The overall score was positive; the session recordings showed exactly where the product still made them stop and guess.',
 		image: '/images/work/mobile-parking.svg',
 		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
 		archiveLayout: 'right',
@@ -67,7 +67,7 @@ export const projects: Project[] = [
 		title: 'Autonomous mobility experience',
 		contribution: 'Research programme · Service experience',
 		description:
-			'I connected evidence across the full passenger journey — waiting, boarding and travelling — to prioritise information, feedback and accessibility requirements.',
+			'Waiting, boarding and travelling raised different questions, but passengers experienced them as one journey. I brought those touchpoints together to show where trust and comprehension broke down.',
 		image: '/images/work/autonomous-mobility.svg',
 		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
 		archiveLayout: 'closing',
@@ -80,7 +80,7 @@ export const projects: Project[] = [
 		title: 'Immersive training evidence framework',
 		contribution: 'Evidence strategy · Human factors',
 		description:
-			'I built and validated an evidence base for haptic technologies in immersive training, turning literature, technical documentation and standards into an evaluation framework.',
+			'Scientific papers, technical documentation and standards did not make the same kinds of claims. I separated them before setting out what the team could test next.',
 		image: '/images/work/confidential-applied-research.svg',
 		imageAlt: 'Abstract redacted research document representing a confidential project.',
 		archiveLayout: 'confidential',

@@ -21,9 +21,9 @@
   <text x="64" y="146" fill="#aaa8a2" font-family="Consolas, monospace" font-size="14" letter-spacing="2.2">UX RESEARCHER · PORTUGAL</text>
   <circle cx="44" cy="141" r="5" fill="#8380ff"/>
 
-  <text x="64" y="265" fill="#f2efe8" font-family="Georgia, 'Times New Roman', serif" font-size="70" letter-spacing="-2.5">
-	<tspan x="64" dy="0">Turning complex human behaviour</tspan>
-	<tspan x="64" dy="76">into clear product decisions.</tspan>
+  <text x="64" y="250" fill="#f2efe8" font-family="Georgia, 'Times New Roman', serif" font-size="64" letter-spacing="-2.2">
+	<tspan x="64" dy="0">I study what people do, where products</tspan>
+	<tspan x="64" dy="72">get in the way, and what teams can change.</tspan>
   </text>
 
   <text x="64" y="500" fill="#d5d1ca" font-family="Inter, Arial, sans-serif" font-size="23">

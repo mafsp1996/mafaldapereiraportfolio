@@ -1,6 +1,6 @@
 # Mafalda Pereira — UX Research Portfolio
 
-An English-language portfolio built with Astro. It presents selected UX research work across digital products, mobility, human factors and AI-supported workflows.
+An English-language portfolio built with Astro. It presents selected UX research work across digital products, mobility, human factors and AI-assisted research.
 
 ## Content and confidentiality
 
@@ -10,7 +10,7 @@ The public case studies are anonymised. Client names, identifying details and se
 
 - `/` — profile, selected work and research approach
 - `/work` — selected engagements and links to public case studies
-- `/work/[slug]` — three anonymised case studies
+- `/work/[slug]` — six anonymised case studies
 
 ## Local development
 

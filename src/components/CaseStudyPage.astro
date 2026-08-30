@@ -44,7 +44,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 	<div class="case-content page-frame">
 		<section class="case-decision" aria-labelledby="decision-heading">
-			<p class="section-label">The research question</p>
+			<p class="section-label">{study.questionLabel}</p>
 			<div>
 				<h2 id="decision-heading">{study.decisionTitle}</h2>
 				<p>{study.decisionCopy}</p>
@@ -58,8 +58,8 @@ const baseUrl = import.meta.env.BASE_URL;
 
 		<section class="case-process" aria-labelledby="process-heading">
 			<header>
-				<p class="section-label">How I approached it</p>
-				<h2 id="process-heading">From question to evidence</h2>
+				<p class="section-label">{study.processLabel}</p>
+				<h2 id="process-heading">{study.processTitle}</h2>
 			</header>
 
 			<ol>
@@ -77,15 +77,15 @@ const baseUrl = import.meta.env.BASE_URL;
 
 		<section class="case-evidence" aria-labelledby="evidence-heading">
 			<header>
-				<p class="section-label">How I organised the evidence</p>
+				<p class="section-label">{study.evidenceLabel}</p>
 				<h2 id="evidence-heading">{study.evidenceTitle}</h2>
 				<p>{study.evidenceIntro}</p>
 			</header>
 
 			<div class="evidence-board" role="group" aria-label="Recreated analysis structure">
 				<div class="evidence-board__register">
-					<span>Recreated analysis structure</span>
-					<span aria-hidden="true">Evidence / Synthesis</span>
+					<span>{study.evidenceRegister}</span>
+					<span aria-hidden="true">Selected findings</span>
 				</div>
 				<ol>
 					{
@@ -106,12 +106,12 @@ const baseUrl = import.meta.env.BASE_URL;
 
 		<section class="case-outcome" aria-labelledby="outcome-heading">
 			<div>
-				<p class="section-label">What I delivered</p>
+				<p class="section-label">{study.outcomeLabel}</p>
 				<h2 id="outcome-heading">{study.outcomeTitle}</h2>
 				<p>{study.outcomeCopy}</p>
 			</div>
 			<aside aria-labelledby="takeaway-heading">
-				<h3 id="takeaway-heading" class="section-label">What I took forward</h3>
+				<h3 id="takeaway-heading" class="section-label">{study.reflectionLabel}</h3>
 				<p class="case-outcome__reflection">{study.reflection}</p>
 			</aside>
 		</section>

@@ -7,8 +7,11 @@ export type CaseStudy = {
 	role: string;
 	setting: string;
 	methods: string;
+	questionLabel: string;
 	decisionTitle: string;
 	decisionCopy: string;
+	processLabel: string;
+	processTitle: string;
 	process: Array<{
 		label: string;
 		title: string;
@@ -16,6 +19,8 @@ export type CaseStudy = {
 	}>;
 	evidenceTitle: string;
 	evidenceIntro: string;
+	evidenceLabel: string;
+	evidenceRegister: string;
 	evidence: Array<{
 		label: string;
 		title: string;
@@ -23,6 +28,8 @@ export type CaseStudy = {
 	}>;
 	outcomeTitle: string;
 	outcomeCopy: string;
+	outcomeLabel: string;
+	reflectionLabel: string;
 	reflection: string;
 };
 
@@ -36,63 +43,70 @@ export const caseStudies: CaseStudy[] = [
 		title: 'AI-assisted research workflow',
 		eyebrow: 'Evidence strategy · AI evaluation',
 		lede:
-			'I built the bibliography and technology benchmark that grounded an AI-assisted research workflow, then validated its outputs against the source evidence.',
+			'The workflow could produce a fluent answer. I checked whether the bibliography and technology benchmark actually supported it, and recorded where researcher judgement was still needed.',
 		role:
-			'Created the source base and benchmark, defined the review criteria, and checked generated material for accuracy, completeness and traceability.',
+			'I assembled the source base and benchmark, agreed the review criteria and audited generated material for accuracy, gaps and traceability.',
 		setting: 'Bibliography, technology benchmark and evidence validation',
 		methods: 'Structured literature review · Benchmarking · Evidence validation',
+		questionLabel: 'The review problem',
 		decisionTitle:
 			'Which parts of the generated guidance were reliable enough to support research work, and which still required expert review?',
 		decisionCopy:
-			'Fluent output could still omit conditions, overstate a source or combine claims with different levels of support. The review therefore had to make the path from claim to evidence visible.',
+			'A polished response could still omit a condition, stretch a source or merge claims with very different levels of support. I treated the answer and its references as two things to inspect, not one.',
+		processLabel: 'What I checked',
+		processTitle: 'Three passes through every answer',
 		process: [
 			{
-				label: '01 / Ground',
-				title: 'Build the evidence base before evaluating the output',
+				label: '01 / Sources',
+				title: 'Start with the references, not the prose',
 				copy:
-					'I assembled and organised the bibliography and technology benchmark used to ground the workflow.',
+					'The bibliography and benchmark came first. They gave me a stable base against which to check each answer.',
 			},
 			{
-				label: '02 / Structure',
-				title: 'Define what a defensible answer needed to contain',
+				label: '02 / Gaps',
+				title: 'Look for the conditions that disappeared',
 				copy:
-					'I separated technical capability, research evidence, limitations and open questions so they could be reviewed consistently.',
+					'I checked technical capability, research support, limitations and open questions separately. Missing context was often more revealing than an incorrect sentence.',
 			},
 			{
-				label: '03 / Validate',
-				title: 'Trace claims back to the material reviewed',
+				label: '03 / Boundary',
+				title: 'Mark where automation had to stop',
 				copy:
-					'I corrected mismatched or incomplete references and documented where stronger evidence or researcher judgement was still needed.',
+					'Mismatched references were corrected, incomplete claims were qualified and questions needing a researcher were left visible rather than smoothed over.',
 			},
 		],
-		evidenceTitle: 'A review built around provenance, coverage and claim strength',
+		evidenceTitle: 'Three questions kept the review honest',
 		evidenceIntro:
-			'I reviewed the answer and its evidence as separate objects. That prevented a well-written response from receiving more confidence than its sources justified.',
+			'The same short checklist was applied throughout. It was simple enough to use repeatedly, but strict enough to catch answers that sounded stronger than their sources.',
+		evidenceLabel: 'Review criteria',
+		evidenceRegister: 'Answer audit',
 		evidence: [
 			{
-				label: 'Provenance',
-				title: 'Where the claim came from',
+				label: 'Source',
+				title: 'Can I find the claim in the cited material?',
 				copy:
-					'Each important statement was checked against the relevant scientific source or primary technical documentation.',
+					'Important statements were traced to scientific literature or primary technical documentation, not accepted from the citation alone.',
 			},
 			{
-				label: 'Coverage',
-				title: 'What the answer included or omitted',
+				label: 'Missing context',
+				title: 'What would change how someone used the answer?',
 				copy:
-					'I looked for missing conditions, limitations and steps that could change how the guidance was used.',
+					'Conditions, limitations and omitted steps were recorded whenever they could alter a research decision.',
 			},
 			{
-				label: 'Claim strength',
-				title: 'What the evidence actually allowed us to say',
+				label: 'Confidence',
+				title: 'How far does the available evidence let us go?',
 				copy:
-					'Claims were distinguished as supported, incomplete or requiring stronger independent validation.',
+					'Each claim was marked as supported, incomplete or in need of independent validation.',
 			},
 		],
-		outcomeTitle: 'A grounded evidence base, benchmark and validation record',
+		outcomeTitle: 'A source base, benchmark and record of every correction',
 		outcomeCopy:
-			'I delivered a consolidated source base and a traceable review of the generated material, showing what could be retained, corrected or investigated further.',
+			'The team received the consolidated sources together with a review showing which passages could stay, which needed correction and which questions remained open.',
+		outcomeLabel: 'Result',
+		reflectionLabel: 'The useful lesson',
 		reflection:
-			'The most important signal was not how convincing an answer sounded, but whether another researcher could follow it back to the evidence.',
+			'An answer was only useful if another researcher could follow it back to the source and understand its limits.',
 	},
 	{
 		slug: 'mobile-parking-professionals',
@@ -100,38 +114,43 @@ export const caseStudies: CaseStudy[] = [
 		title: 'Mobile parking app for professionals',
 		eyebrow: 'Mobile product · Usability research',
 		lede:
-			'I evaluated an end-to-end mobile parking flow with professional drivers and exposed comprehension gaps that broad usability scores alone would have missed.',
+			'Five professional drivers tried the complete parking flow. The overall usability score looked healthy; their hesitations told a more useful story.',
 		role:
-			'Planned and ran the heuristic review and usability workshop, then synthesised observed behaviour, participant feedback and questionnaire data into redesign priorities.',
+			'I prepared the heuristic review, moderated the workshop and brought task behaviour, comments and questionnaire responses together for the redesign team.',
 		setting: '5 professional drivers · 2-hour task-based workshop',
 		methods: 'Heuristic review · Think-aloud testing · SUS · Journey synthesis',
+		questionLabel: 'The usability challenge',
 		decisionTitle:
 			'Could professional drivers complete the full parking flow without guidance, and which moments needed redesign before the next iteration?',
 		decisionCopy:
-			'The evaluation followed the real sequence from entering the product and creating an account to finding a space, checking in and checking out. This kept individual screen issues connected to the job the service needed to support.',
+			'We followed the real sequence: create an account, find a space, check in and check out. Looking at the journey as a whole kept small interface problems connected to the pressures of a working day.',
+		processLabel: 'The workshop',
+		processTitle: 'One complete journey through the app',
 		process: [
 			{
-				label: '01 / Frame',
-				title: 'Connect the product questions to the work context',
+				label: 'Before the session',
+				title: 'Walk the flow and learn the drivers’ routines',
 				copy:
-					'I combined a heuristic review with an initial account of drivers’ routines, needs and parking constraints.',
+					'A heuristic pass identified likely trouble spots. A short discussion of routes, schedules and parking constraints put them in context.',
 			},
 			{
-				label: '02 / Observe',
-				title: 'Test the complete flow through realistic tasks',
+				label: 'During the session',
+				title: 'Let each driver work through the core tasks',
 				copy:
-					'Five professional drivers completed the core journey while thinking aloud, followed by a structured questionnaire and debrief.',
+					'Participants worked aloud through the core journey, then completed a questionnaire and talked through the moments that had felt uncertain.',
 			},
 			{
-				label: '03 / Prioritise',
-				title: 'Separate broad ease of use from local breakdowns',
+				label: 'Afterwards',
+				title: 'Put the score back beside the recordings',
 				copy:
-					'I mapped errors, hesitations and explanations to each step, then prioritised changes by their effect on task completion and confidence.',
+					'Errors and pauses were mapped to the journey. Changes were ranked by whether they blocked a task, created doubt or merely slowed someone down.',
 			},
 		],
-		evidenceTitle: 'Positive overall usability with specific comprehension failures',
+		evidenceTitle: 'The score was positive. Several actions were still unclear.',
 		evidenceIntro:
-			'Participants saw clear value in the service, but screen-level evidence showed several actions and terms that were not self-explanatory.',
+			'People understood the value of the service and learned the main flow quickly. Account creation, unfamiliar icons and specialist terms still made them stop and ask what to do.',
+		evidenceLabel: 'What happened in the room',
+		evidenceRegister: 'Task notes / participant comments',
 		evidence: [
 			{
 				label: 'Observed flow',
@@ -152,11 +171,13 @@ export const caseStudies: CaseStudy[] = [
 					'Participants connected the service to finding spaces more quickly, reducing wasted time and avoiding disruption to deliveries.',
 			},
 		],
-		outcomeTitle: 'A task-level redesign brief grounded in professional use',
+		outcomeTitle: 'A redesign brief organised around the driver’s journey',
 		outcomeCopy:
-			'I delivered a persona and journey synthesis, screen-by-screen findings and a focused set of recommendations covering visibility, terminology, onboarding and action feedback.',
+			'The handover combined a persona, journey map and screen-level notes covering visibility, terminology, onboarding and action feedback.',
+		outcomeLabel: 'For the next iteration',
+		reflectionLabel: 'What the score missed',
 		reflection:
-			'High overall usability did not mean every important action was understood. The task-level evidence revealed issues that a single summary score would have hidden.',
+			'A good SUS result did not mean every important action was understood. The pauses and wrong turns were the part the team could design from.',
 	},
 	{
 		slug: 'remote-parking-experience',
@@ -169,33 +190,38 @@ export const caseStudies: CaseStudy[] = [
 			'Planned and ran the evaluation, observed behaviour across repeated use cases, led the debriefs and translated the results into a prioritised action plan.',
 		setting: '21 participants · 7 novice, 7 intermediate and 7 experienced users',
 		methods: 'Task-based evaluation · Observation · Ratings · Repeated measures',
+		questionLabel: 'Why repetition mattered',
 		decisionTitle:
 			'Which parts of the remote parking experience were ready to retain, and which interaction or vehicle behaviours could undermine trust?',
 		decisionCopy:
-			'The experience combined a mobile interface, an in-vehicle activation step and real vehicle movement. I needed to distinguish interface comprehension from learnability and from limitations of the prototype itself.',
+			'The experience combined a phone, an in-vehicle activation step and real vehicle movement. A first attempt could not tell us whether a problem belonged to the interface, the learning curve or the prototype.',
+		processLabel: 'Study design',
+		processTitle: 'Compare first use with learned behaviour',
 		process: [
 			{
-				label: '01 / Balance',
+				label: 'Participant groups',
 				title: 'Recruit across three levels of parking-system familiarity',
 				copy:
 					'The panel included equal novice, intermediate and experienced groups so first-use expectations could be compared.',
 			},
 			{
-				label: '02 / Repeat',
+				label: 'Repeated scenarios',
 				title: 'Observe learning across a sequence of manoeuvres',
 				copy:
 					'Participants completed repeated parking, obstacle and error scenarios, with short debriefs between phases and a final synthesis.',
 			},
 			{
-				label: '03 / Qualify',
+				label: 'Prototype log',
 				title: 'Keep prototype effects visible in the analysis',
 				copy:
 					'I documented where braking, obstacle behaviour or extra prototype steps could inflate or suppress the experience ratings.',
 			},
 		],
-		evidenceTitle: 'A useful concept with learnable friction and critical trust risks',
+		evidenceTitle: 'Some friction faded. The trust risks did not.',
 		evidenceIntro:
-			'Repetition showed which issues reduced with experience and which remained design or system-level problems.',
+			'The sequence of trials made the difference visible: missed steps reduced, attention changed and a smaller set of problems persisted.',
+		evidenceLabel: 'What changed over time',
+		evidenceRegister: 'Repeated trials / debriefs',
 		evidence: [
 			{
 				label: 'Learnability',
@@ -216,9 +242,11 @@ export const caseStudies: CaseStudy[] = [
 					'Small text and arrows, difficult alignment and unexpected obstacle behaviour remained important redesign or validation points.',
 			},
 		],
-		outcomeTitle: 'A prioritised redesign and validation plan',
+		outcomeTitle: 'Two workstreams: interface changes and prototype reliability',
 		outcomeCopy:
-			'I recommended retaining the useful scenarios while improving visual hierarchy, warning language and alignment support, and separating interface changes from prototype reliability work.',
+			'The recommendation kept the useful scenarios, changed visual hierarchy, warning language and alignment support, and separated interface work from vehicle and prototype issues.',
+		outcomeLabel: 'Recommendation',
+		reflectionLabel: 'The necessary caveat',
 		reflection:
 			'Repeated trials mattered because first-use and learned behaviour told different stories. Making the prototype limits explicit kept the recommendations honest.',
 	},
@@ -228,38 +256,43 @@ export const caseStudies: CaseStudy[] = [
 		title: 'Virtual assistant state design',
 		eyebrow: 'Concept evaluation · Conversational UX',
 		lede:
-			'Across two iterative studies, I evaluated how people interpreted animated assistant states and turned preference and comprehension evidence into concrete design requirements.',
+			'Two rounds of testing followed the same question: could people tell what the assistant was doing without the animation taking over the screen?',
 		role:
-			'Built the research and market benchmark, planned and moderated both rounds, and translated state-by-state findings into an iterative design direction.',
+			'I reviewed earlier research and comparable assistants, moderated both rounds and worked state by state with the results as the visual direction evolved.',
 		setting: 'Two iterative rounds · 7 participants, followed by 6 participants',
 		methods: 'Benchmarking · Concept association · Comparative evaluation · Workshop',
+		questionLabel: 'The design choice',
 		decisionTitle:
 			'Which visual treatment communicated the assistant’s state clearly without competing for attention?',
 		decisionCopy:
-			'The concepts needed to distinguish listening, voice detection, thinking, speaking and recovery from misunderstanding. Preference alone was not enough: the selected direction also had to be consistently interpreted.',
+			'Listening, detecting a voice, thinking, speaking and recovering from a misunderstanding each needed a recognisable state. Asking which animation people preferred would only answer half the question.',
+		processLabel: 'Round one, then round two',
+		processTitle: 'Let the first study change the second',
 		process: [
 			{
-				label: '01 / Ground',
-				title: 'Connect previous evidence to the concept space',
+				label: 'Before testing',
+				title: 'Review familiar patterns and earlier evidence',
 				copy:
-					'I synthesised prior modality studies and benchmarked how established assistants represent listening, processing and speaking.',
+					'Previous modality studies and established assistants showed which patterns people might already recognise for listening, processing and speaking.',
 			},
 			{
-				label: '02 / Compare',
-				title: 'Evaluate two visual families state by state',
+				label: 'First round · 7 people',
+				title: 'Compare two visual families, state by state',
 				copy:
 					'Seven participants discussed strengths, weaknesses, expected meaning and preference during a 90-minute concept evaluation.',
 			},
 			{
-				label: '03 / Iterate',
-				title: 'Test the refined direction in a second round',
+				label: 'Second round · 6 people',
+				title: 'Bring the revised states back to participants',
 				copy:
 					'Six further participants completed an association exercise and comparative review of the revised animations and states.',
 			},
 		],
-		evidenceTitle: 'Preference interpreted alongside meaning and attention',
+		evidenceTitle: 'People preferred one family, but not every state worked',
 		evidenceIntro:
-			'The line-based direction was preferred across states, but the reasons and comprehension gaps shaped the actual requirements.',
+			'The line-based family felt more familiar and readable. The useful detail was in the exceptions: one processing animation dominated the screen, and recovery needed its own unmistakable signal.',
+		evidenceLabel: 'What participants actually distinguished',
+		evidenceRegister: 'Concept comparison / associations',
 		evidence: [
 			{
 				label: 'Comprehension',
@@ -280,11 +313,13 @@ export const caseStudies: CaseStudy[] = [
 					'The next direction refined size, thickness, position, colour and motion, and added a clear misunderstanding state.',
 			},
 		],
-		outcomeTitle: 'A validated visual direction with state-level requirements',
+		outcomeTitle: 'A chosen visual family and a specification for each state',
 		outcomeCopy:
-			'I delivered the preferred concept family and a practical set of changes for each state, including motion, scale, placement, colour and recovery feedback.',
+			'The final handover covered motion, scale, placement, colour and recovery feedback for each state, rather than applying one rule to every animation.',
+		outcomeLabel: 'Design direction',
+		reflectionLabel: 'Why preference was not enough',
 		reflection:
-			'Preference only became useful when paired with comprehension. Iterating after the first round separated what people liked from what they actually understood.',
+			'The preferred animation was not automatically the clearest one. The second round showed which changes improved meaning, not just appeal.',
 	},
 	{
 		slug: 'autonomous-mobility-experience',
@@ -292,38 +327,43 @@ export const caseStudies: CaseStudy[] = [
 		title: 'Autonomous mobility experience',
 		eyebrow: 'Research programme · Service experience',
 		lede:
-			'I connected evidence across the passenger journey — waiting, boarding and travelling — to prioritise information, feedback and accessibility requirements.',
+			'Passengers did not experience a stop, a vehicle and an onboard display as separate products. The research had to follow their journey in the same way.',
 		role:
-			'Planned and ran user studies, synthesised evidence across touchpoints and facilitated working sessions that converted recurrent issues into design requirements.',
+			'I planned the user studies, compared patterns across touchpoints and facilitated working sessions on the issues that kept returning.',
 		setting: '14-person end-to-end journey study plus focused follow-up studies',
 		methods: 'Contextual evaluation · Concept testing · Focus groups · Workshops',
+		questionLabel: 'The whole journey',
 		decisionTitle:
 			'What did people need to understand and trust an autonomous mobility service across the whole journey?',
 		decisionCopy:
-			'The experience could not be evaluated as a single screen. Information at the stop, vehicle status, boarding controls, onboard route guidance, sound and physical accessibility all shaped the same passenger journey.',
+			'Information at the stop, vehicle status, boarding controls, route guidance, sound and physical accessibility all affected the same trip. Studying any one of them alone would miss the handovers between them.',
+		processLabel: 'Research programme',
+		processTitle: 'Follow the passenger, not the interface',
 		process: [
 			{
-				label: '01 / Map',
+				label: 'End-to-end study',
 				title: 'Evaluate the journey as connected touchpoints',
 				copy:
 					'I structured the research from arrival and route selection through boarding, travel, stop requests and accessible exit.',
 			},
 			{
-				label: '02 / Focus',
+				label: 'Focused follow-ups',
 				title: 'Use follow-up studies to investigate weak signals',
 				copy:
 					'Focused concept evaluations explored onboard information, external communication, feedback and the needs of less familiar users.',
 			},
 			{
-				label: '03 / Translate',
-				title: 'Bring recurring issues into collaborative working sessions',
+				label: 'Team sessions',
+				title: 'Put recurring issues on the same table',
 				copy:
-					'I organised evidence from earlier studies for workshops, helping the team prioritise feasible changes across software and physical touchpoints.',
+					'Workshops brought earlier observations into one place so software and physical changes could be discussed together, with their practical constraints.',
 			},
 		],
-		evidenceTitle: 'Trust, information and action feedback across the service',
+		evidenceTitle: 'Trust grew during the ride; ambiguity remained at key handovers',
 		evidenceIntro:
-			'The programme showed both strong perceived value and specific places where ambiguity or weak feedback could interrupt the journey.',
+			'Participants valued the service and most felt more confident after the ride. Route information, vehicle state and confirmation of requests still left room for doubt.',
+		evidenceLabel: 'Across touchpoints',
+		evidenceRegister: 'Journey evidence / follow-up studies',
 		evidence: [
 			{
 				label: 'Trust in context',
@@ -344,11 +384,13 @@ export const caseStudies: CaseStudy[] = [
 					'Stop and accessibility controls exposed issues in placement, persistence of feedback and distinction between different requests.',
 			},
 		],
-		outcomeTitle: 'A cross-touchpoint requirements and prioritisation framework',
+		outcomeTitle: 'One set of requirements spanning software, sound and physical controls',
 		outcomeCopy:
-			'I delivered findings and recommendations spanning information hierarchy, route comprehension, state feedback, sound, control placement and accessibility, together with questions requiring further validation.',
+			'The team received requirements for information hierarchy, route comprehension, state feedback, sound, control placement and accessibility, alongside questions that still needed testing.',
+		outcomeLabel: 'What the team could use',
+		reflectionLabel: 'What stayed connected',
 		reflection:
-			'The experience was never one interface. Keeping software, hardware and environmental constraints together made the recommendations more realistic and useful.',
+			'The weak points were often between touchpoints, not inside one screen. Keeping those links visible stopped the fixes from moving a problem elsewhere in the journey.',
 	},
 	{
 		slug: 'immersive-training-evidence-framework',
@@ -356,38 +398,43 @@ export const caseStudies: CaseStudy[] = [
 		title: 'Immersive training evidence framework',
 		eyebrow: 'Evidence strategy · Human factors',
 		lede:
-			'I developed and validated an evidence base for comparing haptic technologies in immersive training, translating a fragmented landscape into clear research, safety and evaluation criteria.',
+			'Scientific papers, vendor specifications and standards described the same technologies in very different ways. I built a review that kept those claims separate.',
 		role:
-			'Created the core bibliography and technology benchmark used by an AI-assisted research workflow, then reviewed, corrected and validated the material against scientific literature, primary documentation and standards.',
+			'I created the bibliography and technology benchmark, reviewed material from the AI-assisted research workflow and checked it against scientific literature, primary documentation and standards.',
 		setting: 'Confidential cross-functional research and development initiative',
 		methods: 'Literature review · Technology benchmark · Standards review · Evaluation framework',
+		questionLabel: 'The evidence problem',
 		decisionTitle:
 			'Which technology capabilities were sufficiently supported to inform research and prototyping, and what still needed to be tested?',
 		decisionCopy:
-			'Vendor specifications, scientific findings and standards could not be treated as equivalent evidence. I separated verified capabilities from claims about perceptual fidelity, learning, safety and real-world usefulness.',
+			'A specification can show what a device is designed to do; it cannot prove perceptual fidelity, learning transfer or safe use in a realistic setting. Those boundaries shaped the review.',
+		processLabel: 'Building the review',
+		processTitle: 'Keep three kinds of evidence apart',
 		process: [
 			{
-				label: '01 / Map',
-				title: 'Organise a fragmented technology landscape',
+				label: 'Technology map',
+				title: 'Give unlike systems a comparable description',
 				copy:
-					'I compared haptic approaches by operating principle, feedback capability, integration requirements, constraints and potential training use.',
+					'Each approach was described by operating principle, feedback capability, integration needs, constraints and possible training use.',
 			},
 			{
-				label: '02 / Verify',
-				title: 'Test every important claim against its source',
+				label: 'Source check',
+				title: 'Read past the headline claim',
 				copy:
-					'I checked technical claims, corrected outdated or mismatched references and distinguished what a sensor measures from what might only be inferred.',
+					'Outdated and mismatched references were corrected. Sensor measurements were kept distinct from interpretations that the data could not establish on their own.',
 			},
 			{
-				label: '03 / Operationalise',
-				title: 'Turn the review into a staged evaluation framework',
+				label: 'Evaluation plan',
+				title: 'Decide what had to be tested next',
 				copy:
-					'I translated the evidence into research requirements covering characterisation, formative work, controlled comparison, representative scenarios, safety and reporting.',
+					'The remaining questions became a staged plan: bench characterisation, formative work, controlled comparison, representative scenarios, safety and reporting.',
 			},
 		],
-		evidenceTitle: 'Three evidence layers kept deliberately separate',
+		evidenceTitle: 'What each source could tell us — and what it could not',
 		evidenceIntro:
-			'The framework made it clear whether a statement came from independent research, documented system capability or a question still requiring validation.',
+			'Every important statement sat in one of three places: independent research, documented system capability or a question still awaiting a test.',
+		evidenceLabel: 'Reading the claims',
+		evidenceRegister: 'Literature / technical documents / standards',
 		evidence: [
 			{
 				label: 'Scientific evidence',
@@ -408,11 +455,13 @@ export const caseStudies: CaseStudy[] = [
 					'Questions requiring bench characterisation, participant research or evaluation in a representative scenario.',
 			},
 		],
-		outcomeTitle: 'A traceable review, benchmark and staged evaluation framework',
+		outcomeTitle: 'A benchmark that leads directly to the next study',
 		outcomeCopy:
-			'I delivered a consolidated bibliography, comparative technology benchmark and evaluation framework in which each major claim was linked to its source and the next level of evidence required.',
+			'The bibliography, comparative benchmark and evaluation framework link each major claim to its source and to the next level of evidence needed.',
+		outcomeLabel: 'Working framework',
+		reflectionLabel: 'The boundary that mattered',
 		reflection:
-			'The hardest part was not collecting more references; it was deciding what each source actually allowed us to claim and keeping that boundary visible.',
+			'The difficult part was not finding more references. It was deciding what each one genuinely allowed us to say.',
 	},
 ];
 

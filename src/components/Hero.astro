@@ -1,9 +1,11 @@
 ---
+import { selectedProjects } from '../data/projects';
+
 const expertise = [
 	'Mixed methods',
 	'Complex systems',
 	'Evidence synthesis',
-	'AI-assisted workflows',
+	'AI-assisted research',
 ];
 
 const indexItems = [
@@ -11,6 +13,9 @@ const indexItems = [
 	{ number: '02', label: 'Research approach', href: '#research-approach' },
 	{ number: '03', label: 'About', href: '#about' },
 ];
+
+const featuredProject = selectedProjects[0];
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section class="hero page-frame" aria-labelledby="hero-title">
@@ -22,13 +27,14 @@ const indexItems = [
 	<div class="hero__content">
 		<div class="hero__statement">
 			<p class="margin-note" aria-hidden="true">RESEARCH / SENSEMAKING / DECISION</p>
-			<h1 id="hero-title">Turning complex human behaviour into clear product decisions.</h1>
+			<h1 id="hero-title">I study what people do, where products get in the way, and what teams can change.</h1>
 		</div>
 
 		<div class="hero__details">
 			<p class="hero__intro">
-				I plan and run research for digital products, mobility and emerging technologies —
-				especially when the evidence is messy and the product decision needs to be clear.
+				I plan and run research for digital products, mobility and emerging technologies. Most
+				projects begin with a broad question, an imperfect prototype or several sources that do
+				not quite agree.
 			</p>
 
 			<ul class="expertise-list" aria-label="Areas of expertise">
@@ -38,22 +44,44 @@ const indexItems = [
 	</div>
 
 	<aside class="dossier-index" aria-label="Portfolio index">
-		<div class="dossier-index__heading">
-			<span>Index</span>
-			<span aria-hidden="true">[03]</span>
+		<a
+			class="hero-preview"
+			href={`${baseUrl}work/${featuredProject.caseStudySlug}/`}
+			aria-label={`Open case study: ${featuredProject.title}`}
+		>
+			<span class="hero-preview__register">Inside the work / 01</span>
+			<span class="hero-preview__image">
+				<img
+					src={`${baseUrl}${featuredProject.image.replace(/^\//, '')}`}
+					alt=""
+					width="1200"
+					height="800"
+					loading="eager"
+					decoding="async"
+				/>
+			</span>
+			<strong>{featuredProject.title}</strong>
+			<span class="hero-preview__action">Open case <span aria-hidden="true">→</span></span>
+		</a>
+
+		<div class="dossier-index__content">
+			<div class="dossier-index__heading">
+				<span>Index</span>
+				<span aria-hidden="true">[03]</span>
+			</div>
+			<ol>
+				{
+					indexItems.map((item) => (
+						<li>
+							<a href={item.href}>
+								<span class="index-number">{item.number}</span>
+								<span>{item.label} <span class="index-arrow" aria-hidden="true">→</span></span>
+							</a>
+						</li>
+					))
+				}
+			</ol>
+			<p class="index-note">Product research / Human factors</p>
 		</div>
-		<ol>
-			{
-				indexItems.map((item) => (
-					<li>
-						<a href={item.href}>
-							<span class="index-number">{item.number}</span>
-							<span>{item.label} <span class="index-arrow" aria-hidden="true">→</span></span>
-						</a>
-					</li>
-				))
-			}
-		</ol>
-		<p class="index-note">Product research / Human factors</p>
 	</aside>
 </section>

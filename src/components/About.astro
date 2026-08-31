@@ -21,7 +21,7 @@
 			</p>
 			<p>
 				My work moves between mobile apps, virtual assistants, in-vehicle experiences,
-				applied human factors and AI-supported research workflows. A background in Ergonomics
+				applied human factors and AI-assisted research. A background in Ergonomics
 				keeps me interested in the gap between what people say and what they actually do.
 			</p>
 		</div>
@@ -30,11 +30,11 @@
 	<dl class="about__facts">
 		<div>
 			<dt>Experience</dt>
-			<dd><strong>05+</strong><span>Years in UX research</span></dd>
+			<dd><strong>5+</strong><span>Years in UX research</span></dd>
 		</div>
 		<div>
 			<dt>Education</dt>
-			<dd><strong>MSc</strong><span>Ergonomics / Usability and UX</span></dd>
+			<dd><strong>MSc</strong><span>Ergonomics, specialising in Usability and UX</span></dd>
 		</div>
 		<div>
 			<dt>Languages</dt>
@@ -55,7 +55,7 @@
 		position: relative;
 		padding-block: clamp(6rem, 10vw, 10rem) clamp(4rem, 7vw, 7rem);
 		border-top: 1px solid var(--line);
-		scroll-margin-top: var(--header-height);
+		scroll-margin-top: calc(var(--header-height) + 1rem);
 	}
 
 	.about__heading {
@@ -97,7 +97,7 @@
 		font-size: clamp(3.5rem, 6.8vw, 7.5rem);
 		font-weight: 400;
 		letter-spacing: -0.045em;
-		line-height: 0.92;
+		line-height: 0.96;
 	}
 
 	.about__body {
@@ -221,7 +221,7 @@
 
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
 		.about {
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		.about__body {
@@ -246,7 +246,7 @@
 	@media (max-width: 47.999rem) {
 		.about {
 			padding-block: 4.5rem 3.5rem;
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		.about__heading {

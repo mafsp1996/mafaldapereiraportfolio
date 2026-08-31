@@ -70,7 +70,7 @@ a:focus-visible {
 	position: relative;
 	isolation: isolate;
 	min-height: 100svh;
-	overflow: hidden;
+	overflow-x: clip;
 }
 
 .site-shell::before {
@@ -106,10 +106,20 @@ a:focus-visible {
 }
 
 .site-header {
+	position: sticky;
+	z-index: 50;
+	top: 0;
 	display: flex;
+	width: 100%;
+	max-width: none;
 	height: var(--header-height);
+	margin-inline: 0;
 	align-items: center;
 	justify-content: space-between;
+	padding-inline: max(var(--page-gutter), calc((100vw - 112rem) / 2 + var(--page-gutter)));
+	border-bottom: 1px solid var(--line);
+	background: rgba(9, 9, 11, 0.9);
+	backdrop-filter: blur(1rem);
 	gap: 2rem;
 }
 
@@ -281,7 +291,7 @@ h1 {
 	font-size: clamp(3.6rem, 7vw, 8.25rem);
 	font-weight: 400;
 	letter-spacing: -0.055em;
-	line-height: 0.94;
+	line-height: 0.98;
 	text-wrap: balance;
 }
 
@@ -336,9 +346,80 @@ h1 {
 	display: flex;
 	min-width: 0;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: space-between;
 	padding: 0 0 clamp(2.5rem, 6vh, 5.5rem) clamp(1.5rem, 2.5vw, 2.75rem);
 	border-left: 1px solid var(--line);
+	gap: clamp(2rem, 4vh, 3.5rem);
+}
+
+.hero-preview {
+	display: block;
+	margin-top: clamp(1rem, 3vh, 2rem);
+	color: inherit;
+	text-decoration: none;
+}
+
+.hero-preview__register,
+.hero-preview__action {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: rgba(242, 239, 232, 0.52);
+	font-family: var(--mono);
+	font-size: 0.57rem;
+	letter-spacing: 0.09em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+.hero-preview__register {
+	white-space: nowrap;
+}
+
+.hero-preview__image {
+	position: relative;
+	display: block;
+	min-height: 9.5rem;
+	margin-top: 0.75rem;
+	overflow: hidden;
+	border: 1px solid var(--line);
+	background: rgba(242, 239, 232, 0.018);
+}
+
+.hero-preview__image img {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-preview strong {
+	display: block;
+	margin-top: 0.9rem;
+	font-family: var(--display);
+	font-size: clamp(1.25rem, 1.55vw, 1.65rem);
+	font-weight: 400;
+	letter-spacing: -0.025em;
+	line-height: 1.05;
+}
+
+.hero-preview__action {
+	justify-content: flex-start;
+	margin-top: 0.75rem;
+	color: var(--paper);
+	gap: 0.45rem;
+}
+
+.hero-preview__action span {
+	color: var(--accent);
+}
+
+.hero-preview:hover .hero-preview__image img,
+.hero-preview:focus-visible .hero-preview__image img {
+	transform: scale(1.025);
 }
 
 .dossier-index__heading {
@@ -366,7 +447,7 @@ h1 {
 	min-width: 0;
 }
 
-.dossier-index a {
+.dossier-index ol a {
 	display: grid;
 	align-items: baseline;
 	min-height: 2.75rem;
@@ -379,8 +460,8 @@ h1 {
 	transition: color 160ms ease, transform 160ms ease;
 }
 
-.dossier-index a:hover,
-.dossier-index a:focus-visible {
+.dossier-index ol a:hover,
+.dossier-index ol a:focus-visible {
 	color: var(--paper);
 	transform: translateX(0.2rem);
 }
@@ -406,7 +487,7 @@ h1 {
 	text-transform: uppercase;
 }
 
-@media (min-width: 68.0625rem) {
+@media (min-width: 68.626rem) {
 	.hero__eyebrow {
 		padding-block: clamp(1.5rem, 3.4vh, 2rem) 0.75rem;
 	}
@@ -432,6 +513,10 @@ h1 {
 		padding-bottom: clamp(1.75rem, 4vh, 3rem);
 	}
 
+	.hero-preview__image {
+		min-height: 8.5rem;
+	}
+
 	.dossier-index__heading {
 		margin-bottom: 1.5rem;
 	}
@@ -445,7 +530,7 @@ h1 {
 	}
 }
 
-@media (max-width: 68rem) {
+@media (max-width: 68.625rem) {
 	h1 {
 		font-size: clamp(3.45rem, 7.8vw, 6.25rem);
 	}
@@ -465,9 +550,9 @@ h1 {
 	}
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 47.999rem) {
 	:root {
-		--header-height: auto;
+		--header-height: 4.75rem;
 		--page-gutter: clamp(1rem, 5vw, 2rem);
 	}
 
@@ -477,13 +562,13 @@ h1 {
 	}
 
 	.site-shell::after {
-		top: 8.25rem;
+		top: calc(var(--header-height) - 1px);
 	}
 
 	.site-header {
-		height: auto;
-		min-height: 8.25rem;
-		padding-block: 1.25rem 1rem;
+		height: var(--header-height);
+		min-height: var(--header-height);
+		padding-block: 0.75rem;
 		flex-wrap: wrap;
 		align-content: center;
 		gap: 0.9rem 1.5rem;
@@ -500,7 +585,7 @@ h1 {
 	}
 
 	.hero {
-		min-height: calc(100svh - 8.25rem);
+		min-height: calc(100svh - var(--header-height));
 		grid-template-columns: 1fr;
 		grid-template-rows: auto auto auto;
 	}
@@ -520,7 +605,7 @@ h1 {
 	h1 {
 		max-width: 12ch;
 		font-size: clamp(3.2rem, 10vw, 4.5rem);
-		line-height: 0.96;
+		line-height: 1;
 	}
 
 	.hero__content {
@@ -536,9 +621,24 @@ h1 {
 	}
 
 	.dossier-index {
+		display: grid;
 		padding: 1.5rem 0 2.5rem;
 		border-top: 1px solid var(--line);
 		border-left: 0;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	.hero-preview {
+		margin-top: 0;
+	}
+
+	.hero-preview__image {
+		min-height: 15rem;
+	}
+
+	.hero-preview strong {
+		font-size: 1.75rem;
 	}
 
 	.dossier-index__heading {
@@ -550,7 +650,7 @@ h1 {
 		gap: 1rem;
 	}
 
-	.dossier-index a {
+	.dossier-index ol a {
 		display: flex;
 		flex-direction: column;
 		gap: 0.55rem;
@@ -623,14 +723,14 @@ h1 {
 	.skip-link,
 	.primary-nav a,
 	.primary-nav a::after,
-	.dossier-index a {
+	.dossier-index ol a {
 		transition: none;
 	}
 }
 
 @media (min-width: 48rem) and (max-width: 68.625rem) {
 	:root {
-		--header-height: auto;
+		--header-height: 5.75rem;
 		--page-gutter: clamp(2rem, 4vw, 2.75rem);
 	}
 
@@ -640,22 +740,21 @@ h1 {
 	}
 
 	.site-shell::after {
-		top: 8.25rem;
+		top: calc(var(--header-height) - 1px);
 	}
 
 	.site-header {
-		height: auto;
-		min-height: 8.25rem;
-		padding-block: 1.15rem 0.9rem;
-		flex-wrap: wrap;
-		align-content: center;
-		gap: 0.8rem 1.5rem;
+		height: var(--header-height);
+		min-height: var(--header-height);
+		padding-block: 0.85rem;
+		flex-wrap: nowrap;
+		gap: 1.25rem;
 	}
 
 	.primary-nav {
-		width: 100%;
+		width: auto;
 		justify-content: space-between;
-		gap: 0.8rem;
+		gap: clamp(0.9rem, 2vw, 1.5rem);
 	}
 
 	.primary-nav a {
@@ -663,7 +762,7 @@ h1 {
 	}
 
 	.hero {
-		min-height: calc(100svh - 8.25rem);
+		min-height: calc(100svh - var(--header-height));
 		grid-template-columns: 1fr;
 		grid-template-rows: auto auto auto;
 	}
@@ -687,7 +786,7 @@ h1 {
 	h1 {
 		max-width: 14.5ch;
 		font-size: clamp(4.5rem, 7vw, 4.75rem);
-		line-height: 0.94;
+		line-height: 0.98;
 	}
 
 	.hero__details {
@@ -702,9 +801,20 @@ h1 {
 	}
 
 	.dossier-index {
+		display: grid;
 		padding: 1.25rem 0 1.75rem;
 		border-top: 1px solid var(--line);
 		border-left: 0;
+		grid-template-columns: minmax(14rem, 0.75fr) minmax(0, 1.25fr);
+		gap: 2rem;
+	}
+
+	.hero-preview {
+		margin-top: 0;
+	}
+
+	.hero-preview__image {
+		min-height: 11rem;
 	}
 
 	.dossier-index__heading {
@@ -716,7 +826,7 @@ h1 {
 		gap: 1rem;
 	}
 
-	.dossier-index a {
+	.dossier-index ol a {
 		display: flex;
 		flex-direction: column;
 		gap: 0.45rem;
@@ -730,8 +840,9 @@ h1 {
 
 @media (max-width: 47.999rem) {
 	html.menu-ready .site-header {
-		position: relative;
-		z-index: 10;
+		position: sticky;
+		z-index: 50;
+		top: 0;
 		align-content: normal;
 		align-items: center;
 		justify-content: space-between;

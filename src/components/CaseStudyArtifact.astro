@@ -1,0 +1,789 @@
+---
+interface Props {
+	slug: string;
+	number: string;
+}
+
+const { slug, number } = Astro.props;
+
+const captions: Record<string, { title: string; copy: string }> = {
+	'ai-assisted-research-workflow': {
+		title: 'A claim only moved forward when the source trail held up.',
+		copy:
+			'This reconstruction shows the three-part check used throughout the review. It is a simplified view of the working method, not a client document.',
+	},
+	'mobile-parking-professionals': {
+		title: 'The score sat beside the journey, not above it.',
+		copy:
+			'Task notes were placed back on the sequence drivers had followed, making isolated pauses and wrong turns easier to discuss as part of the working day.',
+	},
+	'remote-parking-experience': {
+		title: 'Repeated use separated a learnable step from persistent risk.',
+		copy:
+			'The early and final scenarios made change over time visible, while the three participant groups kept different starting expectations in the analysis.',
+	},
+	'virtual-assistant-state-design': {
+		title: 'Round one changed what went back into the room.',
+		copy:
+			'The second study did not repeat the first. Revised states and a clearer recovery signal were tested with a new group of participants.',
+	},
+	'autonomous-mobility-experience': {
+		title: 'The handovers mattered as much as the individual touchpoints.',
+		copy:
+			'The journey view kept route information, boarding feedback, onboard state and accessible exit connected instead of treating them as separate interfaces.',
+	},
+	'immersive-training-evidence-framework': {
+		title: 'Different sources earned different levels of confidence.',
+		copy:
+			'The review separated what independent research supported, what documentation could establish and what still needed a controlled or representative test.',
+	},
+};
+
+const caption = captions[slug];
+---
+
+<section class:list={['case-artifact', `case-artifact--${slug}`]} aria-labelledby={`artifact-${number}`}>
+	<header>
+		<p class="artifact-label">Recreated research view</p>
+		<div>
+			<h2 id={`artifact-${number}`}>{caption.title}</h2>
+			<p>{caption.copy}</p>
+		</div>
+	</header>
+
+	<figure>
+		<div class="artifact-register">
+			<span>Project {number}</span>
+			<span aria-hidden="true">Anonymised / reconstructed</span>
+		</div>
+
+		{
+			slug === 'ai-assisted-research-workflow' && (
+				<div class="artifact-canvas audit-view" aria-hidden="true">
+					<div class="audit-sheet">
+						<span>01 / Source trail</span>
+						<i class="line line--long" />
+						<i class="line" />
+						<i class="line line--short" />
+						<small>Literature · primary documentation</small>
+					</div>
+					<span class="flow-arrow">→</span>
+					<div class="audit-sheet audit-sheet--claim">
+						<span>02 / Generated claim</span>
+						<i class="line line--long" />
+						<i class="line line--long" />
+						<i class="line" />
+						<small>Fluent does not mean supported</small>
+					</div>
+					<span class="flow-arrow">→</span>
+					<div class="audit-sheet audit-sheet--review">
+						<span>03 / Researcher review</span>
+						<b>Supported</b>
+						<b>Incomplete</b>
+						<b>Needs validation</b>
+					</div>
+				</div>
+			)
+		}
+
+		{
+			slug === 'mobile-parking-professionals' && (
+				<div class="artifact-canvas task-view" aria-hidden="true">
+					<ol class="task-track">
+						<li class="has-friction"><span>01</span><strong>Create account</strong><small>Pause / address entry</small></li>
+						<li><span>02</span><strong>Find a space</strong><small>Value understood</small></li>
+						<li class="has-friction"><span>03</span><strong>Check in</strong><small>Icon / terminology</small></li>
+						<li><span>04</span><strong>Park</strong><small>Flow learned</small></li>
+						<li class="has-friction"><span>05</span><strong>Check out</strong><small>Status feedback</small></li>
+					</ol>
+					<div class="task-legend"><span /><p>Moments revisited in the redesign brief</p></div>
+				</div>
+			)
+		}
+
+		{
+			slug === 'remote-parking-experience' && (
+				<div class="artifact-canvas repeat-view" aria-hidden="true">
+					<div class="participant-groups">
+						<div><span>Novice</span><strong>07</strong></div>
+						<div><span>Intermediate</span><strong>07</strong></div>
+						<div><span>Experienced</span><strong>07</strong></div>
+					</div>
+					<div class="repeat-bars">
+						<div><span>Early scenarios</span><i style="--value: 75%" /><strong>6 missed activation</strong></div>
+						<div><span>Final repeated scenario</span><i style="--value: 25%" /><strong>2 missed activation</strong></div>
+					</div>
+					<p>First use <span>→</span> repeated manoeuvres <span>→</span> final debrief</p>
+				</div>
+			)
+		}
+
+		{
+			slug === 'virtual-assistant-state-design' && (
+				<div class="artifact-canvas iteration-view" aria-hidden="true">
+					<div class="iteration-round">
+						<span>Round 01 · 7 people</span>
+						<strong>Two visual families</strong>
+						<div class="state-line"><i /><i /><i /><i /></div>
+						<small>Meaning · attention · preference</small>
+					</div>
+					<div class="iteration-shift"><span>Revise</span><b>→</b></div>
+					<div class="iteration-round iteration-round--second">
+						<span>Round 02 · 6 people</span>
+						<strong>States brought back separately</strong>
+						<ul><li>Listen</li><li>Think</li><li>Speak</li><li>Recover</li></ul>
+						<small>Association · comparison</small>
+					</div>
+				</div>
+			)
+		}
+
+		{
+			slug === 'autonomous-mobility-experience' && (
+				<div class="artifact-canvas journey-view" aria-hidden="true">
+					<ol class="journey-track">
+						<li><span>01</span><strong>Arrive</strong><small>Stop information</small></li>
+						<li><span>02</span><strong>Choose</strong><small>Route and state</small></li>
+						<li class="handover"><span>03</span><strong>Board</strong><small>Controls and feedback</small></li>
+						<li><span>04</span><strong>Ride</strong><small>Position and requests</small></li>
+						<li class="handover"><span>05</span><strong>Exit</strong><small>Accessible confirmation</small></li>
+					</ol>
+					<div class="trust-note"><strong>9 / 14</strong><span>reported greater trust after the ride</span></div>
+				</div>
+			)
+		}
+
+		{
+			slug === 'immersive-training-evidence-framework' && (
+				<div class="artifact-canvas framework-view" aria-hidden="true">
+					<div class="evidence-types">
+						<div><span>Independent research</span><strong>What has support?</strong></div>
+						<div><span>System documentation</span><strong>What can it demonstrably do?</strong></div>
+						<div><span>Open question</span><strong>What still needs a test?</strong></div>
+					</div>
+					<ol class="validation-ladder">
+						<li>Bench</li><li>Formative</li><li>Controlled</li><li>Representative</li><li>Safety</li>
+					</ol>
+				</div>
+			)
+		}
+
+		<figcaption>Visual rebuilt for the portfolio. No original client material is reproduced.</figcaption>
+	</figure>
+</section>
+
+<style>
+	.case-artifact {
+		padding-block: clamp(5rem, 9vw, 9rem);
+		border-top: 1px solid var(--line);
+	}
+
+	.case-artifact > header {
+		display: grid;
+		grid-template-columns: minmax(11rem, 0.7fr) 2fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.artifact-label,
+	.artifact-register,
+	.case-artifact figcaption,
+	.artifact-canvas span,
+	.artifact-canvas small {
+		margin: 0;
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.09em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.artifact-label {
+		color: var(--accent);
+	}
+
+	.case-artifact h2 {
+		max-width: 13ch;
+		margin: 0;
+		font-family: var(--display);
+		font-size: clamp(3.5rem, 5vw, 5.8rem);
+		font-weight: 400;
+		letter-spacing: -0.045em;
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.case-artifact > header > div > p {
+		max-width: 44rem;
+		margin: 2rem 0 0;
+		color: var(--muted);
+		font-size: clamp(1rem, 1.2vw, 1.18rem);
+		line-height: 1.7;
+	}
+
+	.case-artifact figure {
+		margin: clamp(3.5rem, 7vw, 7rem) 0 0;
+		padding: clamp(1rem, 2vw, 2rem);
+		border: 1px solid var(--line);
+		background: rgba(242, 239, 232, 0.018);
+	}
+
+	.artifact-register {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--line);
+		color: rgba(242, 239, 232, 0.45);
+	}
+
+	.artifact-register span:first-child {
+		color: var(--accent);
+	}
+
+	.artifact-canvas {
+		position: relative;
+		min-height: 25rem;
+		padding: clamp(1.5rem, 4vw, 4rem);
+		background-image:
+			linear-gradient(var(--line-soft) 1px, transparent 1px),
+			linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+	}
+
+	.case-artifact figcaption {
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+		color: rgba(242, 239, 232, 0.42);
+	}
+
+	/* 01 — source audit */
+	.audit-view {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr auto 1fr auto 1fr;
+		gap: clamp(1rem, 2.5vw, 2.5rem);
+	}
+
+	.audit-sheet {
+		display: flex;
+		min-height: 18rem;
+		padding: 1.5rem;
+		flex-direction: column;
+		border: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.86);
+	}
+
+	.audit-sheet > span,
+	.audit-sheet small {
+		color: var(--accent);
+	}
+
+	.audit-sheet small {
+		margin-top: auto;
+		color: rgba(242, 239, 232, 0.42);
+	}
+
+	.line {
+		display: block;
+		width: 70%;
+		height: 1px;
+		margin-top: 1.35rem;
+		background: rgba(242, 239, 232, 0.27);
+	}
+
+	.line--long { width: 100%; }
+	.line--short { width: 45%; }
+
+	.flow-arrow {
+		color: var(--accent);
+		font-size: 1.1rem !important;
+	}
+
+	.audit-sheet--review {
+		gap: 0.75rem;
+	}
+
+	.audit-sheet--review b {
+		padding: 0.75rem;
+		border: 1px solid var(--line);
+		color: #d5d1ca;
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.02em;
+	}
+
+	/* 02 — task journey */
+	.task-view,
+	.journey-view {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.task-track,
+	.journey-track {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		list-style: none;
+	}
+
+	.task-track li,
+	.journey-track li {
+		position: relative;
+		display: flex;
+		min-height: 12rem;
+		padding: 1.5rem 1.25rem;
+		flex-direction: column;
+		border-block: 1px solid var(--line);
+		border-right: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.72);
+	}
+
+	.task-track li:first-child,
+	.journey-track li:first-child {
+		border-left: 1px solid var(--line);
+	}
+
+	.task-track li > span,
+	.journey-track li > span {
+		color: var(--accent);
+	}
+
+	.task-track strong,
+	.journey-track strong {
+		margin-top: 2rem;
+		color: #d5d1ca;
+		font-family: var(--display);
+		font-size: clamp(1.35rem, 2vw, 2rem);
+		font-weight: 400;
+		letter-spacing: -0.025em;
+		line-height: 1.05;
+	}
+
+	.task-track small,
+	.journey-track small {
+		margin-top: auto;
+		color: rgba(242, 239, 232, 0.45);
+	}
+
+	.task-track .has-friction::after,
+	.journey-track .handover::after {
+		position: absolute;
+		top: -0.35rem;
+		right: 1rem;
+		width: 0.7rem;
+		height: 0.7rem;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow: 0 0 0 0.3rem var(--ink);
+		content: '';
+	}
+
+	.task-legend {
+		display: flex;
+		margin-top: 2rem;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.task-legend > span {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.task-legend p {
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.82rem;
+	}
+
+	/* 03 — repeated trials */
+	.repeat-view {
+		display: grid;
+		align-items: end;
+		grid-template-columns: 0.8fr 1.6fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.participant-groups {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.participant-groups > div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem;
+		border: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.72);
+	}
+
+	.participant-groups span,
+	.repeat-bars span {
+		color: rgba(242, 239, 232, 0.5);
+	}
+
+	.participant-groups strong {
+		color: var(--accent);
+		font-family: var(--display);
+		font-size: 2rem;
+		font-weight: 400;
+	}
+
+	.repeat-bars {
+		display: grid;
+		align-self: center;
+		gap: 2.25rem;
+	}
+
+	.repeat-bars > div {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 0.75rem;
+	}
+
+	.repeat-bars i {
+		position: relative;
+		display: block;
+		height: 1.15rem;
+		overflow: hidden;
+		border: 1px solid var(--line);
+		grid-column: 1 / -1;
+	}
+
+	.repeat-bars i::before {
+		display: block;
+		width: var(--value);
+		height: 100%;
+		background: var(--accent);
+		content: '';
+	}
+
+	.repeat-bars strong {
+		color: #d5d1ca;
+		font-size: 0.82rem;
+		font-weight: 500;
+	}
+
+	.repeat-view > p {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.65rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		grid-column: 2;
+	}
+
+	.repeat-view > p span {
+		padding-inline: 0.75rem;
+		color: var(--accent);
+	}
+
+	/* 04 — iteration */
+	.iteration-view {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr auto 1fr;
+		gap: clamp(1.5rem, 4vw, 4rem);
+	}
+
+	.iteration-round {
+		display: flex;
+		min-height: 18rem;
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+		flex-direction: column;
+		border: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.76);
+	}
+
+	.iteration-round > span {
+		color: var(--accent);
+	}
+
+	.iteration-round > strong {
+		max-width: 12ch;
+		margin-top: 2rem;
+		color: #d5d1ca;
+		font-family: var(--display);
+		font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+		font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1;
+	}
+
+	.iteration-round small {
+		margin-top: auto;
+		color: rgba(242, 239, 232, 0.42);
+	}
+
+	.state-line {
+		display: flex;
+		margin-top: 2.25rem;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.state-line i {
+		display: block;
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		background: rgba(131, 128, 255, 0.35);
+	}
+
+	.state-line i:first-child { background: var(--accent); }
+
+	.iteration-shift {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		color: var(--accent);
+		gap: 0.75rem;
+	}
+
+	.iteration-shift b {
+		font-size: 1.5rem;
+		font-weight: 400;
+	}
+
+	.iteration-round ul {
+		display: grid;
+		margin: 2.25rem 0 0;
+		padding: 0;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+		list-style: none;
+	}
+
+	.iteration-round li {
+		padding: 0.65rem;
+		border: 1px solid var(--line);
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		text-transform: uppercase;
+	}
+
+	/* 05 — service journey */
+	.trust-note {
+		display: flex;
+		width: min(100%, 31rem);
+		margin-top: 2rem;
+		margin-left: auto;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
+	.trust-note strong {
+		color: var(--accent);
+		font-family: var(--display);
+		font-size: 3rem;
+		font-weight: 400;
+		letter-spacing: -0.04em;
+	}
+
+	.trust-note span {
+		color: var(--muted);
+	}
+
+	/* 06 — evidence framework */
+	.framework-view {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.evidence-types {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.evidence-types > div {
+		display: flex;
+		min-height: 13rem;
+		padding: 1.5rem;
+		flex-direction: column;
+		border-block: 1px solid var(--line);
+		border-right: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.74);
+	}
+
+	.evidence-types > div:first-child { border-left: 1px solid var(--line); }
+	.evidence-types span { color: var(--accent); }
+
+	.evidence-types strong {
+		max-width: 13ch;
+		margin-top: auto;
+		color: #d5d1ca;
+		font-family: var(--display);
+		font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+		font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+	}
+
+	.validation-ladder {
+		display: grid;
+		margin: 2rem 0 0;
+		padding: 0;
+		grid-template-columns: repeat(5, 1fr);
+		list-style: none;
+	}
+
+	.validation-ladder li {
+		position: relative;
+		padding: 0.9rem;
+		border-top: 1px solid var(--accent);
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.validation-ladder li::before {
+		position: absolute;
+		top: -0.28rem;
+		left: 0;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: var(--accent);
+		content: '';
+	}
+
+	@media (max-width: 68.625rem) {
+		.artifact-canvas {
+			min-height: 22rem;
+		}
+
+		.audit-view {
+			gap: 1rem;
+		}
+
+		.audit-sheet {
+			min-height: 16rem;
+			padding: 1rem;
+		}
+
+		.task-track li,
+		.journey-track li {
+			padding: 1rem;
+		}
+	}
+
+	@media (max-width: 47.999rem) {
+		.case-artifact {
+			padding-block: 5rem;
+		}
+
+		.case-artifact > header {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.case-artifact h2 {
+			font-size: clamp(2.65rem, 11vw, 3.5rem);
+		}
+
+		.case-artifact figure {
+			margin-top: 3rem;
+			padding: 0.85rem;
+		}
+
+		.artifact-register span:last-child {
+			display: none;
+		}
+
+		.artifact-canvas {
+			min-height: 0;
+			padding: 1rem;
+			background-size: 3rem 3rem;
+		}
+
+		.audit-view,
+		.iteration-view,
+		.repeat-view {
+			grid-template-columns: 1fr;
+		}
+
+		.audit-sheet {
+			min-height: 13rem;
+		}
+
+		.flow-arrow,
+		.iteration-shift b {
+			transform: rotate(90deg);
+		}
+
+		.task-track,
+		.journey-track,
+		.evidence-types {
+			grid-template-columns: 1fr;
+		}
+
+		.task-track li,
+		.journey-track li,
+		.evidence-types > div {
+			min-height: 9rem;
+			border-right: 1px solid var(--line);
+			border-bottom: 0;
+			border-left: 1px solid var(--line);
+		}
+
+		.task-track li:last-child,
+		.journey-track li:last-child,
+		.evidence-types > div:last-child {
+			border-bottom: 1px solid var(--line);
+		}
+
+		.task-track strong,
+		.journey-track strong {
+			margin-top: 1rem;
+		}
+
+		.task-track small,
+		.journey-track small {
+			margin-top: 1rem;
+		}
+
+		.repeat-bars,
+		.repeat-view > p {
+			grid-column: 1;
+		}
+
+		.repeat-view > p {
+			line-height: 2;
+		}
+
+		.iteration-round {
+			min-height: 16rem;
+		}
+
+		.validation-ladder {
+			grid-template-columns: 1fr;
+			gap: 0.35rem;
+		}
+
+		.validation-ladder li {
+			padding-left: 1.25rem;
+			border-top: 0;
+			border-left: 1px solid var(--accent);
+		}
+
+		.validation-ladder li::before {
+			top: 1.15rem;
+			left: -0.28rem;
+		}
+
+		.trust-note {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

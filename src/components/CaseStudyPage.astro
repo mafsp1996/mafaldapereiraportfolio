@@ -1,6 +1,8 @@
 ---
 import type { CaseStudy } from '../data/case-studies';
 import { caseStudies, confidentialityNote } from '../data/case-studies';
+import { projects } from '../data/projects';
+import CaseStudyArtifact from './CaseStudyArtifact.astro';
 
 interface Props {
 	study: CaseStudy;
@@ -9,12 +11,14 @@ interface Props {
 const { study } = Astro.props;
 const currentIndex = caseStudies.findIndex((item) => item.slug === study.slug);
 const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
+const project = projects.find((item) => item.caseStudySlug === study.slug);
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <main id="main-content" class="case-study" tabindex="-1">
 	<header class="case-hero page-frame">
 		<div class="case-hero__register">
-			<a href="/work"><span aria-hidden="true">←</span> Back to work</a>
+			<a href={`${baseUrl}work/`}><span aria-hidden="true">←</span> Back to work</a>
 			<span>
 				Project {study.number} · Case study {String(currentIndex + 1).padStart(2, '0')} of{' '}
 				{String(caseStudies.length).padStart(2, '0')}
@@ -25,13 +29,37 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 		<h1>{study.title}</h1>
 		<p class="case-hero__lede">{study.lede}</p>
 
+		{
+			project && (
+				<figure class:list={['case-visual', `case-visual--${project.archiveLayout}`]}>
+					<div class="case-visual__frame">
+						<img
+							src={`${baseUrl}${project.image.replace(/^\//, '')}`}
+							alt={project.imageAlt}
+							width="1200"
+							height="800"
+							loading="eager"
+							decoding="async"
+						/>
+						<span class="case-visual__label" aria-hidden="true">{project.mediaLabel}</span>
+						<span class="case-visual__code" aria-hidden="true">FIG / {study.number}</span>
+					</div>
+					<figcaption>
+						<span>Recreated project visual</span>
+						<p>{project.visualCaption}</p>
+						<small>No client or identifying material is shown.</small>
+					</figcaption>
+				</figure>
+			)
+		}
+
 		<dl class="case-meta">
 			<div>
 				<dt>My role</dt>
 				<dd>{study.role}</dd>
 			</div>
 			<div>
-				<dt>Setting</dt>
+				<dt>Study scope</dt>
 				<dd>{study.setting}</dd>
 			</div>
 			<div>
@@ -43,7 +71,7 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
 	<div class="case-content page-frame">
 		<section class="case-decision" aria-labelledby="decision-heading">
-			<p class="section-label">The research question</p>
+			<p class="section-label">{study.questionLabel}</p>
 			<div>
 				<h2 id="decision-heading">{study.decisionTitle}</h2>
 				<p>{study.decisionCopy}</p>
@@ -57,8 +85,8 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
 		<section class="case-process" aria-labelledby="process-heading">
 			<header>
-				<p class="section-label">How I approached it</p>
-				<h2 id="process-heading">From question to evidence</h2>
+				<p class="section-label">{study.processLabel}</p>
+				<h2 id="process-heading">{study.processTitle}</h2>
 			</header>
 
 			<ol>
@@ -74,17 +102,19 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 			</ol>
 		</section>
 
+		<CaseStudyArtifact slug={study.slug} number={study.number} />
+
 		<section class="case-evidence" aria-labelledby="evidence-heading">
 			<header>
-				<p class="section-label">How I organised the evidence</p>
+				<p class="section-label">{study.evidenceLabel}</p>
 				<h2 id="evidence-heading">{study.evidenceTitle}</h2>
 				<p>{study.evidenceIntro}</p>
 			</header>
 
 			<div class="evidence-board" role="group" aria-label="Recreated analysis structure">
 				<div class="evidence-board__register">
-					<span>Recreated analysis structure</span>
-					<span aria-hidden="true">Evidence / Synthesis</span>
+					<span>{study.evidenceRegister}</span>
+					<span aria-hidden="true">Selected findings</span>
 				</div>
 				<ol>
 					{
@@ -105,12 +135,12 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
 		<section class="case-outcome" aria-labelledby="outcome-heading">
 			<div>
-				<p class="section-label">What I delivered</p>
+				<p class="section-label">{study.outcomeLabel}</p>
 				<h2 id="outcome-heading">{study.outcomeTitle}</h2>
 				<p>{study.outcomeCopy}</p>
 			</div>
 			<aside aria-labelledby="takeaway-heading">
-				<h3 id="takeaway-heading" class="section-label">What I took forward</h3>
+				<h3 id="takeaway-heading" class="section-label">{study.reflectionLabel}</h3>
 				<p class="case-outcome__reflection">{study.reflection}</p>
 			</aside>
 		</section>
@@ -118,7 +148,7 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 		<footer class="case-footer">
 			<div>
 				<span>Next case</span>
-				<a href={`/work/${nextStudy.slug}`}>{nextStudy.title} <span aria-hidden="true">→</span></a>
+				<a href={`${baseUrl}work/${nextStudy.slug}/`}>{nextStudy.title} <span aria-hidden="true">→</span></a>
 			</div>
 			<a class="case-footer__contact" href="mailto:mafaldapereirafmh@gmail.com?subject=Portfolio%20case%20study">
 				Request a private walkthrough <span aria-hidden="true">↗</span>
@@ -188,10 +218,11 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 	}
 
 	.case-hero h1 {
-		max-width: 10ch;
+		max-width: min(13ch, 100%);
 		margin-top: 1.4rem;
-		font-size: clamp(4.5rem, 9.5vw, 10.5rem);
-		line-height: 0.88;
+		font-size: clamp(4.5rem, 9vw, 9.75rem);
+		letter-spacing: -0.035em;
+		line-height: 1;
 		text-wrap: balance;
 	}
 
@@ -202,6 +233,130 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 		font-size: clamp(1.35rem, 2.15vw, 2.15rem);
 		letter-spacing: -0.025em;
 		line-height: 1.4;
+	}
+
+	.case-visual {
+		display: grid;
+		width: min(100%, 92rem);
+		margin: clamp(3.5rem, 7vw, 7rem) auto 0;
+		align-items: end;
+		grid-template-columns: minmax(0, 3fr) minmax(14rem, 0.85fr);
+		gap: clamp(1.5rem, 3vw, 3rem);
+	}
+
+	.case-visual__frame {
+		position: relative;
+		min-height: 32rem;
+		overflow: hidden;
+		border: 1px solid var(--line);
+		background: rgba(242, 239, 232, 0.018);
+	}
+
+	.case-visual__frame img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: inherit;
+		object-fit: cover;
+	}
+
+	.case-visual__frame::after {
+		position: absolute;
+		inset: 1rem;
+		border: 1px solid rgba(242, 239, 232, 0.06);
+		content: '';
+		pointer-events: none;
+	}
+
+	.case-visual__label,
+	.case-visual__code,
+	.case-visual figcaption > span,
+	.case-visual figcaption small {
+		font-family: var(--mono);
+		font-size: 0.6rem;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.case-visual__label,
+	.case-visual__code {
+		position: absolute;
+		z-index: 1;
+	}
+
+	.case-visual__label {
+		top: 1.65rem;
+		left: 1.65rem;
+		padding: 0.45rem 0.6rem;
+		background: rgba(9, 9, 11, 0.78);
+		color: rgba(242, 239, 232, 0.58);
+	}
+
+	.case-visual__code {
+		right: 1.65rem;
+		bottom: 1.65rem;
+		color: var(--accent);
+	}
+
+	.case-visual figcaption {
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.case-visual figcaption > span {
+		color: var(--accent);
+	}
+
+	.case-visual figcaption p {
+		margin: 1.35rem 0 0;
+		color: #d5d1ca;
+		font-family: var(--display);
+		font-size: clamp(1.45rem, 2vw, 2.15rem);
+		letter-spacing: -0.025em;
+		line-height: 1.2;
+	}
+
+	.case-visual figcaption small {
+		display: block;
+		margin-top: 1.5rem;
+		color: rgba(242, 239, 232, 0.45);
+	}
+
+	.case-visual--right,
+	.case-visual--narrow {
+		width: min(88%, 82rem);
+		margin-right: 0;
+	}
+
+	.case-visual--right .case-visual__frame {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.case-visual--right figcaption {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.case-visual--left,
+	.case-visual--confidential {
+		width: min(88%, 82rem);
+		margin-left: 0;
+	}
+
+	.case-visual--narrow {
+		grid-template-columns: minmax(0, 2.3fr) minmax(14rem, 1fr);
+	}
+
+	.case-visual--narrow .case-visual__frame,
+	.case-visual--confidential .case-visual__frame {
+		min-height: 27rem;
+	}
+
+	.case-visual--closing {
+		width: min(96%, 96rem);
+		grid-template-columns: minmax(0, 3.4fr) minmax(14rem, 0.75fr);
 	}
 
 	.case-meta {
@@ -336,7 +491,8 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
 	.case-process h3 {
 		max-width: 11ch;
-		margin-top: 4.5rem;
+		min-height: 3em;
+		margin-top: 3.5rem;
 		font-size: clamp(2.35rem, 3vw, 3.4rem);
 		line-height: 1;
 	}
@@ -418,11 +574,12 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 	}
 
 	.evidence-board__label {
-		margin-top: 4.5rem;
+		margin-top: 3.5rem;
 	}
 
 	.evidence-board h3 {
 		max-width: 12ch;
+		min-height: 4.05em;
 		margin-top: 0.8rem;
 		font-family: var(--sans);
 		font-size: 1.15rem;
@@ -506,11 +663,27 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
 		.case-hero h1 {
-			font-size: clamp(5.25rem, 10vw, 7rem);
+			font-size: clamp(5rem, 9.25vw, 6.5rem);
 		}
 
 		.case-meta dd {
 			font-size: 0.88rem;
+		}
+
+		.case-visual,
+		.case-visual--right,
+		.case-visual--left,
+		.case-visual--narrow,
+		.case-visual--closing,
+		.case-visual--confidential {
+			width: 100%;
+			grid-template-columns: minmax(0, 2fr) minmax(13rem, 0.8fr);
+		}
+
+		.case-visual__frame,
+		.case-visual--narrow .case-visual__frame,
+		.case-visual--confidential .case-visual__frame {
+			min-height: 26rem;
 		}
 
 		.case-process li,
@@ -540,12 +713,42 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 		}
 
 		.case-hero h1 {
-			font-size: clamp(3.5rem, 15vw, 5rem);
+			max-width: 100%;
+			font-size: clamp(3.35rem, 14vw, 4.75rem);
+			line-height: 1.02;
 		}
 
 		.case-hero__lede {
 			margin-top: 2.5rem;
 			font-size: 1.2rem;
+		}
+
+		.case-visual,
+		.case-visual--right,
+		.case-visual--left,
+		.case-visual--narrow,
+		.case-visual--closing,
+		.case-visual--confidential {
+			width: 100%;
+			margin-top: 3rem;
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.case-visual--right .case-visual__frame,
+		.case-visual--right figcaption {
+			grid-column: 1;
+			grid-row: auto;
+		}
+
+		.case-visual__frame,
+		.case-visual--narrow .case-visual__frame,
+		.case-visual--confidential .case-visual__frame {
+			min-height: 18rem;
+		}
+
+		.case-visual figcaption p {
+			font-size: 1.4rem;
 		}
 
 		.case-meta {
@@ -615,7 +818,12 @@ const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
 		}
 
 		.case-process h3 {
+			min-height: 0;
 			font-size: 2.35rem;
+		}
+
+		.evidence-board h3 {
+			min-height: 0;
 		}
 
 		.evidence-board {

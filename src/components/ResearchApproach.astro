@@ -19,7 +19,7 @@ const stages = [
 		label: 'Translate',
 		title: 'Make evidence actionable',
 		description:
-			'Synthesise qualitative and quantitative evidence into usability findings, design criteria and prioritised recommendations for the team.',
+			'Show what worked, what did not and which changes matter most, while keeping uncertainties and study limits visible.',
 	},
 ];
 
@@ -57,15 +57,48 @@ const principles = [
 
 	<div class="approach-intro">
 		<p class="approach-statement">
-			Research becomes valuable when evidence changes what a team does next.
+			Good research should leave a team knowing what to do next — and why.
 		</p>
 		<p class="approach-summary">
-			I work across the full research cycle — from framing questions and preparing protocols
-			to running sessions, analysing evidence and presenting prioritised recommendations. The
-			process adapts to each project's context while keeping the path from question to decision
-			clear.
+			There is no fixed recipe. A simulator study, an early concept and a literature review need
+			different plans. I choose the simplest combination of methods that can answer the question,
+			then show the team what I observed, what I am less certain about and what is worth changing.
 		</p>
 	</div>
+
+	<figure class="research-trace">
+		<div class="research-trace__canvas" aria-hidden="true">
+			<svg viewBox="0 0 900 260" preserveAspectRatio="none">
+				<path d="M42 196 C142 196 132 82 254 82 S360 188 466 168 S558 58 676 72 S762 162 856 112" />
+				<circle cx="42" cy="196" r="7" />
+				<circle cx="254" cy="82" r="7" />
+				<circle cx="466" cy="168" r="7" />
+				<circle cx="676" cy="72" r="7" />
+				<circle cx="856" cy="112" r="7" />
+			</svg>
+			<ol>
+				<li>
+					<span>Question</span>
+					<strong>What does the team need to decide?</strong>
+				</li>
+				<li>
+					<span>In use</span>
+					<strong>Where do people hesitate, adapt or work around the product?</strong>
+				</li>
+				<li>
+					<span>Next move</span>
+					<strong>What is worth changing or testing now?</strong>
+				</li>
+			</ol>
+		</div>
+		<figcaption>
+			<span>A research trail</span>
+			<p>
+				The line is rarely this tidy. A study often loops back when the prototype changes or
+				an observation shows that the original question was not quite the right one.
+			</p>
+		</figcaption>
+	</figure>
 
 	<ol class="approach-stages">
 		{
@@ -113,7 +146,7 @@ const principles = [
 		position: relative;
 		padding-block: clamp(6rem, 10vw, 10rem) clamp(5rem, 8vw, 8rem);
 		border-top: 1px solid var(--line);
-		scroll-margin-top: var(--header-height);
+		scroll-margin-top: calc(var(--header-height) + 1rem);
 	}
 
 	.approach-heading {
@@ -159,7 +192,7 @@ const principles = [
 	h2 {
 		max-width: 10ch;
 		font-size: clamp(3.5rem, 6.8vw, 7.5rem);
-		line-height: 0.92;
+		line-height: 0.96;
 	}
 
 	.approach-intro {
@@ -191,6 +224,112 @@ const principles = [
 		letter-spacing: -0.012em;
 		line-height: 1.65;
 		grid-column: 8 / -1;
+	}
+
+	.research-trace {
+		display: grid;
+		margin: 0 0 clamp(4rem, 7vw, 7rem);
+		padding-block: clamp(2rem, 3.5vw, 3.5rem);
+		border-block: 1px solid var(--line);
+		grid-template-columns: minmax(0, 3fr) minmax(15rem, 0.8fr);
+		gap: clamp(2rem, 4vw, 4.5rem);
+	}
+
+	.research-trace__canvas {
+		position: relative;
+		min-height: 22rem;
+		overflow: hidden;
+		border: 1px solid var(--line);
+		background-color: rgba(242, 239, 232, 0.018);
+		background-image:
+			linear-gradient(var(--line-soft) 1px, transparent 1px),
+			linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+	}
+
+	.research-trace svg {
+		position: absolute;
+		z-index: 0;
+		inset: 1rem;
+		width: calc(100% - 2rem);
+		height: calc(100% - 2rem);
+		overflow: visible;
+	}
+
+	.research-trace path {
+		fill: none;
+		stroke: rgba(131, 128, 255, 0.72);
+		stroke-width: 2;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.research-trace circle {
+		fill: var(--accent);
+		stroke: var(--ink);
+		stroke-width: 6;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.research-trace ol {
+		position: absolute;
+		z-index: 1;
+		inset: 1.5rem;
+		display: grid;
+		margin: 0;
+		padding: 0;
+		align-items: start;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		list-style: none;
+	}
+
+	.research-trace li {
+		width: min(100%, 15rem);
+		padding: 1rem;
+		border: 1px solid var(--line);
+		background: rgba(9, 9, 11, 0.88);
+	}
+
+	.research-trace li:nth-child(2) {
+		margin-top: 8.5rem;
+		justify-self: center;
+	}
+
+	.research-trace li:nth-child(3) {
+		margin-top: 2.5rem;
+		justify-self: end;
+	}
+
+	.research-trace li span,
+	.research-trace figcaption > span {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.1em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.research-trace li strong {
+		display: block;
+		margin-top: 0.75rem;
+		color: #d5d1ca;
+		font-size: 0.88rem;
+		font-weight: 500;
+		line-height: 1.5;
+	}
+
+	.research-trace figcaption {
+		align-self: end;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.research-trace figcaption p {
+		margin: 1.25rem 0 0;
+		color: var(--muted);
+		font-size: 0.92rem;
+		line-height: 1.65;
 	}
 
 	.approach-stages {
@@ -325,7 +464,7 @@ const principles = [
 
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
 		.research-approach {
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		.approach-intro {
@@ -344,6 +483,14 @@ const principles = [
 
 		.approach-summary {
 			grid-column: 5 / -1;
+		}
+
+		.research-trace {
+			grid-template-columns: minmax(0, 2.2fr) minmax(13rem, 0.8fr);
+		}
+
+		.research-trace__canvas {
+			min-height: 20rem;
 		}
 
 		.approach-stages > li {
@@ -377,7 +524,7 @@ const principles = [
 	@media (max-width: 47.999rem) {
 		.research-approach {
 			padding-block: 4.5rem 4rem;
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		.approach-heading {
@@ -406,6 +553,62 @@ const principles = [
 
 		.approach-statement {
 			font-size: clamp(2.7rem, 10vw, 3.5rem);
+		}
+
+		.research-trace {
+			margin-bottom: 4rem;
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.research-trace__canvas {
+			min-height: 31rem;
+		}
+
+		.research-trace svg {
+			display: none;
+		}
+
+		.research-trace ol {
+			position: relative;
+			inset: auto;
+			display: flex;
+			padding: 1.25rem;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 2.5rem;
+		}
+
+		.research-trace ol::before {
+			position: absolute;
+			top: 2rem;
+			bottom: 2rem;
+			left: 2rem;
+			width: 1px;
+			background: rgba(131, 128, 255, 0.58);
+			content: '';
+		}
+
+		.research-trace li,
+		.research-trace li:nth-child(2),
+		.research-trace li:nth-child(3) {
+			position: relative;
+			width: calc(100% - 2rem);
+			margin: 0 0 0 2rem;
+			justify-self: auto;
+		}
+
+		.research-trace li::before {
+			position: absolute;
+			top: 1.35rem;
+			left: -2.25rem;
+			width: 0.55rem;
+			height: 0.55rem;
+			border: 0.22rem solid var(--ink);
+			border-radius: 50%;
+			background: var(--accent);
+			box-sizing: content-box;
+			content: '';
 		}
 
 		.approach-stages {

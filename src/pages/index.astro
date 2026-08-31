@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import ResearchApproach from '../components/ResearchApproach.astro';
 import SelectedWork from '../components/SelectedWork.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+const baseUrl = import.meta.env.BASE_URL;
 import '../styles/global.css';
 ---
 
@@ -14,7 +15,7 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<meta
 			name="description"
-			content="Mafalda Pereira is a UX Researcher turning complex human behaviour into clear product decisions."
+			content="Mafalda Pereira is a UX Researcher studying how people use digital products, mobility services and emerging technologies."
 		/>
 		<meta name="author" content="Mafalda Pereira" />
 		<meta name="theme-color" content="#09090b" />
@@ -22,15 +23,15 @@ import '../styles/global.css';
 		<meta property="og:title" content="Mafalda Pereira — UX Researcher" />
 		<meta
 			property="og:description"
-			content="UX research across digital products, mobility, human factors and AI-supported workflows."
+			content="UX research across digital products, mobility, human factors and AI-assisted research."
 		/>
-		<meta property="og:image" content="/images/social-preview.png" />
+		<meta property="og:image" content={`${baseUrl}images/social-preview.png`} />
 		<meta property="og:image:type" content="image/png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="Mafalda Pereira — UX Researcher" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="/images/social-preview.png" />
+		<meta name="twitter:image" content={`${baseUrl}images/social-preview.png`} />
 		<title>Mafalda Pereira — UX Researcher</title>
 		<script
 			type="application/ld+json"

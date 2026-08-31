@@ -5,6 +5,11 @@ dist/
 
 # dependencies
 node_modules/
+.pnpm-store/
+
+# local research extraction and render previews
+.tmp/
+.codex-analysis/
 
 # logs
 npm-debug.log*

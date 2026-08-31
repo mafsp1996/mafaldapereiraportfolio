@@ -1,5 +1,7 @@
 ---
 import { selectedProjects as projects } from '../data/projects';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section id="selected-work" class="selected-work page-frame" aria-labelledby="work-heading">
@@ -13,17 +15,17 @@ import { selectedProjects as projects } from '../data/projects';
 
 	<div class="work-list">
 		{
-			projects.map((project) => (
+			projects.map((project, index) => (
 				<article class:list={['work-card', `work-card--${project.selectedLayout}`]}>
 					<div class="work-card__info">
-						<span class="work-card__number">{project.number}</span>
+						<span class="work-card__number">{String(index + 1).padStart(2, '0')}</span>
 						<div class="work-card__title-group">
 							<h3>{project.title}</h3>
 							<p class="work-card__contribution">{project.contribution}</p>
 							<p class="work-card__description">{project.description}</p>
 							<a
 								class="work-card__link"
-								href={`/work/${project.caseStudySlug}`}
+								href={`${baseUrl}work/${project.caseStudySlug}/`}
 								aria-label={`Read case study: ${project.title}`}
 							>
 								Read case study <span aria-hidden="true">→</span>
@@ -33,15 +35,17 @@ import { selectedProjects as projects } from '../data/projects';
 
 					<figure class="work-card__media">
 						<img
-							src={project.image}
+							src={`${baseUrl}${project.image.replace(/^\//, '')}`}
 							alt={project.imageAlt}
 							width="1200"
 							height="800"
-							loading={project.number === '01' ? 'eager' : 'lazy'}
+							loading={index === 0 ? 'eager' : 'lazy'}
 							decoding="async"
 						/>
 						<span class="placeholder-label" aria-hidden="true">{project.mediaLabel}</span>
-						<span class="placeholder-index" aria-hidden="true">FIG / {project.number}</span>
+						<span class="placeholder-index" aria-hidden="true">
+							FIG / {String(index + 1).padStart(2, '0')}
+						</span>
 					</figure>
 				</article>
 			))
@@ -50,7 +54,7 @@ import { selectedProjects as projects } from '../data/projects';
 
 	<div class="section-footer">
 		<span aria-hidden="true">END / SELECTED WORK</span>
-		<a href="/work">View all work <span aria-hidden="true">→</span></a>
+		<a href={`${baseUrl}work/`}>View all work <span aria-hidden="true">→</span></a>
 	</div>
 </section>
 
@@ -59,7 +63,7 @@ import { selectedProjects as projects } from '../data/projects';
 		position: relative;
 		padding-block: clamp(6rem, 10vw, 10rem) clamp(5rem, 8vw, 8rem);
 		border-top: 1px solid var(--line);
-		scroll-margin-top: var(--header-height);
+		scroll-margin-top: calc(var(--header-height) + 1rem);
 	}
 
 	.section-heading {
@@ -102,7 +106,7 @@ import { selectedProjects as projects } from '../data/projects';
 
 	h2 {
 		font-size: clamp(3.5rem, 6.8vw, 7.5rem);
-		line-height: 0.92;
+		line-height: 0.96;
 	}
 
 	.work-list {
@@ -339,7 +343,7 @@ import { selectedProjects as projects } from '../data/projects';
 	@media (min-width: 48rem) and (max-width: 68.625rem) {
 		.selected-work {
 			padding-block: 6rem 5rem;
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		h2 {
@@ -392,7 +396,7 @@ import { selectedProjects as projects } from '../data/projects';
 	@media (max-width: 47.999rem) {
 		.selected-work {
 			padding-block: 4.5rem 4rem;
-			scroll-margin-top: 8.25rem;
+			scroll-margin-top: calc(var(--header-height) + 1rem);
 		}
 
 		.section-heading {
@@ -413,6 +417,12 @@ import { selectedProjects as projects } from '../data/projects';
 			padding-block: 3.25rem;
 			flex-direction: column;
 			gap: 2.5rem;
+		}
+
+		.work-card__media,
+		.work-card--offset .work-card__media,
+		.work-card--compact .work-card__media {
+			order: -1;
 		}
 
 		.work-card__info {
@@ -438,7 +448,7 @@ import { selectedProjects as projects } from '../data/projects';
 		.work-card--offset .work-card__media,
 		.work-card--compact .work-card__media {
 			width: 100%;
-			min-height: 18rem;
+			min-height: 15rem;
 			margin-top: 0;
 		}
 

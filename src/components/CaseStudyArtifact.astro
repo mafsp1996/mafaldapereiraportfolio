@@ -6,36 +6,48 @@ interface Props {
 
 const { slug, number } = Astro.props;
 
-const captions: Record<string, { title: string; copy: string }> = {
+const captions: Record<string, { label: string; title: string; copy: string; footer: string }> = {
 	'ai-assisted-research-workflow': {
-		title: 'A claim only moved forward when the source trail held up.',
+		label: 'One answer, three checks',
+		title: 'Generated guidance was checked against its source trail.',
 		copy:
 			'This reconstruction shows the three-part check used throughout the review. It is a simplified view of the working method, not a client document.',
+		footer: 'Bibliography and primary documentation stayed beside the generated answer.',
 	},
 	'mobile-parking-professionals': {
-		title: 'The score sat beside the journey, not above it.',
+		label: 'The task notes, put back in order',
+		title: 'Task notes sat beside the SUS score.',
 		copy:
 			'Task notes were placed back on the sequence drivers had followed, making isolated pauses and wrong turns easier to discuss as part of the working day.',
+		footer: 'Dots mark the parts of the flow revisited in the redesign brief.',
 	},
 	'remote-parking-experience': {
-		title: 'Repeated use separated a learnable step from persistent risk.',
+		label: 'What changed across repeated trials',
+		title: 'Missed activation fell from six people to two.',
 		copy:
 			'The early and final scenarios made change over time visible, while the three participant groups kept different starting expectations in the analysis.',
+		footer: 'Early scenarios and the final repeated scenario are shown separately.',
 	},
 	'virtual-assistant-state-design': {
-		title: 'Round one changed what went back into the room.',
+		label: 'Two rounds, not one repeated test',
+		title: 'Round two tested revised states and a distinct recovery signal.',
 		copy:
 			'The second study did not repeat the first. Revised states and a clearer recovery signal were tested with a new group of participants.',
+		footer: 'Seven participants took part in round one; six new participants joined round two.',
 	},
 	'autonomous-mobility-experience': {
-		title: 'The handovers mattered as much as the individual touchpoints.',
+		label: 'The whole trip on one page',
+		title: 'Boarding, stop requests and exit needed clearer confirmation.',
 		copy:
 			'The journey view kept route information, boarding feedback, onboard state and accessible exit connected instead of treating them as separate interfaces.',
+		footer: 'The journey runs from arrival and route choice to accessible exit.',
 	},
 	'immersive-training-evidence-framework': {
-		title: 'Different sources earned different levels of confidence.',
+		label: 'How I kept unlike sources apart',
+		title: 'The review separated capability from claims that still needed a test.',
 		copy:
 			'The review separated what independent research supported, what documentation could establish and what still needed a controlled or representative test.',
+		footer: 'Independent research, system documentation and open questions were reviewed separately.',
 	},
 };
 
@@ -44,7 +56,7 @@ const caption = captions[slug];
 
 <section class:list={['case-artifact', `case-artifact--${slug}`]} aria-labelledby={`artifact-${number}`}>
 	<header>
-		<p class="artifact-label">Recreated research view</p>
+		<p class="artifact-label">{caption.label}</p>
 		<div>
 			<h2 id={`artifact-${number}`}>{caption.title}</h2>
 			<p>{caption.copy}</p>
@@ -54,7 +66,6 @@ const caption = captions[slug];
 	<figure>
 		<div class="artifact-register">
 			<span>Project {number}</span>
-			<span aria-hidden="true">Anonymised / reconstructed</span>
 		</div>
 
 		{
@@ -168,7 +179,7 @@ const caption = captions[slug];
 			)
 		}
 
-		<figcaption>Visual rebuilt for the portfolio. No original client material is reproduced.</figcaption>
+		<figcaption>{caption.footer}</figcaption>
 	</figure>
 </section>
 

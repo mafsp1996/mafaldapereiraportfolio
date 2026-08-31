@@ -34,7 +34,7 @@ export type CaseStudy = {
 };
 
 export const confidentialityNote =
-	'Client names, identifying details and selected materials have been removed or generalised. My role and research reasoning remain faithful to the work.';
+	'These cases are anonymised. Client names and identifying material are removed; the study design, any participant numbers shown and my part in the work are unchanged.';
 
 export const caseStudies: CaseStudy[] = [
 	{
@@ -45,7 +45,7 @@ export const caseStudies: CaseStudy[] = [
 		lede:
 			'The workflow could produce a fluent answer. I checked whether the bibliography and technology benchmark actually supported it, and recorded where researcher judgement was still needed.',
 		role:
-			'I assembled the source base and benchmark, agreed the review criteria and audited generated material for accuracy, gaps and traceability.',
+			'I compared generated guidance with the bibliography and primary documentation. When a citation did not support the sentence, or an important limitation disappeared, I logged the mismatch.',
 		setting: 'Bibliography, technology benchmark and evidence validation',
 		methods: 'Structured literature review · Benchmarking · Evidence validation',
 		questionLabel: 'The review problem',
@@ -100,13 +100,13 @@ export const caseStudies: CaseStudy[] = [
 					'Each claim was marked as supported, incomplete or in need of independent validation.',
 			},
 		],
-		outcomeTitle: 'A source base, benchmark and record of every correction',
+		outcomeTitle: 'The source base, benchmark and a correction log',
 		outcomeCopy:
 			'The team received the consolidated sources together with a review showing which passages could stay, which needed correction and which questions remained open.',
 		outcomeLabel: 'Result',
-		reflectionLabel: 'The useful lesson',
+		reflectionLabel: 'Review rule',
 		reflection:
-			'An answer was only useful if another researcher could follow it back to the source and understand its limits.',
+			'If I could not trace a sentence to its source and explain the limits, it was not ready to use.',
 	},
 	{
 		slug: 'mobile-parking-professionals',
@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
 		lede:
 			'Five professional drivers tried the complete parking flow. The overall usability score looked healthy; their hesitations told a more useful story.',
 		role:
-			'I prepared the heuristic review, moderated the workshop and brought task behaviour, comments and questionnaire responses together for the redesign team.',
+			'I prepared the heuristic review and ran the workshop. Afterwards, I put task behaviour, comments and questionnaire responses into one redesign brief.',
 		setting: '5 professional drivers · 2-hour task-based workshop',
 		methods: 'Heuristic review · Think-aloud testing · SUS · Journey synthesis',
 		questionLabel: 'The usability challenge',
@@ -146,7 +146,7 @@ export const caseStudies: CaseStudy[] = [
 					'Errors and pauses were mapped to the journey. Changes were ranked by whether they blocked a task, created doubt or merely slowed someone down.',
 			},
 		],
-		evidenceTitle: 'The score was positive. Several actions were still unclear.',
+		evidenceTitle: 'Participants completed the flow, but several actions caused pauses.',
 		evidenceIntro:
 			'People understood the value of the service and learned the main flow quickly. Account creation, unfamiliar icons and specialist terms still made them stop and ask what to do.',
 		evidenceLabel: 'What happened in the room',
@@ -171,11 +171,11 @@ export const caseStudies: CaseStudy[] = [
 					'Participants connected the service to finding spaces more quickly, reducing wasted time and avoiding disruption to deliveries.',
 			},
 		],
-		outcomeTitle: 'A redesign brief organised around the driver’s journey',
+		outcomeTitle: 'What I handed to the redesign team',
 		outcomeCopy:
 			'The handover combined a persona, journey map and screen-level notes covering visibility, terminology, onboarding and action feedback.',
 		outcomeLabel: 'For the next iteration',
-		reflectionLabel: 'What the score missed',
+		reflectionLabel: 'Useful evidence',
 		reflection:
 			'A good SUS result did not mean every important action was understood. The pauses and wrong turns were the part the team could design from.',
 	},
@@ -187,7 +187,7 @@ export const caseStudies: CaseStudy[] = [
 		lede:
 			'I tested repeated parking manoeuvres with 21 participants across three experience levels, separating first-use friction from learnability and prototype limitations.',
 		role:
-			'Planned and ran the evaluation, observed behaviour across repeated use cases, led the debriefs and translated the results into a prioritised action plan.',
+			'I led the 21-person evaluation and the final action plan. I also kept prototype faults separate from interface findings.',
 		setting: '21 participants · 7 novice, 7 intermediate and 7 experienced users',
 		methods: 'Task-based evaluation · Observation · Ratings · Repeated measures',
 		questionLabel: 'Why repetition mattered',
@@ -208,7 +208,13 @@ export const caseStudies: CaseStudy[] = [
 				label: 'Repeated scenarios',
 				title: 'Observe learning across a sequence of manoeuvres',
 				copy:
-					'Participants completed repeated parking, obstacle and error scenarios, with short debriefs between phases and a final synthesis.',
+					'Participants completed repeated parking, obstacle and error scenarios so early mistakes could be compared with later attempts.',
+			},
+			{
+				label: 'Short debriefs',
+				title: 'Ask what changed between attempts',
+				copy:
+					'Short debriefs between phases captured what participants had learned, what still felt uncertain and where confidence had shifted.',
 			},
 			{
 				label: 'Prototype log',
@@ -217,7 +223,7 @@ export const caseStudies: CaseStudy[] = [
 					'I documented where braking, obstacle behaviour or extra prototype steps could inflate or suppress the experience ratings.',
 			},
 		],
-		evidenceTitle: 'Some friction faded. The trust risks did not.',
+		evidenceTitle: 'Missed activation fell from six people to two; other problems remained.',
 		evidenceIntro:
 			'The sequence of trials made the difference visible: missed steps reduced, attention changed and a smaller set of problems persisted.',
 		evidenceLabel: 'What changed over time',
@@ -236,17 +242,23 @@ export const caseStudies: CaseStudy[] = [
 					'Confidence increased with experience, while observation showed attention shifting from the vehicle alone to both vehicle and interface.',
 			},
 			{
-				label: 'Persistent friction',
-				title: 'Alignment, visual hierarchy and prototype behaviour still mattered',
+				label: 'Interface friction',
+				title: 'Alignment and visual hierarchy still needed work',
 				copy:
-					'Small text and arrows, difficult alignment and unexpected obstacle behaviour remained important redesign or validation points.',
+					'Small text and arrows, together with difficult alignment, remained important redesign points.',
+			},
+			{
+				label: 'Prototype effects',
+				title: 'Unexpected vehicle behaviour needed separate follow-up',
+				copy:
+					'Braking and obstacle behaviour could affect the ratings, so those issues stayed separate from interface recommendations.',
 			},
 		],
-		outcomeTitle: 'Two workstreams: interface changes and prototype reliability',
+		outcomeTitle: 'The action plan had two separate lists',
 		outcomeCopy:
 			'The recommendation kept the useful scenarios, changed visual hierarchy, warning language and alignment support, and separated interface work from vehicle and prototype issues.',
 		outcomeLabel: 'Recommendation',
-		reflectionLabel: 'The necessary caveat',
+		reflectionLabel: 'Study caveat',
 		reflection:
 			'Repeated trials mattered because first-use and learned behaviour told different stories. Making the prototype limits explicit kept the recommendations honest.',
 	},
@@ -258,7 +270,7 @@ export const caseStudies: CaseStudy[] = [
 		lede:
 			'Two rounds of testing followed the same question: could people tell what the assistant was doing without the animation taking over the screen?',
 		role:
-			'I reviewed earlier research and comparable assistants, moderated both rounds and worked state by state with the results as the visual direction evolved.',
+			'I moderated both rounds and stayed with the project as the visual states changed. Earlier studies and comparable assistants informed what went into the first session.',
 		setting: 'Two iterative rounds · 7 participants, followed by 6 participants',
 		methods: 'Benchmarking · Concept association · Comparative evaluation · Workshop',
 		questionLabel: 'The design choice',
@@ -288,7 +300,7 @@ export const caseStudies: CaseStudy[] = [
 					'Six further participants completed an association exercise and comparative review of the revised animations and states.',
 			},
 		],
-		evidenceTitle: 'People preferred one family, but not every state worked',
+		evidenceTitle: 'One visual family was preferred; individual states still needed changes',
 		evidenceIntro:
 			'The line-based family felt more familiar and readable. The useful detail was in the exceptions: one processing animation dominated the screen, and recovery needed its own unmistakable signal.',
 		evidenceLabel: 'What participants actually distinguished',
@@ -313,11 +325,11 @@ export const caseStudies: CaseStudy[] = [
 					'The next direction refined size, thickness, position, colour and motion, and added a clear misunderstanding state.',
 			},
 		],
-		outcomeTitle: 'A chosen visual family and a specification for each state',
+		outcomeTitle: 'The final recommendation was not one animation everywhere',
 		outcomeCopy:
 			'The final handover covered motion, scale, placement, colour and recovery feedback for each state, rather than applying one rule to every animation.',
 		outcomeLabel: 'Design direction',
-		reflectionLabel: 'Why preference was not enough',
+		reflectionLabel: 'Round-two check',
 		reflection:
 			'The preferred animation was not automatically the clearest one. The second round showed which changes improved meaning, not just appeal.',
 	},
@@ -329,7 +341,7 @@ export const caseStudies: CaseStudy[] = [
 		lede:
 			'Passengers did not experience a stop, a vehicle and an onboard display as separate products. The research had to follow their journey in the same way.',
 		role:
-			'I planned the user studies, compared patterns across touchpoints and facilitated working sessions on the issues that kept returning.',
+			'I planned the user studies and compared what happened at each point in the trip. Recurring problems then went into working sessions with the wider team.',
 		setting: '14-person end-to-end journey study plus focused follow-up studies',
 		methods: 'Contextual evaluation · Concept testing · Focus groups · Workshops',
 		questionLabel: 'The whole journey',
@@ -338,7 +350,7 @@ export const caseStudies: CaseStudy[] = [
 		decisionCopy:
 			'Information at the stop, vehicle status, boarding controls, route guidance, sound and physical accessibility all affected the same trip. Studying any one of them alone would miss the handovers between them.',
 		processLabel: 'Research programme',
-		processTitle: 'Follow the passenger, not the interface',
+		processTitle: 'Map the journey from arrival to accessible exit',
 		process: [
 			{
 				label: 'End-to-end study',
@@ -379,16 +391,22 @@ export const caseStudies: CaseStudy[] = [
 			},
 			{
 				label: 'Action feedback',
-				title: 'Requests needed visible, audible and accessible confirmation',
+				title: 'Stop requests needed confirmation that persisted',
 				copy:
-					'Stop and accessibility controls exposed issues in placement, persistence of feedback and distinction between different requests.',
+					'Stop controls exposed issues in placement, persistence of feedback and distinction between different requests.',
+			},
+			{
+				label: 'Accessible exit',
+				title: 'Accessible exit controls had their own placement and feedback needs',
+				copy:
+					'Placement, persistence of feedback and distinction between requests also affected the accessible exit controls.',
 			},
 		],
-		outcomeTitle: 'One set of requirements spanning software, sound and physical controls',
+		outcomeTitle: 'The handover crossed software, sound and physical controls',
 		outcomeCopy:
 			'The team received requirements for information hierarchy, route comprehension, state feedback, sound, control placement and accessibility, alongside questions that still needed testing.',
 		outcomeLabel: 'What the team could use',
-		reflectionLabel: 'What stayed connected',
+		reflectionLabel: 'Where to look next',
 		reflection:
 			'The weak points were often between touchpoints, not inside one screen. Keeping those links visible stopped the fixes from moving a problem elsewhere in the journey.',
 	},
@@ -398,9 +416,9 @@ export const caseStudies: CaseStudy[] = [
 		title: 'Immersive training evidence framework',
 		eyebrow: 'Evidence strategy · Human factors',
 		lede:
-			'Scientific papers, vendor specifications and standards described the same technologies in very different ways. I built a review that kept those claims separate.',
+			'For a confidential training project, I compared haptic technologies by feedback type, integration needs and documented limitations.',
 		role:
-			'I created the bibliography and technology benchmark, reviewed material from the AI-assisted research workflow and checked it against scientific literature, primary documentation and standards.',
+			'I built the bibliography, technology comparison and evaluation framework. My part was to keep documented capability separate from claims that still needed testing.',
 		setting: 'Confidential cross-functional research and development initiative',
 		methods: 'Literature review · Technology benchmark · Standards review · Evaluation framework',
 		questionLabel: 'The evidence problem',
@@ -455,11 +473,11 @@ export const caseStudies: CaseStudy[] = [
 					'Questions requiring bench characterisation, participant research or evaluation in a representative scenario.',
 			},
 		],
-		outcomeTitle: 'A benchmark that leads directly to the next study',
+		outcomeTitle: 'A technology comparison and staged validation plan',
 		outcomeCopy:
 			'The bibliography, comparative benchmark and evaluation framework link each major claim to its source and to the next level of evidence needed.',
 		outcomeLabel: 'Working framework',
-		reflectionLabel: 'The boundary that mattered',
+		reflectionLabel: 'Unresolved question',
 		reflection:
 			'The difficult part was not finding more references. It was deciding what each one genuinely allowed us to say.',
 	},

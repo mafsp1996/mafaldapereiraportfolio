@@ -45,9 +45,8 @@ const baseUrl = import.meta.env.BASE_URL;
 						<span class="case-visual__code" aria-hidden="true">FIG / {study.number}</span>
 					</div>
 					<figcaption>
-						<span>Recreated project visual</span>
+						<span>Visual note</span>
 						<p>{project.visualCaption}</p>
-						<small>No client or identifying material is shown.</small>
 					</figcaption>
 				</figure>
 			)
@@ -89,7 +88,7 @@ const baseUrl = import.meta.env.BASE_URL;
 				<h2 id="process-heading">{study.processTitle}</h2>
 			</header>
 
-			<ol>
+			<ol data-count={study.process.length}>
 				{
 					study.process.map((step) => (
 						<li>
@@ -114,9 +113,9 @@ const baseUrl = import.meta.env.BASE_URL;
 			<div class="evidence-board" role="group" aria-label="Recreated analysis structure">
 				<div class="evidence-board__register">
 					<span>{study.evidenceRegister}</span>
-					<span aria-hidden="true">Selected findings</span>
+					<span aria-hidden="true">{study.evidence.length} notes from analysis</span>
 				</div>
-				<ol>
+				<ol data-count={study.evidence.length}>
 					{
 						study.evidence.map((item, index) => (
 							<li>
@@ -470,6 +469,11 @@ const baseUrl = import.meta.env.BASE_URL;
 		list-style: none;
 	}
 
+	.case-process ol[data-count='4'],
+	.evidence-board ol[data-count='4'] {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
 	.case-process li {
 		min-height: 24rem;
 		padding: 2rem clamp(1.5rem, 3vw, 3rem);
@@ -701,6 +705,33 @@ const baseUrl = import.meta.env.BASE_URL;
 		.evidence-board li:last-child {
 			padding-right: 0;
 		}
+
+		.case-process ol[data-count='4'],
+		.evidence-board ol[data-count='4'] {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.case-process ol[data-count='4'] li,
+		.evidence-board ol[data-count='4'] li {
+			min-height: 18rem;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.case-process ol[data-count='4'] li:nth-child(even),
+		.evidence-board ol[data-count='4'] li:nth-child(even) {
+			padding-right: 0;
+			border-right: 0;
+		}
+
+		.case-process ol[data-count='4'] li:nth-child(odd),
+		.evidence-board ol[data-count='4'] li:nth-child(odd) {
+			padding-left: 0;
+		}
+
+		.case-process ol[data-count='4'] li:nth-last-child(-n + 2),
+		.evidence-board ol[data-count='4'] li:nth-last-child(-n + 2) {
+			border-bottom: 0;
+		}
 	}
 
 	@media (max-width: 47.999rem) {
@@ -791,7 +822,9 @@ const baseUrl = import.meta.env.BASE_URL;
 		}
 
 		.case-process ol,
-		.evidence-board ol {
+		.case-process ol[data-count='4'],
+		.evidence-board ol,
+		.evidence-board ol[data-count='4'] {
 			grid-template-columns: 1fr;
 		}
 

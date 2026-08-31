@@ -26,7 +26,7 @@ export const projects: Project[] = [
 		caseStudySlug: 'ai-assisted-research-workflow',
 		mediaLabel: 'Evaluation map',
 		visualCaption:
-			'Where an apparently complete answer still needed a researcher to follow the trail back to its sources.',
+			'The review moved from generated answer to cited source and back again.',
 	},
 	{
 		number: '02',
@@ -41,42 +41,42 @@ export const projects: Project[] = [
 		caseStudySlug: 'mobile-parking-professionals',
 		mediaLabel: 'Task flow',
 		visualCaption:
-			'The parking journey, redrawn around the points where participants paused, retraced a step or asked what to do next.',
+			'The complete parking journey, with the points where participants paused or retraced a step.',
 	},
 	{
 		number: '03',
 		title: 'Remote parking experience',
 		contribution: 'Mixed methods · Human factors',
 		description:
-			'I tested repeated parking manoeuvres with 21 participants across three experience levels, separating first-use friction from learnability and prototype limitations.',
+			'Twenty-one people used the remote parking system more than once. Repetition showed which early mistakes disappeared and which problems still affected trust.',
 		image: '/images/work/remote-parking.svg',
 		imageAlt: 'Abstract top-down vehicle and remote interaction study.',
 		archiveLayout: 'left',
 		caseStudySlug: 'remote-parking-experience',
 		mediaLabel: 'Evidence map',
 		visualCaption:
-			'Repeated manoeuvres made it possible to separate first-use problems from issues that remained.',
+			'Repeated attempts compared so first-use errors did not get mixed up with recurring problems.',
 	},
 	{
 		number: '04',
 		title: 'Virtual assistant state design',
 		contribution: 'Concept evaluation · Conversational UX',
 		description:
-			'Across two iterative studies, I evaluated how people interpreted animated assistant states and turned preference and comprehension evidence into design requirements.',
+			'I ran two rounds of testing on animated assistant states. The first changed what we tested in the second; preference alone was never treated as proof of comprehension.',
 		image: '/images/work/virtual-assistant.svg',
 		imageAlt: 'Abstract conversation bubbles and voice interaction waveform.',
 		archiveLayout: 'narrow',
 		caseStudySlug: 'virtual-assistant-state-design',
 		mediaLabel: 'Interaction map',
 		visualCaption:
-			'The same animated states meant different things to different participants; this view keeps those interpretations together.',
+			'Two study rounds, showing the visual states revised between them.',
 	},
 	{
 		number: '05',
 		title: 'Autonomous mobility experience',
 		contribution: 'Research programme · Service experience',
 		description:
-			'Waiting, boarding and travelling raised different questions, but passengers experienced them as one journey. I brought those touchpoints together to show where trust and comprehension broke down.',
+			'Waiting, boarding and travelling raised different questions, but passengers experienced one journey. The handovers between those moments exposed the most useful problems.',
 		image: '/images/work/autonomous-mobility.svg',
 		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
 		archiveLayout: 'closing',
@@ -84,7 +84,7 @@ export const projects: Project[] = [
 		caseStudySlug: 'autonomous-mobility-experience',
 		mediaLabel: 'Discovery map',
 		visualCaption:
-			'Passengers experienced one journey, even when the research had to examine waiting, boarding and travelling separately.',
+			'The journey from arrival to accessible exit, shown as one service rather than separate interfaces.',
 	},
 	{
 		number: '06',
@@ -98,7 +98,7 @@ export const projects: Project[] = [
 		caseStudySlug: 'immersive-training-evidence-framework',
 		mediaLabel: 'Evidence framework',
 		visualCaption:
-			'Three evidence types kept apart: independent research, documented capability and questions that still needed testing.',
+			'Scientific research, technical documentation and unanswered test questions kept in separate groups.',
 	},
 ];
 

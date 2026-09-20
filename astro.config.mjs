@@ -2,4 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 // The portfolio is deployed at the root of its Cloudflare Pages address.
-export default defineConfig({ base: '/' });
+export default defineConfig({
+  base: '/',
+  site: 'https://mivpereira.pages.dev',
+});

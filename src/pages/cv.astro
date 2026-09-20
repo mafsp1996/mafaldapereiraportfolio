@@ -1,5 +1,6 @@
 ---
 import SiteHeader from '../components/SiteHeader.astro';
+import SeoHead from '../components/SeoHead.astro';
 import '../styles/global.css';
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -31,8 +32,11 @@ const versions = [
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Choose the CV most relevant to your role and request it from Mafalda Pereira." />
-		<title>CV — Mafalda Pereira</title>
+		<SeoHead
+			title="CV — Mafalda Pereira"
+			description="Choose the CV most relevant to your role and request it from Mafalda Pereira."
+			canonicalPath="/cv/"
+		/>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to content</a>

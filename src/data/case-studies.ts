@@ -31,10 +31,21 @@ export type CaseStudy = {
 	outcomeLabel: string;
 	reflectionLabel: string;
 	reflection: string;
+	details?: Array<{
+		label: string;
+		title: string;
+		copy: string;
+		items?: string[];
+	}>;
+	principles?: {
+		quote: string;
+		distinctions: string[];
+		classifications: string[];
+	};
 };
 
 export const confidentialityNote =
-	'These cases are anonymised. Client names and identifying material are removed; the study design, any participant numbers shown and my part in the work are unchanged.';
+	'This case is anonymised. Client names, identifying details and sensitive contextual information are omitted. The research process and my role are represented accurately.';
 
 export const caseStudies: CaseStudy[] = [
 	{
@@ -413,73 +424,121 @@ export const caseStudies: CaseStudy[] = [
 	{
 		slug: 'immersive-training-evidence-framework',
 		number: '06',
-		title: 'Immersive training evidence framework',
-		eyebrow: 'Evidence strategy · Human factors',
+		title: 'Researching complex immersive systems',
+		eyebrow: 'Ongoing research · Complex systems',
 		lede:
-			'For a confidential training project, I compared haptic technologies by feedback type, integration needs and documented limitations.',
+			'This ongoing research explores immersive and haptic technologies within complex training environments. My role focuses on building the evidence base, comparing technological approaches and defining rigorous evaluation methods to support subsequent research and development decisions.',
 		role:
-			'I built the bibliography, technology comparison and evaluation framework. My part was to keep documented capability separate from claims that still needed testing.',
-		setting: 'Confidential cross-functional research and development initiative',
-		methods: 'Literature review · Technology benchmark · Standards review · Evaluation framework',
-		questionLabel: 'The evidence problem',
+			'Research planning · Evidence synthesis · Technology benchmarking · Protocol design · Evaluation framework definition · Measures selection · Research documentation · Cross-disciplinary collaboration',
+		setting: 'Ongoing, anonymised research in complex immersive and haptic systems',
+		methods: 'Structured evidence review · Technology benchmark · Evaluation design · Mixed measures',
+		questionLabel: 'Research challenge',
 		decisionTitle:
-			'Which technology capabilities were sufficiently supported to inform research and prototyping, and what still needed to be tested?',
+			'How can unlike immersive and haptic approaches be compared without treating technical capability as evidence of effectiveness for people?',
 		decisionCopy:
-			'A specification can show what a device is designed to do; it cannot prove perceptual fidelity, learning transfer or safe use in a realistic setting. Those boundaries shaped the review.',
-		processLabel: 'Building the review',
-		processTitle: 'Keep three kinds of evidence apart',
+			'These systems can combine different feedback modalities, interaction models, sensors and contexts of use. The research therefore needs to establish what approaches exist, what evidence supports them, how they can be compared and which human-centred measures are appropriate for subsequent evaluation. This is not a conventional usability study; it is the groundwork required to design subsequent empirical evaluation rigorously.',
+		processLabel: 'Research approach',
+		processTitle: 'Move from a broad technology landscape to testable questions',
 		process: [
 			{
-				label: 'Technology map',
-				title: 'Give unlike systems a comparable description',
+				label: 'Evidence base',
+				title: 'Map the field before narrowing the question',
 				copy:
-					'Each approach was described by operating principle, feedback capability, integration needs, constraints and possible training use.',
+					'Structured searches, evidence screening and synthesis establish which technologies, capabilities, limitations and evaluation methods are already documented.',
 			},
 			{
-				label: 'Source check',
-				title: 'Read past the headline claim',
+				label: 'Comparable frame',
+				title: 'Describe unlike technologies with the same questions',
 				copy:
-					'Outdated and mismatched references were corrected. Sensor measurements were kept distinct from interpretations that the data could not establish on their own.',
+					'Each approach is considered through interaction modality, feedback type, capability, limitation, integration needs, available evidence and suitable evaluation contexts.',
 			},
 			{
-				label: 'Evaluation plan',
-				title: 'Decide what had to be tested next',
+				label: 'Empirical design',
+				title: 'Turn evidence gaps into a protocol',
 				copy:
-					'The remaining questions became a staged plan: bench characterisation, formative work, controlled comparison, representative scenarios, safety and reporting.',
+					'Remaining questions inform scenarios, evaluation criteria, comparison conditions, protocol decisions and the selection of behavioural, physiological, self-reported and performance measures.',
 			},
 		],
-		evidenceTitle: 'What each source could tell us — and what it could not',
+		details: [
+			{
+				label: 'Evidence review',
+				title: 'Build an evidence base that can be traced',
+				copy:
+					'The review uses structured search strategies, evidence screening and synthesis to understand existing technologies, their capabilities and limitations, interaction and feedback approaches, previous evaluation methods and relevant human-centred outcomes.',
+			},
+			{
+				label: 'Technology benchmarking',
+				title: 'Make different approaches comparable',
+				copy:
+					'The benchmark creates a shared description for technologies that are not directly equivalent.',
+				items: [
+					'Interaction modality',
+					'Type of feedback',
+					'Capabilities and limitations',
+					'Integration considerations',
+					'Available research evidence',
+					'Suitability for different evaluation contexts',
+				],
+			},
+			{
+				label: 'Evaluation design',
+				title: 'Use the review to shape empirical research',
+				copy:
+					'The evidence gaps are translated into research questions, study scenarios, evaluation criteria, comparison conditions, protocol decisions and an appropriate set of measures. The design remains open to revision as the technology and research questions develop.',
+			},
+		],
+		evidenceTitle: 'Choose each source of evidence for the question it can answer',
 		evidenceIntro:
-			'Every important statement sat in one of three places: independent research, documented system capability or a question still awaiting a test.',
-		evidenceLabel: 'Reading the claims',
-		evidenceRegister: 'Literature / technical documents / standards',
+			'Future studies may combine several measures, but not simply because they are available. Each source is selected for the part of the research question it can genuinely inform.',
+		evidenceLabel: 'Mixed evidence',
+		evidenceRegister: 'Behaviour / physiology / report / performance',
 		evidence: [
 			{
-				label: 'Scientific evidence',
-				title: 'What independent research supported',
+				label: 'Behavioural data',
+				title: 'What people do while interacting',
 				copy:
-					'Evidence related to perception, motor learning, usability, physiology, safety, retention and transfer.',
+					'Observable actions, adaptations, hesitation, coordination and interaction patterns in the study context.',
 			},
 			{
-				label: 'Technical evidence',
-				title: 'What the system could demonstrably do',
+				label: 'Physiological measures',
+				title: 'What bodily responses may contribute',
 				copy:
-					'Documented capabilities, operating parameters, integration constraints and known limitations.',
+					'Signals selected only where their interpretation is justified and useful to the research question.',
 			},
 			{
-				label: 'Validation needs',
-				title: 'What still required independent testing',
+				label: 'Self-reported measures',
+				title: 'What participants perceive and report',
 				copy:
-					'Questions requiring bench characterisation, participant research or evaluation in a representative scenario.',
+					'Perceived workload, comfort, confidence, presence or other experiences relevant to the study question.',
+			},
+			{
+				label: 'Performance measures',
+				title: 'What task outcomes make visible',
+				copy:
+					'Accuracy, timing, errors or other task measures defined for the comparison rather than assumed in advance.',
 			},
 		],
-		outcomeTitle: 'A technology comparison and staged validation plan',
+		principles: {
+			quote: 'Before choosing a method, I ask what someone needs to decide with the result.',
+			distinctions: [
+				'Observed behaviour',
+				'Self-reported feedback',
+				'Physiological evidence',
+				'Researcher interpretation',
+			],
+			classifications: [
+				'Supported by evidence',
+				'Tentative',
+				'Requiring further testing',
+			],
+		},
+		outcomeTitle: 'A foundation for subsequent empirical studies',
 		outcomeCopy:
-			'The bibliography, comparative benchmark and evaluation framework link each major claim to its source and to the next level of evidence needed.',
-		outcomeLabel: 'Working framework',
-		reflectionLabel: 'Unresolved question',
+			'The work to date has established an evidence base, a structured technology landscape, evaluation criteria, protocol structures and a framework for subsequent empirical studies. Those future studies are not presented here as completed work.',
+		outcomeLabel: 'Current status / Next steps',
+		reflectionLabel: 'Ongoing research',
 		reflection:
-			'The difficult part was not finding more references. It was deciding what each one genuinely allowed us to say.',
+			'The next step is to use the framework to guide empirical comparisons, then update it as new evidence becomes available.',
 	},
 ];
 

@@ -101,6 +101,31 @@ const baseUrl = import.meta.env.BASE_URL;
 			</ol>
 		</section>
 
+		{
+			study.details && (
+				<section class="case-details" aria-labelledby="details-heading">
+					<header>
+						<p class="section-label">Research foundations</p>
+						<h2 id="details-heading">From landscape to evaluation design</h2>
+					</header>
+					<div class="case-details__grid">
+						{study.details.map((detail, index) => (
+							<article>
+								<span>{String(index + 1).padStart(2, '0')} / {detail.label}</span>
+								<h3>{detail.title}</h3>
+								<p>{detail.copy}</p>
+								{detail.items && (
+									<ul>
+										{detail.items.map((item) => <li>{item}</li>)}
+									</ul>
+								)}
+							</article>
+						))}
+					</div>
+				</section>
+			)
+		}
+
 		<CaseStudyArtifact slug={study.slug} number={study.number} />
 
 		<section class="case-evidence" aria-labelledby="evidence-heading">
@@ -132,6 +157,28 @@ const baseUrl = import.meta.env.BASE_URL;
 			</div>
 		</section>
 
+		{
+			study.principles && (
+				<section class="case-principles" aria-labelledby="principles-heading">
+					<div>
+						<p class="section-label">Research principles</p>
+						<h2 id="principles-heading">Keep the evidence types visible</h2>
+						<blockquote>{study.principles.quote}</blockquote>
+					</div>
+					<div class="case-principles__lists">
+						<div>
+							<span>Keep separate during analysis</span>
+							<ul>{study.principles.distinctions.map((item) => <li>{item}</li>)}</ul>
+						</div>
+						<div>
+							<span>Describe the strength of a finding</span>
+							<ul>{study.principles.classifications.map((item) => <li>{item}</li>)}</ul>
+						</div>
+					</div>
+				</section>
+			)
+		}
+
 		<section class="case-outcome" aria-labelledby="outcome-heading">
 			<div>
 				<p class="section-label">{study.outcomeLabel}</p>
@@ -150,7 +197,7 @@ const baseUrl = import.meta.env.BASE_URL;
 				<a href={`${baseUrl}work/${nextStudy.slug}/`}>{nextStudy.title} <span aria-hidden="true">→</span></a>
 			</div>
 			<a class="case-footer__contact" href="mailto:mafaldapereirafmh@gmail.com?subject=Portfolio%20case%20study">
-				Request a private walkthrough <span aria-hidden="true">↗</span>
+				Discuss my research approach <span aria-hidden="true">↗</span>
 			</a>
 		</footer>
 	</div>
@@ -392,6 +439,100 @@ const baseUrl = import.meta.env.BASE_URL;
 	.confidentiality-note,
 	.case-footer {
 		border-top: 1px solid var(--line);
+	}
+
+	.case-details,
+	.case-principles {
+		padding-block: clamp(5rem, 9vw, 9rem);
+	}
+
+	.case-details > header,
+	.case-principles {
+		display: grid;
+		grid-template-columns: minmax(11rem, 0.7fr) 2fr;
+		gap: clamp(2rem, 5vw, 6rem);
+	}
+
+	.case-details > header h2,
+	.case-principles h2 {
+		max-width: 13ch;
+		font-size: clamp(3.5rem, 5vw, 5.8rem);
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.case-details__grid {
+		display: grid;
+		margin-top: clamp(3.5rem, 6vw, 6rem);
+		border-block: 1px solid var(--line);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.case-details__grid article {
+		min-width: 0;
+		padding: clamp(1.5rem, 3vw, 2.75rem);
+		border-right: 1px solid var(--line);
+	}
+
+	.case-details__grid article:first-child { padding-left: 0; }
+	.case-details__grid article:last-child {
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.case-details__grid article > span,
+	.case-principles__lists span {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.09em;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+
+	.case-details__grid h3 {
+		min-height: 3.7em;
+		margin-top: 2rem;
+		font-size: clamp(1.8rem, 2.5vw, 2.65rem);
+		line-height: 1.05;
+	}
+
+	.case-details__grid p,
+	.case-details__grid li,
+	.case-principles__lists li {
+		color: var(--muted);
+		font-size: 0.92rem;
+		line-height: 1.65;
+	}
+
+	.case-details__grid ul,
+	.case-principles__lists ul {
+		margin: 1.5rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.case-details__grid li,
+	.case-principles__lists li {
+		padding-block: 0.55rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.case-principles blockquote {
+		max-width: 13ch;
+		margin: 2.25rem 0 0;
+		color: #d5d1ca;
+		font-family: var(--display);
+		font-size: clamp(1.8rem, 2.8vw, 3rem);
+		letter-spacing: -0.035em;
+		line-height: 1.12;
+	}
+
+	.case-principles__lists {
+		display: grid;
+		align-self: end;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(2rem, 4vw, 4rem);
 	}
 
 	.case-decision {
@@ -801,6 +942,8 @@ const baseUrl = import.meta.env.BASE_URL;
 		.case-decision,
 		.confidentiality-note,
 		.case-process header,
+		.case-details > header,
+		.case-principles,
 		.case-evidence > header,
 		.case-outcome {
 			grid-template-columns: 1fr;
@@ -816,6 +959,8 @@ const baseUrl = import.meta.env.BASE_URL;
 
 		.case-decision h2,
 		.case-process header h2,
+		.case-details > header h2,
+		.case-principles h2,
 		.case-evidence header h2,
 		.case-outcome h2 {
 			font-size: clamp(2.65rem, 11vw, 3.5rem);
@@ -827,6 +972,22 @@ const baseUrl = import.meta.env.BASE_URL;
 		.evidence-board ol[data-count='4'] {
 			grid-template-columns: 1fr;
 		}
+
+		.case-details__grid,
+		.case-principles__lists {
+			grid-template-columns: 1fr;
+		}
+
+		.case-details__grid article,
+		.case-details__grid article:first-child,
+		.case-details__grid article:last-child {
+			padding: 2.25rem 0;
+			border-right: 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.case-details__grid article:last-child { border-bottom: 0; }
+		.case-details__grid h3 { min-height: 0; }
 
 		.case-process li,
 		.case-process li:first-child,

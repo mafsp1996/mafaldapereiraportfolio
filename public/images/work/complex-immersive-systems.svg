@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <pattern id="grid-immersive" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" stroke="#F2EFE8" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="#161618"/>
+  <rect width="1200" height="800" fill="url(#grid-immersive)"/>
+  <rect x="82" y="92" width="1036" height="616" stroke="#F2EFE8" stroke-opacity=".12"/>
+  <path d="M82 172h1036M82 628h1036" stroke="#F2EFE8" stroke-opacity=".08"/>
+
+  <g stroke="#8380FF" stroke-width="2">
+    <path d="M151 398h898" stroke-opacity=".54"/>
+    <path d="m250 388 10 10-10 10M386 388l10 10-10 10M522 388l10 10-10 10M658 388l10 10-10 10M794 388l10 10-10 10M930 388l10 10-10 10" stroke-opacity=".7"/>
+  </g>
+
+  <g fill="#171719" stroke="#F2EFE8" stroke-opacity=".3">
+    <rect x="102" y="314" width="98" height="168"/>
+    <rect x="238" y="314" width="98" height="168"/>
+    <rect x="374" y="314" width="98" height="168"/>
+    <rect x="510" y="314" width="98" height="168"/>
+    <rect x="646" y="314" width="98" height="168"/>
+    <rect x="782" y="314" width="98" height="168"/>
+    <rect x="918" y="314" width="180" height="168"/>
+  </g>
+
+  <g fill="#8380FF">
+    <circle cx="151" cy="398" r="8"/>
+    <circle cx="287" cy="398" r="8"/>
+    <circle cx="423" cy="398" r="8"/>
+    <circle cx="559" cy="398" r="8"/>
+    <circle cx="695" cy="398" r="8"/>
+    <circle cx="831" cy="398" r="8"/>
+    <circle cx="1008" cy="398" r="8"/>
+  </g>
+
+  <g stroke="#8380FF" stroke-opacity=".2">
+    <circle cx="1008" cy="398" r="116"/>
+    <circle cx="1008" cy="398" r="76"/>
+    <path d="M1008 250v296M860 398h296"/>
+  </g>
+
+  <g stroke="#F2EFE8" stroke-opacity=".17">
+    <path d="M118 560h126M274 560h126M430 560h126M586 560h126"/>
+    <path d="M118 584h88M274 584h88M430 584h88M586 584h88"/>
+  </g>
+
+  <path d="M151 226c96-62 186-62 272 0s178 62 272 0 188-62 313 0" stroke="#8380FF" stroke-opacity=".32" stroke-width="2"/>
+</svg>

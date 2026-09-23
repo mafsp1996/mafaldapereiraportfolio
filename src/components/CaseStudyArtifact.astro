@@ -43,11 +43,11 @@ const captions: Record<string, { label: string; title: string; copy: string; foo
 		footer: 'The journey runs from arrival and route choice to accessible exit.',
 	},
 	'immersive-training-evidence-framework': {
-		label: 'How I kept unlike sources apart',
-		title: 'The review separated capability from claims that still needed a test.',
+		label: 'Evidence to evaluation',
+		title: 'Each step narrows the field without pretending the next study has already happened.',
 		copy:
-			'The review separated what independent research supported, what documentation could establish and what still needed a controlled or representative test.',
-		footer: 'Independent research, system documentation and open questions were reviewed separately.',
+			'This simplified research flow shows how the current evidence base and benchmark inform questions, criteria, protocol decisions and the selection of measures for future empirical work.',
+		footer: 'A process map of ongoing work, not a results timeline.',
 	},
 };
 
@@ -167,14 +167,18 @@ const caption = captions[slug];
 		{
 			slug === 'immersive-training-evidence-framework' && (
 				<div class="artifact-canvas framework-view" aria-hidden="true">
-					<div class="evidence-types">
-						<div><span>Independent research</span><strong>What has support?</strong></div>
-						<div><span>System documentation</span><strong>What can it demonstrably do?</strong></div>
-						<div><span>Open question</span><strong>What still needs a test?</strong></div>
-					</div>
-					<ol class="validation-ladder">
-						<li>Bench</li><li>Formative</li><li>Controlled</li><li>Representative</li><li>Safety</li>
+					<ol class="research-flow">
+						<li><span>01</span><strong>Evidence review</strong></li>
+						<li><span>02</span><strong>Technology benchmarking</strong></li>
+						<li><span>03</span><strong>Research questions</strong></li>
+						<li><span>04</span><strong>Evaluation criteria</strong></li>
+						<li><span>05</span><strong>Protocol design</strong></li>
+						<li><span>06</span><strong>Measures selection</strong></li>
+						<li><span>07</span><strong>Future empirical evaluation</strong></li>
 					</ol>
+					<div class="evidence-key">
+						<span>Behavioural</span><span>Physiological</span><span>Self-reported</span><span>Performance</span>
+					</div>
 				</div>
 			)
 		}
@@ -602,70 +606,72 @@ const caption = captions[slug];
 		color: var(--muted);
 	}
 
-	/* 06 — evidence framework */
+	/* 06 — evidence-to-evaluation flow */
 	.framework-view {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
 
-	.evidence-types {
+	.research-flow {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin: 0;
+		padding: 0;
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+		list-style: none;
 	}
 
-	.evidence-types > div {
+	.research-flow li {
+		position: relative;
 		display: flex;
-		min-height: 13rem;
-		padding: 1.5rem;
+		min-height: 12rem;
+		padding: 1.25rem 1rem;
 		flex-direction: column;
 		border-block: 1px solid var(--line);
 		border-right: 1px solid var(--line);
 		background: rgba(9, 9, 11, 0.74);
 	}
 
-	.evidence-types > div:first-child { border-left: 1px solid var(--line); }
-	.evidence-types span { color: var(--accent); }
+	.research-flow li:first-child { border-left: 1px solid var(--line); }
+	.research-flow li:not(:last-child)::after {
+		position: absolute;
+		top: 50%;
+		right: -0.5rem;
+		z-index: 1;
+		width: 1rem;
+		background: var(--ink);
+		color: var(--accent);
+		content: '→';
+		font-family: var(--mono);
+		font-size: 0.75rem;
+		text-align: center;
+		transform: translateY(-50%);
+	}
 
-	.evidence-types strong {
-		max-width: 13ch;
+	.research-flow span { color: var(--accent); }
+
+	.research-flow strong {
+		max-width: 12ch;
 		margin-top: auto;
 		color: #d5d1ca;
 		font-family: var(--display);
-		font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+		font-size: clamp(1.05rem, 1.55vw, 1.45rem);
 		font-weight: 400;
 		letter-spacing: -0.03em;
 		line-height: 1.05;
 	}
 
-	.validation-ladder {
+	.evidence-key {
 		display: grid;
 		margin: 2rem 0 0;
-		padding: 0;
-		grid-template-columns: repeat(5, 1fr);
-		list-style: none;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
 	}
 
-	.validation-ladder li {
-		position: relative;
-		padding: 0.9rem;
-		border-top: 1px solid var(--accent);
+	.evidence-key span {
+		padding: 0.75rem;
+		border-top: 1px solid rgba(131, 128, 255, 0.6);
 		color: var(--muted);
-		font-family: var(--mono);
-		font-size: 0.62rem;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-	}
-
-	.validation-ladder li::before {
-		position: absolute;
-		top: -0.28rem;
-		left: 0;
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--accent);
-		content: '';
 	}
 
 	@media (max-width: 68.625rem) {
@@ -734,13 +740,13 @@ const caption = captions[slug];
 
 		.task-track,
 		.journey-track,
-		.evidence-types {
+		.research-flow {
 			grid-template-columns: 1fr;
 		}
 
 		.task-track li,
 		.journey-track li,
-		.evidence-types > div {
+		.research-flow li {
 			min-height: 9rem;
 			border-right: 1px solid var(--line);
 			border-bottom: 0;
@@ -749,8 +755,15 @@ const caption = captions[slug];
 
 		.task-track li:last-child,
 		.journey-track li:last-child,
-		.evidence-types > div:last-child {
+		.research-flow li:last-child {
 			border-bottom: 1px solid var(--line);
+		}
+
+		.research-flow li:not(:last-child)::after {
+			top: auto;
+			right: 1rem;
+			bottom: -0.65rem;
+			transform: rotate(90deg);
 		}
 
 		.task-track strong,
@@ -776,21 +789,8 @@ const caption = captions[slug];
 			min-height: 16rem;
 		}
 
-		.validation-ladder {
-			grid-template-columns: 1fr;
-			gap: 0.35rem;
-		}
 
-		.validation-ladder li {
-			padding-left: 1.25rem;
-			border-top: 0;
-			border-left: 1px solid var(--accent);
-		}
-
-		.validation-ladder li::before {
-			top: 1.15rem;
-			left: -0.28rem;
-		}
+		.evidence-key { grid-template-columns: repeat(2, 1fr); }
 
 		.trust-note {
 			align-items: flex-start;

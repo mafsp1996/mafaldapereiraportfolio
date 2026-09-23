@@ -37,7 +37,6 @@ export const projects: Project[] = [
 		image: '/images/work/mobile-parking.svg',
 		imageAlt: 'Abstract mobile interface connected to a sequence of research findings.',
 		archiveLayout: 'right',
-		selectedLayout: 'offset',
 		caseStudySlug: 'mobile-parking-professionals',
 		mediaLabel: 'Task flow',
 		visualCaption:
@@ -52,6 +51,7 @@ export const projects: Project[] = [
 		image: '/images/work/remote-parking.svg',
 		imageAlt: 'Abstract top-down vehicle and remote interaction study.',
 		archiveLayout: 'left',
+		selectedLayout: 'offset',
 		caseStudySlug: 'remote-parking-experience',
 		mediaLabel: 'Evidence map',
 		visualCaption:
@@ -80,7 +80,6 @@ export const projects: Project[] = [
 		image: '/images/work/autonomous-mobility.svg',
 		imageAlt: 'Abstract mobility route with research checkpoints and sensing arcs.',
 		archiveLayout: 'closing',
-		selectedLayout: 'compact',
 		caseStudySlug: 'autonomous-mobility-experience',
 		mediaLabel: 'Discovery map',
 		visualCaption:
@@ -88,17 +87,18 @@ export const projects: Project[] = [
 	},
 	{
 		number: '06',
-		title: 'Immersive training evidence framework',
-		contribution: 'Evidence strategy · Human factors',
+		title: 'Researching complex immersive systems',
+		contribution: 'Evidence synthesis · Evaluation design',
 		description:
-			'Scientific papers, technical documentation and standards did not make the same kinds of claims. I separated them before setting out what the team could test next.',
-		image: '/images/work/confidential-applied-research.svg',
-		imageAlt: 'Abstract redacted research document representing a confidential project.',
+			'Ongoing research connecting structured evidence review and technology benchmarking to evaluation criteria, protocols and future empirical studies.',
+		image: '/images/work/complex-immersive-systems.svg',
+		imageAlt: 'Abstract research flow connecting evidence review, technology comparison and evaluation design.',
 		archiveLayout: 'confidential',
+		selectedLayout: 'compact',
 		caseStudySlug: 'immersive-training-evidence-framework',
-		mediaLabel: 'Evidence framework',
+		mediaLabel: 'Research framework',
 		visualCaption:
-			'Scientific research, technical documentation and unanswered test questions kept in separate groups.',
+			'Evidence review and technology comparison narrowing into questions, criteria, protocols and future evaluation.',
 	},
 ];
 
